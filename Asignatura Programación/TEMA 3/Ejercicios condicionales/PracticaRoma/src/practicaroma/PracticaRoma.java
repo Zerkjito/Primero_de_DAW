@@ -56,7 +56,7 @@ public class PracticaRoma {
                     sc.nextLine();
                     System.out.print("¿Posee un cupón de descuento? (SI / NO): ");
                     cuponDisponible = sc.nextLine().toUpperCase();
-                    if (!cuponDisponible.equalsIgnoreCase("sí") && !cuponDisponible.equalsIgnoreCase("si") && !cuponDisponible.equalsIgnoreCase("no")) {
+                    if (!cuponDisponible.equalsIgnoreCase("si") && !cuponDisponible.equalsIgnoreCase("no")) {
                         System.out.println("Eror. Por favor, especifique únicamente SI o NO.");
                     } else {
 
