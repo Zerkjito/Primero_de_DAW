@@ -39,7 +39,7 @@ public class PRUEBAPRACTICAROMA {
         telefono = sc.nextLine();
         System.out.print("Por favor, indique el tamaño de la pizza (G - M - P): ");
         char tamaño = sc.nextLine().toUpperCase().charAt(0);
-        
+
         if (tamaño != 'G' && tamaño != 'M' && tamaño != 'P') {
             System.out.println("Tamaño erróneo. Por favor, elija una opción correcta (G si desea grande, M si desea mediana o P si desea pequeña).");
         } else {
@@ -54,7 +54,7 @@ public class PRUEBAPRACTICAROMA {
                 numeroPizzas = sc.nextInt();
                 if (numeroPizzas > 20) {
                     System.out.println("Error. La cantidad de pizzas indicada sobrepasa el límite establecido (Máximo 20). Nuestra pizzería fomenta los valores saludables ante todo :)");
-                    
+
                 } else if (numeroPizzas < 1) {
                     System.out.println("Error. La cantidad de pizzas mínima para realizar el pedido es 1. Por favor, ingrese un número válido.");
                 } else {
@@ -67,8 +67,8 @@ public class PRUEBAPRACTICAROMA {
                         cupon = false;
                     } else {
                         System.out.println("Error. Por favor, especifique únicamente SI o NO.");
-                    } 
-                    
+                    }
+
                     if (cuponDisponible.equals("SI") || cuponDisponible.equals("NO")) {
                         System.out.print("¿Es su primer pedido con nosotros? (Por favor, recuerde que podemos verificar dicha información): ");
                         String primeraCompra = sc.nextLine().toUpperCase();
@@ -76,9 +76,9 @@ public class PRUEBAPRACTICAROMA {
                             primeraCompraDescuento = true;
                         } else if (primeraCompra.equals("NO")) {
                             primeraCompraDescuento = false;
-                        } 
+                        }
                     }
-                    
+
                     if (cuponDisponible.equals("SI") || cuponDisponible.equals("NO")) {
                         System.out.println();
                         System.out.println("PizzaDiMama");
@@ -93,7 +93,7 @@ public class PRUEBAPRACTICAROMA {
                         System.out.println("-------------------------------");
                         System.out.println("Pedido");
                         System.out.println("-------------------------------");
-                        
+
                         if (tamaño == 'G') {
                             tamañoEnGrande = "grande";
                         } else if (tamaño == 'M') {
@@ -101,15 +101,15 @@ public class PRUEBAPRACTICAROMA {
                         } else if (tamaño == 'P') {
                             tamañoEnGrande = "pequeño";
                         }
-                        
+
                         System.out.println(numeroPizzas + " Pizzas " + " Tamaño " + tamañoEnGrande);
                         System.out.println("Numero de ingredientes extra: " + ingrExtra);
-                        
+
                         double precioBase = 0;
                         double precioIngrediente = 0;
                         double porcentajeDescuento = 0;
                         double precioEnvio = 0;
-                        
+
                         if (tamaño == 'G') {
                             precioBase = 12;
                             precioIngrediente = 3;
@@ -123,9 +123,9 @@ public class PRUEBAPRACTICAROMA {
                             precioIngrediente = 1;
                             porcentajeDescuento = 0.05;
                         }
-                        
+
                         importeInicial = precioBase * numeroPizzas + ((precioIngrediente * ingrExtra) * numeroPizzas);
-                        
+
                         if (cupon == true && primeraCompraDescuento == true && importeInicial > 20) {
                             diferencia = importeInicial * porcentajeDescuento;
                             importeFinal = importeInicial - diferencia;
@@ -136,7 +136,7 @@ public class PRUEBAPRACTICAROMA {
                             System.out.printf("Descuento por primera compra 5%% -> %.2f€ \n", diferencia2);
                             System.out.println("Gastos de envío: exento por compra superior a 20€");
                             System.out.printf("Precio final: %.2f€ \n", importeFinal);
-                            
+
                         } else if (cupon == true && primeraCompraDescuento == true && importeInicial < 20) {
                             diferencia = importeInicial * porcentajeDescuento;
                             importeFinal = importeInicial - diferencia;
@@ -148,7 +148,7 @@ public class PRUEBAPRACTICAROMA {
                             System.out.printf("Descuento por primera compra 5%% -> %.2f€ \n", diferencia2);
                             System.out.printf("Gastos de envío: 4.50€ (Le faltan %.2f€ para disfrutar de gastos de envío gratis). \n", precioRestante);
                             System.out.printf("Precio final: %.2f€ \n", importeFinal);
-                            
+
                         } else if (cupon == true && primeraCompraDescuento == false && importeInicial > 20) {
                             diferencia = importeInicial * porcentajeDescuento;
                             importeFinal = importeInicial - diferencia;
@@ -156,7 +156,7 @@ public class PRUEBAPRACTICAROMA {
                             System.out.printf("Descuento por pizza tamaño " + tamañoEnGrande + " %.1f%% -> %.2f€ \n", porcentajeDescuento * 100, diferencia);
                             System.out.println("Gastos de envío: exento por compra superior a 20€");
                             System.out.printf("Precio final: %.2f€ \n", importeFinal);
-                            
+
                         } else if (cupon == true && primeraCompraDescuento == false && importeInicial < 20) {
                             diferencia = importeInicial * porcentajeDescuento;
                             importeFinal = (importeInicial - diferencia) + 4.50;
@@ -165,7 +165,7 @@ public class PRUEBAPRACTICAROMA {
                             System.out.printf("Descuento por pizza tamaño " + tamañoEnGrande + " %.1f%% -> %.2f€ \n", porcentajeDescuento * 100, diferencia);
                             System.out.printf("Gastos de envío: 4.50€ (Le faltan %.2f€ para disfrutar de gastos de envío gratis). \n", precioRestante);
                             System.out.printf("Precio final: %.2f€ \n", importeFinal);
-                            
+
                         } else if (cupon == false && primeraCompraDescuento == true && importeInicial > 20) {
                             diferencia2 = importeInicial * 0.05;
                             importeFinal = importeInicial - diferencia2;
@@ -174,7 +174,7 @@ public class PRUEBAPRACTICAROMA {
                             System.out.printf("Descuento por primera compra 5%% -> %.2f€ \n", diferencia2);
                             System.out.println("Gastos de envío: exento por compra superior a 20€");
                             System.out.printf("Precio final: %.2f€ \n", importeFinal);
-                            
+
                         } else if (cupon == false && primeraCompraDescuento == true && importeInicial < 20) {
                             diferencia2 = importeInicial * 0.05;
                             importeFinal = (importeInicial - diferencia2) + 4.50;
@@ -184,7 +184,7 @@ public class PRUEBAPRACTICAROMA {
                             System.out.printf("Descuento por primera compra 5%% -> %.2f€ \n", diferencia2);
                             System.out.printf("Gastos de envío: 4.50€ (Le faltan %.2f€ para disfrutar de gastos de envío gratis). \n", precioRestante);
                             System.out.printf("Precio final: %.2f€ \n", importeFinal);
-                            
+
                         } else if (cupon == false && primeraCompraDescuento == false && importeInicial > 20) {
                             importeFinal = importeInicial;
                             System.out.println("Precio: " + importeInicial + "€");
@@ -192,7 +192,7 @@ public class PRUEBAPRACTICAROMA {
                             System.out.println("Descuento por primera compra : No disponible");
                             System.out.println("Gastos de envío: exento por compra superior a 20€");
                             System.out.printf("Precio final: %.2f€ \n", importeFinal);
-                            
+
                         } else if (cupon == false && primeraCompraDescuento == false && importeInicial < 20) {
                             importeFinal = importeInicial + 4.50;
                             precioRestante = 20 - importeInicial;
@@ -205,7 +205,7 @@ public class PRUEBAPRACTICAROMA {
                     }
                 }
             }
-        } 
+        }
 
     }
 
