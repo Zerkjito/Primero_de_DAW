@@ -75,7 +75,7 @@ public class PracticaRomaDefinitivaV1 {
                             primeraCompraDescuento = true;
                         } else if (primeraCompra.equals("NO")) {
                             primeraCompraDescuento = false;
-                        } else if (primeraCompra.equals("")){
+                        } else{
                             System.out.println("Error. Su respuesta fue distinta a 'SI' o 'NO' de modo que no se aplicó ningún descuento.");
                         }
                     }
@@ -99,6 +99,8 @@ public class PracticaRomaDefinitivaV1 {
                             tamañoEnGrande = "grande";
                         } else if (tamaño == 'M') {
                             tamañoEnGrande = "mediano";
+                        } else if (tamaño == 'P') {
+                            tamañoEnGrande = "pequeño";
                         }
                         
                         System.out.println(numeroPizzas + " Pizzas " + " Tamaño " + tamañoEnGrande);
@@ -107,7 +109,6 @@ public class PracticaRomaDefinitivaV1 {
                         double precioBase =0;
                         double precioIngrediente = 0;
                         double porcentajeDescuento = 0;
-                        double precioEnvio = 0;
                         
                         if (tamaño == 'G') {
                             precioBase = 12;
@@ -124,26 +125,23 @@ public class PracticaRomaDefinitivaV1 {
                         }
                         
                         importeInicial = precioBase * numeroPizzas + ((precioIngrediente * ingrExtra) * numeroPizzas);
-                        if (importeInicial < 20) {
-                            precioEnvio = 4.50;
-                        }
                         
-                        if (cupon == true && primeraCompraDescuento == true) {
+                        if (cupon == true && primeraCompraDescuento == true && importeInicial >= 20) {
                             diferencia = importeInicial * porcentajeDescuento;
                             importeFinal = importeInicial - diferencia;
                             diferencia2 = importeFinal * 0.05;
-                            importeFinal = importeFinal - diferencia2 + precioEnvio;
-                            System.out.print("Precio: " + importeInicial + "€");
+                            importeFinal = importeFinal - diferencia2;
+                            System.out.println("Precio: " + importeInicial + "€");
                             System.out.printf("Descuento por pizza tamaño " + tamañoEnGrande + " %.1f%% -> %.2f€ \n", porcentajeDescuento * 100, diferencia);
                             System.out.printf("Descuento por primera compra 5%% -> %.2f€ \n", diferencia2);
-                            System.out.println("Gastos de envío: exento por compra superior a 20€");
+                            System.out.println("Gastos de envío: exento por compra igual o superior a 20€");
                             System.out.printf("Precio final: %.2f€ \n", importeFinal);
                             
-                        } else if (cupon == true && primeraCompraDescuento == true) {
+                        } else if (cupon == true && primeraCompraDescuento == true && importeInicial < 20) {
                             diferencia = importeInicial * porcentajeDescuento;
                             importeFinal = importeInicial - diferencia;
                             diferencia2 = importeFinal * 0.05;
-                            importeFinal = (importeFinal - diferencia2) + precioEnvio;
+                            importeFinal = (importeFinal - diferencia2) + 4.50;
                             precioRestante = 20 - importeInicial;
                             System.out.println("Precio: " + importeInicial + "€");
                             System.out.printf("Descuento por pizza tamaño " + tamañoEnGrande + " %.1f%% -> %.2f€ \n", porcentajeDescuento * 100, diferencia);
@@ -151,18 +149,18 @@ public class PracticaRomaDefinitivaV1 {
                             System.out.printf("Gastos de envío: 4.50€ (Le faltan %.2f€ para disfrutar de gastos de envío gratis) \n", precioRestante);
                             System.out.printf("Precio final: %.2f€ \n", importeFinal);
                             
-                        } else if (cupon == true && primeraCompraDescuento == false) {
+                        } else if (cupon == true && primeraCompraDescuento == false && importeInicial >= 20) {
                             diferencia = importeInicial * porcentajeDescuento;
-                            importeFinal = importeInicial - diferencia + precioEnvio;
+                            importeFinal = importeInicial - diferencia;
                             System.out.println("Precio: " + importeInicial + "€");
                             System.out.printf("Descuento por pizza tamaño " + tamañoEnGrande + " %.1f%% -> %.2f€ \n", porcentajeDescuento * 100, diferencia);
                             System.out.println("Descuento por primera compra : No disponible");
-                            System.out.println("Gastos de envío: exento por compra superior a 20€");
+                            System.out.println("Gastos de envío: exento por compra igual o superior a 20€");
                             System.out.printf("Precio final: %.2f€ \n", importeFinal);
                             
-                        } else if (cupon == true && primeraCompraDescuento == false) {
+                        } else if (cupon == true && primeraCompraDescuento == false && importeInicial < 20) {
                             diferencia = importeInicial * porcentajeDescuento;
-                            importeFinal = (importeInicial - diferencia) + precioEnvio;
+                            importeFinal = (importeInicial - diferencia) + 4.50;
                             precioRestante = 20 - importeInicial;
                             System.out.println("Precio: " + importeInicial + "€");
                             System.out.printf("Descuento por pizza tamaño " + tamañoEnGrande + " %.1f%% -> %.2f€ \n", porcentajeDescuento * 100, diferencia);
@@ -170,42 +168,48 @@ public class PracticaRomaDefinitivaV1 {
                             System.out.printf("Gastos de envío: 4.50€ (Le faltan %.2f€ para disfrutar de gastos de envío gratis) \n", precioRestante);
                             System.out.printf("Precio final: %.2f€ \n", importeFinal);
                             
-                        } else if (cupon == false && primeraCompraDescuento == true) {
+                        } else if (cupon == false && primeraCompraDescuento == true && importeInicial >= 20) {
                             diferencia2 = importeInicial * 0.05;
-                            importeFinal = importeInicial - diferencia2 + precioEnvio;
+                            importeFinal = importeInicial - diferencia2;
                             System.out.println("Precio: " + importeInicial + "€");
-                            System.out.println("Descuento: No disponible ");
+                            System.out.println("Descuento promocional: No disponible ");
                             System.out.printf("Descuento por primera compra 5%% -> %.2f€ \n", diferencia2);
-                            System.out.println("Gastos de envío: exento por compra superior a 20€");
+                            System.out.println("Gastos de envío: exento por compra igual o superior a 20€");
                             System.out.printf("Precio final: %.2f€ \n", importeFinal);
                             
-                        } else if (cupon == false && primeraCompraDescuento == true) {
+                        } else if (cupon == false && primeraCompraDescuento == true && importeInicial < 20) {
                             diferencia2 = importeInicial * 0.05;
-                            importeFinal = (importeInicial - diferencia2) + precioEnvio;
+                            importeFinal = (importeInicial - diferencia2) + 4.50;
                             precioRestante = 20 - importeInicial;
                             System.out.println("Precio: " + importeInicial + "€");
-                            System.out.println("Descuento: No disponible ");
+                            System.out.println("Descuento promocional: No disponible ");
                             System.out.printf("Descuento por primera compra 5%% -> %.2f€ \n", diferencia2);
                             System.out.printf("Gastos de envío: 4.50€ (Le faltan %.2f€ para disfrutar de gastos de envío gratis) \n", precioRestante);
                             System.out.printf("Precio final: %.2f€ \n", importeFinal);
                             
-                        } else if (cupon == false && primeraCompraDescuento == false) {
-                            importeFinal = importeInicial + precioEnvio;
+                        } else if (cupon == false && primeraCompraDescuento == false && importeInicial >= 20) {
+                            importeFinal = importeInicial;
                             System.out.println("Precio: " + importeInicial + "€");
-                            System.out.println("Descuento: No disponible ");
+                            System.out.println("Descuento promocional: No disponible ");
                             System.out.println("Descuento por primera compra : No disponible");
-                            System.out.println("Gastos de envío: exento por compra superior a 20€");
+                            System.out.println("Gastos de envío: exento por compra igual o superior a 20€");
                             System.out.printf("Precio final: %.2f€ \n", importeFinal);
                             
-                        } else if (cupon == false && primeraCompraDescuento == false) {
-                            importeFinal = importeInicial + precioEnvio;
+                        } else if (cupon == false && primeraCompraDescuento == false && importeInicial < 20) {
+                            importeFinal = importeInicial + 4.50;
                             precioRestante = 20 - importeInicial;
                             System.out.println("Precio: " + importeInicial + "€");
-                            System.out.println("Descuento: No disponible");
+                            System.out.println("Descuento promocional: No disponible");
                             System.out.println("Descuento por primera compra : No disponible");
                             System.out.printf("Gastos de envío: 4.50€ (Le faltan %.2f€ para disfrutar de gastos de envío gratis) \n", precioRestante);
                             System.out.printf("Precio final: %.2f€ \n", importeFinal);
                         }
+                        System.out.println();
+                        System.out.println("POLÍTICA DE DESCUENTOS Y ENVÍOS:\n"
+                                + "-El envío es gratuito para pedidos de 20€ o más, sin importar si es tu primera compra\n"
+                                + "-Una vez aplicado el envío gratuito, se aplicará un descuento del 5% en la primera compra sobre el total del pedido, incluyendo el costo de envío\n"
+                                + "-Si el total del pedido es inferior a 20€, se cobrará el envío estándar\n"
+                                + "-Si la 'primera' compra resulta ser fraudulenta, nos reservamos el derecho de emprender acciones legales utilizando los datos proporcionados por el cliente");
                         
                     }
                 }
