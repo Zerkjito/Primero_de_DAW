@@ -16,22 +16,37 @@ public class Ejercicio20 {
      */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        double n, n2=0;
-        int contador = 1;
+        int contador= 0;
+        boolean negativo = false;
+        int sumaPositivos = 0;
+        int n; 
 
         System.out.print("Por favor, introduzca un numero: ");
-        n = sc.nextDouble();
+        n = sc.nextInt();
         while (n != 0) {
-            System.out.print("Por favor, introduzca un numero: ");
-            n = sc.nextDouble();
-            n2 = n + n2;
-            if (n >= 1) {
+            if (n > 0) {
                 contador++;
+                sumaPositivos += n;
+            } else if (n < 0) {
+                negativo = true;
             }
-            
+            System.out.print("Por favor, introduzca un numero: ");
+            n = sc.nextInt();
+
         }
-        System.out.println("Numeros positivos leidos: " + contador);
-        System.out.println("Total suma: " + n2);
+        
+        if (contador > 0) {
+            System.out.println("Numeros positivos leidos: " + contador);
+            System.out.println("Total suma: " + sumaPositivos);
+        } else {
+            System.out.println("No se ha introducido ningun numero positivo");
+        }
+        
+        if (negativo) {
+            System.out.println("Se han introducido numeros negativos");
+        } else {
+            System.out.println("No se han introducido numeros negativos");
+        }   
 
     }
     
