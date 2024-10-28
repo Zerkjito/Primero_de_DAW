@@ -43,7 +43,7 @@ public class Ejercicio22 {
         if (contador > 0) {
             System.out.println("Numeros introducidos: " + contador);
             if (contadorMult3 > 0) {
-                System.out.println("Numeros introducidos: " + contadorMult3);
+                System.out.println("Multiplos de 3introducidos: " + contadorMult3);
                 System.out.printf("Media de multiplos introducidos: %.2f%n", sumaMultiplos / contadorMult3);
                 System.out.println("Primer multiplo de 3 introducido: " + primerMult);
             } else {
