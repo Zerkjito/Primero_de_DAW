@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Depurar archivo activo",
+      "type": "cppvsdbg", // Cambia a "cppdbg" si no estás en Windows.
+      "request": "launch",
+      "program": "${workspaceFolder}\\proyectos\\${fileBasenameNoExtension}.exe", // Cambia esto si tu .exe no está en la raíz del workspace.
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": true,
+      "preLaunchTask": "C/C++: g++.exe build active file"
+    }
+  ]
+}
