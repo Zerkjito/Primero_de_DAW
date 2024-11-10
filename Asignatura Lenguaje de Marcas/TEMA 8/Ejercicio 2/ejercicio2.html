@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ejercicio 2 Formularios</title>
 </head>
+
 <body>
   <form action="submit" method="post">
     <fieldset>
@@ -16,7 +18,7 @@
       <input type="text" name="apellidos">
       <br>
       DNI <br>
-      <input type="text" name="DNI">
+      <input type="text" name="DNI" maxlength="9">
       <br>
     </fieldset>
 
@@ -29,13 +31,14 @@
       <input type="password" name="pass">
       <br>
       Repite la contraseña <br>
-      <input type="password" name="pass">
+      <input type="password" name="repetir pass">
       <br>
     </fieldset>
     <br>
-    <input type="submit" name="Enviar">
-    <input type="reset" name="Borrar datos" value="Borrar datos">
-
+    <input type="submit" name="Enviar datos" value="Enviar">
+    <input type="reset" name="Borrado de datos" value="Borrar datos">
   </form>
+
 </body>
+
 </html>

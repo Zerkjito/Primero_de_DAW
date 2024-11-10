@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio 3 Formularios</title>
+</head>
+<body>
+  <form action="formulario provincias" method="post">
+    <fieldset>
+      <legend>datos personales</legend>
+      <label for="provincia">Provincia</label>
+      <br>
+      <select name="provincia" id="provincia">
+        <option value=""selected="selected">- selecciona -</option>
+        <option value="toledo">Toledo</option>
+        <option value="murcia">Murcia</option>
+        <option value="sevilla">Sevilla</option>
+        <option value="madrid">Madrid</option>
+        <option value="alicante">Alicante</option>
+      </select> <br>
+      <br>
+
+      <label for="fecha nacimiento">Fecha de nacimiento</label>
+      <br>
+      <input type="text" size="1"> de
+      <select name="mes" id="mes">
+        <option value=""selected="selected">Enero</option>
+        <option value="febrero">Febrero</option>
+        <option value="marzo">Marzo</option>
+        <option value="abril">Abril</option>
+        <option value="mayo">Mayo</option>
+        <option value="junio">Junio</option>
+        <option value="julio">Julio</option>
+        <option value="agosto">Agosto</option>
+        <option value="septiembre">Septiembre</option>
+        <option value="octubre">Octubre</option>
+        <option value="noviembre">Noviembre</option>
+        <option value="diciembre">Diciembre</option> 
+      </select> de
+      <input type="text" size="3"> <br>
+      <br>
+
+      <label for="temas interes">Temas de interés</label>
+      <br>
+      <select name="temas interes" id="temas interes" size="5" multiple="multiple">
+        <option value="administracion BDD">Administración de bases de datos</option>
+        <option value="analisis y programacion">Análisis y programación</option>
+        <option value="arquitectura">Arquitectura</option>
+        <option value="ciberseguridad">Ciberseguridad</option>
+        <option value="ai">Inteligencia artificial</option>
+      </select> <br>
+      <br>
+
+      <input type="submit" name="enviar datos" value="Enviar">
+      <input type="reset" name="borrado de datos" value="Borrar datos">
+    </fieldset>
+  </form>
+</body>
+</html>
