@@ -25,8 +25,9 @@ public class Repetitiva16 {
             System.out.println(velocidad + " Km/h => " + velocidad * 1000.0 / 3600 + " m/s");
             sc.nextLine(); //limpiar buffer
             System.out.print("Repetir proceso? (N para finalizar): ");
-            car = sc.nextLine().charAt(0);
-        } while (car != 'N' && car != 'n');
+            car = sc.nextLine().toUpperCase().charAt(0);
+        } while (car != 'N');
+        System.out.println("Fin programa");
     }
 
 }
