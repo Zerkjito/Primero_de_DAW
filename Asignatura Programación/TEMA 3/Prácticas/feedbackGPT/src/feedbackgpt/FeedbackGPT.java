@@ -12,123 +12,199 @@ import java.util.Scanner;
  */
 
 
+import java.util.Random;
+import java.util.Scanner;
+
+import java.util.Random;
+import java.util.Scanner;
+
+import java.util.Random;
+import java.util.Scanner;
+
 public class FeedbackGPT {
 
     public static void main(String[] args) {
         Random rnd = new Random();
         Scanner sc = new Scanner(System.in);
+        
         int resultado, numMax = 0, numIntentos = 0, contadorGanadas = 0, contadorPerdidas = 0;
-        int partidas = 0;
-        boolean ganado = false;
+        int partidas = 0, modoJuego = 0, contadorLogros = 0;
+        boolean ganado, logroPorLosPelos = false, logroAdivinaPrimera = false;
         char respuesta = 'S', respuestaConfig;
-        int modoJuego = 0;
 
         do {
-            // Menú de selección de modo de juego
-            System.out.println("Elige el modo de juego (1: Libre, 2: Fácil, 3: Normal, 4: Difícil, 5: Imposible, 6: Cooperativo): ");
-            modoJuego = sc.nextInt();
-
-            // Configuración según el modo de juego con switch
-            switch (modoJuego) {
-                case 1:  // Modo libre
-                    numMax = 3000;
-                    numIntentos = 10;
-                    break;
-                case 2:  // Modo fácil
-                    numMax = 20;
-                    numIntentos = 10;
-                    break;
-                case 3:  // Modo normal
-                    numMax = 100;
-                    numIntentos = 8;
-                    break;
-                case 4:  // Modo difícil
-                    numMax = 500;
-                    numIntentos = 3;
-                    break;
-                case 5:  // Modo imposible
-                    numMax = 100;
-                    numIntentos = 1;
-                    break;
-                case 6:  // Modo cooperativo
-                    numMax = 100;
-                    numIntentos = 5;  // O cualquier número de intentos que quieras
-                    break;
-                default:
-                    System.out.println("Modo no válido, por favor elige un modo válido.");
-                    continue;  // Si el modo es inválido, vuelve a pedir la selección
+            ganado = false;
+            if (modoJuego == 0) {
+                System.out.println("--------------------------------------------------------");
+                System.out.println("ADIVINA EL NÚMERO");
+                System.out.println("--------------------------------------------------------");
+                System.out.println("Elige el modo de juego:");
+                System.out.print("1: Libre, 2: Fácil, 3: Normal, 4: Difícil, 5: Imposible, 6: CO-OP local: ");
+                
+                while (true) {
+                    modoJuego = sc.nextInt();
+                    if (modoJuego >= 1 && modoJuego <= 6) {
+                        break;
+                    } else {
+                        System.out.println("Modo de juego inválido. Por favor, elige un modo entre 1-6.");
+                    }
+                }
             }
 
-            // Número aleatorio a adivinar
+            if (modoJuego == 1 && partidas > 0) {
+                System.out.print("¿Deseas mantener la configuración anterior? (S/N): ");
+                respuestaConfig = sc.next().toUpperCase().charAt(0);
+                if (respuestaConfig == 'N') {
+                    System.out.print("Introduce el número máximo a adivinar: ");
+                    numMax = sc.nextInt();
+                    System.out.print("Introduce el número máximo de intentos: ");
+                    numIntentos = sc.nextInt();
+                }
+            } else {
+                switch (modoJuego) {
+                    case 1:
+                        System.out.println("");
+                        System.out.println("[MODO LIBRE] El jugador elige los parámetros libremente");
+                        System.out.print("Introduce el número máximo a adivinar: ");
+                        numMax = sc.nextInt();
+                        System.out.print("Introduce el número máximo de intentos: ");
+                        numIntentos = sc.nextInt();
+                        break;
+                    case 2:
+                        System.out.println("");
+                        System.out.println("[MODO FÁCIL] Pensado para adivinar sin esfuerzo");
+                        numMax = 20;
+                        numIntentos = 10;
+                        break;
+                    case 3:
+                        System.out.println("");
+                        System.out.println("[MODO NORMAL] Enfocado para el jugador promedio");
+                        numMax = 100;
+                        numIntentos = 8;
+                        break;
+                    case 4:
+                        System.out.println("");
+                        System.out.println("[MODO DIFÍCIL] Ideado para sufrir");
+                        numMax = 500;
+                        numIntentos = 5;
+                        break;
+                    case 5:
+                        System.out.println("");
+                        System.out.println("[MODO IMPOSIBLE] El jugador ha de acertar el número mediante 3 intentos");
+                        numMax = 100;
+                        numIntentos = 3;
+                        break;
+                    case 6:
+                        System.out.println("");
+                        System.out.println("[Modo Cooperativo Local] Jugador 1 y Jugador 2 deben adivinar el número.");
+                        System.out.print("Introduce el número máximo a adivinar: ");
+                        numMax = sc.nextInt();
+                        System.out.print("Introduce el número máximo de intentos: ");
+                        numIntentos = sc.nextInt();
+                        break;
+                }
+            }
+            
             int numAdiv = rnd.nextInt(1, numMax + 1);
 
-            // Si es cooperativo, dos jugadores alternan sus intentos
             if (modoJuego == 6) {
-                System.out.println("Modo Cooperativo. Jugador 1 y Jugador 2 deben adivinar el número.");
                 for (int i = 1; i <= numIntentos; i++) {
-                    // Turno del Jugador 1 
-                    System.out.print("Jugador 1, intenta adivinar el número (Intento " + i + "): ");
+                    System.out.print("Turno de Jugador 1 (Intento " + i + "): ");
                     resultado = sc.nextInt();
                     if (resultado == numAdiv) {
-                        System.out.println("Jugador 1 adivinó correctamente el número.");
+                        System.out.println("--------------------------------------------------------");
+                        System.out.println("Jugador 1 ha ganado!");
                         ganado = true;
                         break;
                     } else {
-                        System.out.println(resultado < numAdiv ? "Más alto" : "Más bajo");
-                    }
+                        System.out.println(resultado < numAdiv ? "Más alto (+)" : "Más bajo (-)");
+                        System.out.println("");
+                    } 
 
-                    // Turno del Jugador 2
-                    System.out.print("Jugador 2, intenta adivinar el número (Intento " + i + "): ");
+                    System.out.print("Turno de Jugador 2 (Intento " + i + "): ");
                     resultado = sc.nextInt();
                     if (resultado == numAdiv) {
-                        System.out.println("Jugador 2 adivinó correctamente el número.");
+                        System.out.println("--------------------------------------------------------");
+                        System.out.println("Jugador 2 ha ganado!");
                         ganado = true;
                         break;
                     } else {
-                        System.out.println(resultado < numAdiv ? "Más alto" : "Más bajo");
+                        System.out.println(resultado < numAdiv ? "Más alto (+)" : "Más bajo (-)");
+                        System.out.println("");
                     }
                 }
             } else {
-                // Para otros modos (no cooperativo)
                 System.out.println("Adivina el número entre 1 y " + numMax + ". Tienes " + numIntentos + " intentos.");
                 for (int i = 1; i <= numIntentos; i++) {
+                    if (i == numIntentos) {
+                        System.out.println("Último intento");
+                    }
                     System.out.print("Intento " + i + ": ");
                     resultado = sc.nextInt();
-                    if (resultado == numAdiv) {
-                        System.out.println("¡Has adivinado el número!");
+
+                    if (i == 1 && resultado == numAdiv && !logroAdivinaPrimera) {
+                        System.out.println("--------------------------------------------------------");
+                        System.out.println("[Logro 'Imposible' Conseguido] ENHORABUENA!! HAS ACERTADO EL NÚMERO A LA PRIMERA");
+                        contadorLogros++;
+                        logroAdivinaPrimera = true;
+                        ganado = true;
+                        break;
+                    } else if (resultado == numAdiv) {
+                        System.out.println("--------------------------------------------------------");
+                        System.out.println("ENHORABUENA!! HAS ACERTADO EL NÚMERO");
+                        ganado = true;
+                        break;
+                    } else if (i == numIntentos && resultado == numAdiv && !logroPorLosPelos) {
+                        System.out.println("--------------------------------------------------------");
+                        System.out.println("[Logro 'Por los pelos' Conseguido] ENHORABUENA!! HAS ACERTADO EL NÚMERO AL ÚLTIMO INTENTO");
+                        contadorLogros++;
+                        logroPorLosPelos = true;
                         ganado = true;
                         break;
                     } else {
-                        System.out.println(resultado < numAdiv ? "Más alto" : "Más bajo");
+                        System.out.println(resultado < numAdiv ? "Más alto (+)" : "Más bajo (-)");
+                        System.out.println("");
                     }
                 }
             }
 
             if (ganado) {
                 contadorGanadas++;
-                System.out.println("¡Felicidades! Has ganado.");
             } else {
                 contadorPerdidas++;
-                System.out.println("¡Has perdido! El número era: " + numAdiv);
+                System.out.println("--------------------------------------------------------");
+                System.out.println("Has perdido. El número era: " + numAdiv);
             }
 
             partidas++;
-            System.out.println("Partidas jugadas: " + partidas + " - Ganadas: " + contadorGanadas + " - Perdidas: " + contadorPerdidas);
+            if (contadorGanadas == 5) {
+                System.out.println("[Logro 'Acaparador de victorias' Conseguido]");
+                contadorLogros++;
+            }
+            if (contadorGanadas == 10) {
+                System.out.println("[Logro 'Maestro Jinn' Conseguido]");
+                contadorLogros++;
+            }
+            if (partidas == 5) {
+                System.out.println("[Logro 'Jugador persistente' Conseguido]");
+                contadorLogros++;
+            }
 
-            // Preguntar si quiere jugar otra vez
-            System.out.print("¿Quieres jugar otra partida? (S/N): ");
+            System.out.println("Partidas jugadas: (" + partidas + ") Ganadas -> " + contadorGanadas + " | Perdidas -> " + contadorPerdidas);
+            System.out.println("Logros conseguidos " + contadorLogros + " / 5");
+            
+            System.out.print("¿Deseas redimirte o volver a jugar? (S/N): ");
             respuesta = sc.next().toUpperCase().charAt(0);
             if (respuesta == 'S') {
-                // Preguntar si quiere modificar la configuración
-                System.out.print("¿Quieres modificar la configuración del juego? (S/N): ");
+                System.out.print("¿Deseas modificar el modo de juego? (S/N): ");
                 respuestaConfig = sc.next().toUpperCase().charAt(0);
                 if (respuestaConfig == 'S') {
                     modoJuego = 0;
                 }
             }
-
+            
         } while (respuesta == 'S');
-
-        System.out.println("Fin del juego. ¡Hasta la próxima!");
+        
+        System.out.println("Fin del programa. ¡Gracias por jugar!");
     }
 }
