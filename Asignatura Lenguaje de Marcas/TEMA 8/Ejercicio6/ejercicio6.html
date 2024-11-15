@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio 6 formularios</title>
+</head>
+<body>
+  <form action="" method="post">
+    <table>
+      <tr>
+        <td colspan="4" align="center"><strong>ELECTRO 4 - VENTA DE ELECTRODOMÉSTICOS</strong></td>
+      </tr>
+
+      <tr>
+        <td><img src="imagenes/tele.jpeg" alt="tv"></td>
+        <td><img src="imagenes/cadena.jpeg" width="127" height="100" alt=""></td>
+        <td><img src="imagenes/frigorifico.jpeg" width="127" height="100" alt=""></td>
+        <td><img src="imagenes/vitro.jpeg" width="127" height="100" alt=""></td>
+      </tr>
+
+      <tr>
+        <td>PVP: 550€ <br>
+          <input type="checkbox">
+        </td>
+        <td>PVP: 300€ <br>
+          <input type="checkbox">
+        </td>
+        <td>PVP: 450€ <br>
+          <input type="checkbox">
+        </td>
+        <td>PVP: 400€ <br>
+          <input type="checkbox">
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2"><strong>Forma de pago</strong> <br>
+          <select name="pago" id="pago">
+            <option value="visa">VISA</option>
+            <option value="contado">Contado</option>
+            <option value="cheque">Cheque</option>
+          </select>
+        </td>
+        <td colspan="2"><strong>Forma de entrega</strong> <br>
+          <input type="radio" name="formaEntrega" value="recoger">Lo recoge el cliente <br>
+          <input type="radio" name="formaEntrega" value="domicilio">Entrega a domicilio
+        </td>
+      </tr>
+
+        <tr>
+          <td colspan="3"><strong>Características especiales de la entrega:</strong></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td colspan="4"><textarea rows="3" cols="45" name="caractEspeciales" id="caractEspeciales"></textarea></td>
+        </tr>
+
+        <tr>
+          <td colspan="4"><strong>Datos cliente</strong></td>
+        </tr>
+
+        <tr>
+          <td>Nombre:</td>
+          <td colspan="3"><input type="text" name="nombre" id="nombre"></td>
+        </tr>
+
+        <tr>
+          <td>Apellido:</td>
+          <td><input type="text" name="apellido" id="apellido"></td>
+          <td colspan="2"><input type="submit" value="Enviar pedido"></td>
+        </tr>
+
+        <tr>
+          <td>D.N.I:</td>
+          <td><input type="text" name="dni" id="dni" maxlength="9"></td>
+          <td colspan="2"><input type="reset" value="Borrar formulario"></td>
+        </tr>
+
+        <tr>
+          <td>Teléfono:</td>
+          <td colspan="3"><input type="text" name="telef" id="telef"></td>
+        </tr>
+
+      
+    </table>
+  </form>
+</body>
+</html>
