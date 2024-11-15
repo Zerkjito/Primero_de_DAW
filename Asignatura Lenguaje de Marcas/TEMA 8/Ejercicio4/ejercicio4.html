@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio 4 formularios</title>
+</head>
+<body>
+  <form action="gestionar_pedido.php." method="post">
+    <table border="0">
+      <tr>
+        <td></td>
+        <td></td>
+        <th>VIDEOCLUB ON-LINE</th>
+        <td></td>
+        <td></td>
+      </tr>
+  
+      <tr>
+        <th>Nombre Película</th>
+        <td><input type="text" name=""></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+  
+      <tr>
+        <th>Número días alquiler</th>
+        <td><input type="text" name=""></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+  
+      <tr>
+        <td></td>
+        <th>Edad cliente</th>
+        <td></td>
+        <th>Forma de pago</th>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td> 
+          <input type="radio" name="edad" value="menorDe7"> Menor de 7 años <br>
+          <input type="radio" name="edad" value="menorDe14"> Menor de 14 años <br>
+          <input type="radio" name="edad" value="menorDe18"> Menor de 18 años <br>
+          <input type="radio" name="edad" value="mayorDe18"> Mayor de 18 años <br>
+        </td>
+        <td></td>
+        <td>
+          <select name="pago" id="pago">
+            <option value=""selected="selected">VISA</option>
+            <option value="cheque">Cheque</option>
+            <option value="contado">Contado</option>
+            <option value="metalico">Metálico</option>
+          </select>
+        </td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <th>Especificaciones extra</th>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td colspan="4">
+           <textarea  rows="8" cols="70" name="specs" id="extraspecs"></textarea>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td><input type="submit" name="enviar pedido" value="Enviar pedido"></td>
+        <td></td>
+        <td><input type="reset" name="borrar formulario" value="Borrar formulario"></td>
+      </tr>
+    </table>
+  </form>
+</body>
+</html>

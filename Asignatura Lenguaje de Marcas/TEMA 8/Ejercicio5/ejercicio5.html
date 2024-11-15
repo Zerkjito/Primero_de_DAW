@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio 5 formularios</title>
+</head>
+<body>
+  <form action="gestionar_pedido.php." method="post">
+    <table border="0">
+      <tr>
+        <td colspan="3" align="center"><em>- Pedido Pizza -</em></td>
+      </tr>
+
+      <tr>
+        <td><strong>Nombre</strong></td>
+        <td colspan="2"><input type="text" size="40"></td>
+      </tr>
+
+      <tr>
+        <td><strong>Dirección</strong></td>
+        <td colspan="2"><input type="text" size="40"></td>
+      </tr>
+
+      <tr>
+        <td><strong>Ingredientes</strong></td>
+        <td><strong>Tamaño</strong></td>
+        <td><strong>Forma de pago</strong></td>
+      </tr>
+      
+      <tr>
+        <td><input type="checkbox" name="ingr1" value="queso">Queso <br>
+          <input type="checkbox" name="ingr2" value="pimiento">Pimiento <br>
+          <input type="checkbox" name="ingr3" value="cebolla">Cebolla 
+        </td>
+        <td>
+          <input type="radio" name="peq" value="pequeño"> Pequeña <br>
+          <input type="radio" name="peq" value="mediana"> Mediana <br>
+          <input type="radio" name="peq" value="grande"> Grande
+        </td>
+        <td>
+          <select name="pago" id="pago">
+            <option value="metalico" selected ="selected">Metálico</option>
+            <option value="visa">VISA</option>
+            <option value="cheque">Cheque</option>
+            <option value="contado">Contado</option>
+            <option value="paypal">PayPal</option>
+          </select>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="3"><strong>Instrucciones especiales</strong></td>
+        <td></td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td colspan="3">
+          <textarea rows="8" cols="70" name="instrucciones" id="instrucciones"></textarea>
+        </td>
+      </tr>
+    </table>
+  </form>
+</body>
+</html>
