@@ -10,13 +10,13 @@
   <br>
   <h3>Contenidos</h3>
   <ul>
-    <li>Formato de texto</li>
-    <li>Tablas</li>
-    <li>Formularios</li>
-    <li>Imágenes</li>
+    <li><a href="#seccionFormatoTexto">Formato de texto</a></li>
+    <li><a href="#seccionTablas">Tablas</a></li>
+    <li><a href="#seccionFormularios">Formularios</a></li>
+    <li><a href="recursos/recursos/galeria/imagenes.html">Imagenes</a></li>
   </ul>
   <br>
-  <h3>Formato de texto</h3>
+  <h3 id="seccionFormatoTexto">Formato de texto</h3>
   <p>El pasado julio los científicos estaban fascinados cuando la nave <strong>Cassini</strong> de la <abbr title="National Aeronautics and Space Administration">NASA</abbr> comenzó a orbitar <u>Saturno</u> después de un larguísimo viaje de <em><strong>siete años y 3500 millones de km.</strong></em>
      La nave comenzó a enviar imágenes de gran  del planeta y sus anillos y sus más de <em>30 lunas</em>. Era el principio de la misión científica de 4 años al sistema de Saturno, sin embargo
       el más espectacular episodio de la misión sucederá el próximo 15 de enero cuando la sonda Huygens que viaja junto a Cassini intente el descenso y aterrizaje sobre su satélite mayor <strong>Titán</strong>, rodeado
@@ -27,7 +27,7 @@ Informática	C/ Bruselas, 38 (Pasaje)	C/ Juan de Echevarría, loc.7
                 Tlf: 958-13.75.75		Tlf. 958-13.62.32
       </pre>
       <br>
-      <h3>Tablas</h3>
+      <h3 id="seccionTablas">Tablas</h3>
       <table border="1">
         <caption>HORARIO</caption>
         <tr>
@@ -69,8 +69,8 @@ Informática	C/ Bruselas, 38 (Pasaje)	C/ Juan de Echevarría, loc.7
         </tr>
       </table>
       <br>
-      <h3>Formularios</h3>
-      <form action="">
+      <h3 id="seccionFormularios">Formularios</h3>
+      <form action="invent.php" method="post">
         <fieldset>
           <legend>Datos personales</legend>
           DNI <input type="text" name="dni" id="dni" maxlength="9" size="10">
@@ -90,9 +90,52 @@ Informática	C/ Bruselas, 38 (Pasaje)	C/ Juan de Echevarría, loc.7
           <br>
           Provincia <select name="provincia" id="provincia">
             <option value="Alicante">ALICANTE</option>
+            <option value="Madrid">MADRID</option>
+            <option value="Castellon">CASETELLÓN</option>
+            <option value="Málaga">MÁLAGA</option>
+            <option value="Granada">GRANADA</option>
           </select>
         </fieldset>
-      </form>
+        <br>
+        <fieldset>
+          <legend>Formación y experiencia</legend>
+          Estudios cursados <select name="estudios" id="estudios">
+            <option value="bachillerato">BACHILLERATO</option>
+            <option value="eso">ESO</option>
+            <option value="gm">GRADO MEDIO</option>
+            <option value="gs">GRADO SUPERIOR</option>
+          </select>
+          <br>
+          <br>
+          Título <input type="text" name="titulo" id="titulo">
+          <br>
+          <br>
+          Experiencia laboral <input type="radio" name="expLaboral" value="expLaboral"> SI
+          <input type="radio" name="expLaboral" value="expLaboral"> NO
+          <br>
+          <br>
+          Idiomas <input type="checkbox" name="idioma" value="ingles"> INGLÉS
+          <input type="checkbox" name="idioma" value="frances"> FRANCÉS
+          <input type="checkbox" name="idioma" value="otros"> OTROS
+        </fieldset>
+        <br>
+        <fieldset>
+          <legend>Acceso al portal</legend>
+          Usuario <input type="text" name="user" id="user">
+          <br>
+          <br>
+          Password <input type="password" name="pass" id="pass">
+        </fieldset>
+        <br>
+        Otros datos
+        <table border="0">
+          <tr>
+            <td><textarea rows="9" cols="80" name="" id=""></textarea></td>
+          </tr>
+        </table>
+        <input type="submit" name="enviar" value="Enviar">
+        <input type="reset" name="borrar" value="Borrar datos">
+        </form>
 
 
 

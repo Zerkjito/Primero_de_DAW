@@ -16,7 +16,7 @@ public class PracticaAdvinaNumero {
     public static void main(String[] args) {
         Random rnd = new Random();
         Scanner sc = new Scanner(System.in);
-        
+
         int resultado = 0, numMax = 0, numIntentos = 0, contadorGanadas = 0, contadorPerdidas = 0;
         int partidas = 0, modoJuego = 0, contadorLogros = 0;
         boolean ganado, logroPorLosPelos = false, logroAdivinaPrimera = false;
@@ -30,13 +30,18 @@ public class PracticaAdvinaNumero {
                 System.out.println("--------------------------------------------------------");
                 System.out.println("Elige el modo de juego:");
                 System.out.print("1: Libre, 2: Fácil, 3: Normal, 4: Difícil, 5: Imposible, 6: CO-OP local: ");
-                
+
                 while (true) {
-                    modoJuego = sc.nextInt();
-                    if (modoJuego >= 1 && modoJuego <= 6) {
-                        break;
+                    if (sc.hasNextInt()) {
+                        modoJuego = sc.nextInt();
+                        if (modoJuego >= 1 && modoJuego <= 6) {
+                            break;
+                        } else {
+                            System.out.println("Modo de juego inválido. Por favor, elige un modo entre 1-6.");
+                        }
                     } else {
-                        System.out.println("Modo de juego inválido. Por favor, elige un modo entre 1-6.");
+                        System.out.print("Entrada inválida. Por favor, introduce un número: ");
+                        sc.next();
                     }
                 }
             }
@@ -56,8 +61,16 @@ public class PracticaAdvinaNumero {
                         System.out.println("");
                         System.out.println("[MODO LIBRE] El jugador elige los parámetros libremente");
                         System.out.print("Introduce el número máximo a adivinar: ");
+                        while (!sc.hasNextInt()) {
+                            System.out.println("Entrada inválida. Por favor, introduce un número entero.");
+                            sc.next();
+                        }
                         numMax = sc.nextInt();
                         System.out.print("Introduce el número máximo de intentos: ");
+                        while (!sc.hasNextInt()) {
+                            System.out.println("Entrada inválida. Por favor, introduce un número entero.");
+                            sc.next();
+                        }
                         numIntentos = sc.nextInt();
                         break;
                     case 2:
@@ -88,22 +101,38 @@ public class PracticaAdvinaNumero {
                         System.out.println("");
                         System.out.println("[Modo Cooperativo Local] Jugador 1 y Jugador 2 deben batirse a duelo");
                         System.out.print("Introduce el número máximo a adivinar: ");
+                        while (!sc.hasNextInt()) {
+                            System.out.println("Entrada inválida. Por favor, introduce un número entero.");
+                            sc.next();
+                        }
                         numMax = sc.nextInt();
                         System.out.print("Introduce el número máximo de intentos: ");
+                        while (!sc.hasNextInt()) {
+                            System.out.println("Entrada inválida. Por favor, introduce un número entero.");
+                            sc.next();
+                        }
                         numIntentos = sc.nextInt();
                         break;
                 }
             }
-            
+
             int numAdiv = rnd.nextInt(1, numMax + 1);
 
             if (modoJuego == 6) {
                 for (int i = 1; i <= numIntentos; i++) {
                     if (i != numIntentos) {
                         System.out.print("Turno de Jugador 1 (Intento " + i + "): ");
+                        while (!sc.hasNextInt()) {
+                            System.out.println("Entrada inválida. Por favor, introduce un número entero.");
+                            sc.next();
+                        }
                         resultado = sc.nextInt();
                     } else {
                         System.out.print("Turno de Jugador 1 (Último intento): ");
+                        while (!sc.hasNextInt()) {
+                            System.out.println("Entrada inválida. Por favor, introduce un número entero.");
+                            sc.next();
+                        }
                         resultado = sc.nextInt();
                     }
 
@@ -115,15 +144,23 @@ public class PracticaAdvinaNumero {
                     } else {
                         System.out.println(resultado < numAdiv ? "Más alto (+)" : "Más bajo (-)");
                         System.out.println("");
-                    } 
+                    }
 
                     if (i != numIntentos) {
                         System.out.print("Turno de Jugador 2 (Intento " + i + "): ");
+                        while (!sc.hasNextInt()) {
+                            System.out.println("Entrada inválida. Por favor, introduce un número entero.");
+                            sc.next();
+                        }
                         resultado = sc.nextInt();
                     } else {
                         System.out.print("Turno de Jugador 2 (Último intento): ");
+                        while (!sc.hasNextInt()) {
+                            System.out.println("Entrada inválida. Por favor, introduce un número entero.");
+                            sc.next();
+                        }
                         resultado = sc.nextInt();
-                        
+
                     }
                     if (resultado == numAdiv) {
                         System.out.println("--------------------------------------------------------");
@@ -140,9 +177,17 @@ public class PracticaAdvinaNumero {
                 for (int i = 1; i <= numIntentos; i++) {
                     if (i != numIntentos) {
                         System.out.print("Intento " + i + ": ");
+                        while (!sc.hasNextInt()) {
+                            System.out.println("Entrada inválida. Por favor, introduce un número entero.");
+                            sc.next();
+                        }
                         resultado = sc.nextInt();
                     } else {
                         System.out.print("Último intento: ");
+                        while (!sc.hasNextInt()) {
+                            System.out.println("Entrada inválida. Por favor, introduce un número entero.");
+                            sc.next();
+                        }
                         resultado = sc.nextInt();
                     }
 
@@ -190,7 +235,7 @@ public class PracticaAdvinaNumero {
                 contadorLogros++;
             }
             if (contadorGanadas == 10) {
-                System.out.println("[Logro 'Maestro Djinn' Conseguido] Gana 10 partidas" );
+                System.out.println("[Logro 'Maestro Djinn' Conseguido] Gana 10 partidas");
                 contadorLogros++;
             }
             if (partidas == 5) {
@@ -200,19 +245,29 @@ public class PracticaAdvinaNumero {
 
             System.out.println("Partidas jugadas: (" + partidas + ") Ganadas -> " + contadorGanadas + " | Perdidas -> " + contadorPerdidas);
             System.out.println("Logros conseguidos " + contadorLogros + "/5");
-            
-            System.out.print("¿Deseas redimirte o volver a ganar? (S/N): ");
-            respuesta = sc.next().toUpperCase().charAt(0);
+
+            do {
+                System.out.print("¿Deseas volver a jugar? (S/N): ");
+                respuesta = sc.next().toUpperCase().charAt(0);
+                if (respuesta != 'S' && respuesta != 'N') {
+                    System.out.println("Introduce una respuesta válida ('S' o 'N'): ");
+                }
+            } while (respuesta != 'S' && respuesta != 'N');
             if (respuesta == 'S') {
-                System.out.print("¿Deseas modificar el modo de juego? (S/N): ");
-                respuestaConfig = sc.next().toUpperCase().charAt(0);
+                do {
+                    System.out.print("¿Deseas modificar el modo de juego? (S/N): ");
+                    respuestaConfig = sc.next().toUpperCase().charAt(0);
+                    if (respuestaConfig != 'S' && respuestaConfig != 'N') {
+                        System.out.println("Introduce una respuesta válida ('S' o 'N'): ");
+                    }
+                } while (respuestaConfig != 'S' && respuestaConfig != 'N');
                 if (respuestaConfig == 'S') {
                     modoJuego = 0;
                 }
             }
-            
+
         } while (respuesta == 'S');
-        
+
         System.out.println("Fin del programa. ¡Gracias por jugar!");
     }
 }
