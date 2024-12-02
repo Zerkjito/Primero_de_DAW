@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package ejercicio15;
+
 import java.util.Scanner;
 
 /**
@@ -17,49 +18,61 @@ public class Ejercicio15 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         double n1, n2, resultado = 0;
-        int operacion = 0, modalidad = 0;
-        char respuesta, respuestaConfig;
+        int operacion;
+        char respuesta;
 
         do {
-            if (operacion == 0) {
-                
-            }
-            System.out.print("Primer numero: ");
+            System.out.print("Introduce el primero numero: ");
             n1 = sc.nextDouble();
-            System.out.print("Segundo numero: ");
+            System.out.print("Introduce el segundo numero: ");
             n2 = sc.nextDouble();
 
-            System.out.println("Elige una operacion 1.Suma | 2.Resta | 3.Multiplicacion | 4.Division");
-            operacion = sc.nextInt();
+            do {
 
-            switch (operacion) {
-                case 1:
-                    resultado = n1 + n2;
-                    break;
-                case 2:
-                    resultado = n1 - n2;
-                    break;
-                case 3:
-                    resultado = n1 * n2;
-                    break;
-                case 4:
-                    if (n2 == 0) {
-                        System.out.println("Error. No se puede dividir entre 0");                        
+                do {
+                    System.out.println("1 -> Sumar");
+                    System.out.println("2 -> Restar");
+                    System.out.println("3 -> Multiplicar");
+                    System.out.println("4 -> Dividir");
+                    System.out.print("Elige opcion: ");
+                    operacion = sc.nextInt();
+                    if (operacion < 1 || operacion > 4) {
+                        System.out.println("Elige una opcion correcta");
                     }
-                    resultado = n1 / n2;
-                    break;
-            }
-            System.out.printf("El resultado es %.2f%n", resultado);
-            System.out.print("Leer mas numeros (S/N)? ");
-            respuesta = sc.next().toUpperCase().charAt(0);
-            if (respuesta == 'S') {
-                System.out.print("Deseas mantener los mismos numeros? ");
-                respuestaConfig = sc.next().toUpperCase().charAt(0);
-                if (respuestaConfig == 'N') {
-                    operacion = 0;
+                } while (operacion < 1 || operacion > 4);
+
+                switch (operacion) {
+                    case 1:
+                        System.out.println(n1 + " + " + n2 + " = " + (n1 + n2));
+                        break;
+                    case 2:
+                        System.out.println(n1 + " - " + n2 + " = " + (n1 - n2));
+                        break;
+                    case 3:
+                        System.out.println(n1 + " * " + n2 + " = " + (n1 * n2));
+                        break;
+                    case 4:
+                        if (n2 != 0) {
+                            System.out.println(n1 + " / " + n2 + " = " + (n1 / n2));
+                            break;
+                        } else {
+                            System.out.println("Error. No se puede dividir por cero");
+                        }
+
                 }
-            }
+                
+                sc.nextLine();
+                do {
+                    System.out.print("Deseas mantener los mismo numeros? ");
+                    respuesta = sc.nextLine().toUpperCase().charAt(0);
+                } while (respuesta != 'S' && respuesta != 'N');
+            } while (respuesta == 'S');
+            do {
+                System.out.print("Deseas leer mas numeros? ");
+                respuesta = sc.nextLine().toUpperCase().charAt(0);
+            } while (respuesta != 'S' && respuesta != 'N');
         } while (respuesta == 'S');
+        System.out.println("Fin programa, gracias.");
     }
 
 }
