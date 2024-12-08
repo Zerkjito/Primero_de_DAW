@@ -26,7 +26,7 @@ public class Avanzados36 {
 
         exp = 0;
         binario = 0;
-        while (numero != 0) {
+        while (numero > 0) {
             digito = numero % 2;
             binario = binario + digito * Math.pow(10, exp);
             exp++;
