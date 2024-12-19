@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CatPhotoApp</title>
+</head>
+<body>
+  <h1>CatPhotoApp</h1>
+  <h2>Cat Photos</h2>
+  <p>Everyone loves <a href="">cute cats</a> online!</p>
+  <p>See more <a href="">cat photos</a> in our gallery.</p>
+  <img width="250" src="imagenes/gato1.jpg" alt="Gato1">
+  <h2>Cat Lists</h2>
+  <h3>Things cats love:</h3>
+  <ul>
+    <li>cat nip</li>
+    <li>laser points</li>
+    <li>lasagna</li>   
+  </ul>
+  <figure>
+    <img height="250" width="270" src="imagenes/image.jpg" alt="lasagna">
+    <figcaption>Cats <em>love</em> lasagna.</figcaption>
+  </figure>
+  <h3>Top 3 things cat hate:</h3>
+  <ol>
+    <li>flea treatmente</li>
+    <li>thunder</li>
+    <li>other cats</li>
+  </ol> 
+  <figure>
+    <img height="225" width="400" src="imagenes/groupOfcatsjpg.jpg" alt="grup of cats">
+    <figcaption>Cats <strong>hate</strong> other cats.</figcaption>
+  </figure>
+  <h2>Cat Form</h2>
+  <form action="" method="post">
+    <fieldset>
+      <legend>Is your cat an indoor or oudoor cat?</legend>
+      <label>
+        <input type="radio" name="option" value="1">
+        Indoor
+      </label>
+
+      <label>
+        <input type="radio" name="option" aria-valuemax="2">
+        Outdoor
+      </label>
+    </fieldset>
+  </form>
+
+  <form action="" method="post">
+    <fieldset>
+      <legend>What's your cat's personality?</legend>
+      <label>
+        <input type="checkbox" name="personality" value="loving">
+        Loving
+      </label>
+
+      <label>
+        <input type="checkbox" name="personality" value="lazy">
+        Lazy
+      </label>
+
+      <label>
+        <input type="checkbox" name="personality" value="energetic">
+        Energetic
+      </label>
+    </fieldset>
+  </form>
+  <input type="text" name="url" placeholder="cat photo URL">
+  <input type="submit">
+  <footer>
+    <p>
+      No Copyright - <a href="https://www.freecodecamp.org/">freeCodeCamp.org</a>
+    </p>
+  </footer>
+</body>
+</html>
