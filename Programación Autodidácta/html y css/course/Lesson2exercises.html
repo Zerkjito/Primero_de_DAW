@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Lesson 2 HTML course</title>
 </head>
 <body>
   <style>
@@ -15,7 +15,14 @@
       border: none;
       cursor: pointer;
       margin-bottom: 50px;
+      transition: opacity 0.20s;
+
     }
+
+    .request-button:hover {
+      opacity: 0.7;
+    }
+    
 
     .add-button {
       color: black;
@@ -24,10 +31,19 @@
       height: 35px;
       width: 150px;
       font-weight: bold;
-      font-size: small;
-      border-radius: 16px;
+      font-size: medium;
+      border-radius: 19px;
       margin-bottom: 50px;
       cursor: pointer;
+      transition: background-color 0.15s;
+    }
+
+    .add-button:hover {
+      background-color: rgb(229, 191, 0);
+    }
+
+    .add-button:active {
+      opacity: 0.7;
     }
 
     .sign-button {
@@ -41,11 +57,16 @@
       cursor: pointer;
       font-size: medium;
       margin-bottom: 50px;
+      transition: box-shadow 0.15s;
+    }
+
+    .sign-button:hover {
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
     }
 
     .getstart-button {
       color: white;
-      background-color: rgb(79, 35, 141);
+      background-color: rgb(97, 50, 163);
       border: none;
       height: 36px;
       width: 100px;
@@ -54,8 +75,11 @@
       font-weight: bold;
       font-size: small;
       cursor: pointer;
+      transition: background-color 0.15s;
+    }
 
-      
+    .getstart-button:hover {
+      background-color: rgb(66, 29, 118);
     }
 
     .download-button {
@@ -69,7 +93,15 @@
       border-radius: 4px;
       cursor: pointer;
       margin-bottom: 50px;
+      font-weight: bold;
+      transition: background-color 0.15s,
+        color 0.15s;
 
+    }
+
+    .download-button:hover {
+      background-color: gray;
+      color: white;
     }
 
     .apply-button {
@@ -82,7 +114,12 @@
       border-radius: 16px;
       font-weight: bold;
       cursor: pointer;
+      transition: background-color 0.15s;
 
+    }
+
+    .apply-button:hover {
+      background-color: rgb(1, 83, 142);
     }
 
     .save-button {
@@ -96,9 +133,51 @@
       border-width: 1px;
       border-color: rgb(0, 107, 184);
       font-weight: bold;
+      margin-bottom: 50px;
 
     }
 
+    .save-button:hover {
+      border-width: 2px;
+      background-color: rgb(181, 209, 255);
+    }
+
+    .backamazon {
+      color: rgb(1, 115, 130);
+      transition: color 0.15s;
+    }
+
+    .backamazon:hover {
+      color: orange;
+    }
+
+    .description {
+      color: rgb(3, 106, 3);
+      font-weight: bold;
+      font-size: large;
+    }
+
+    .buy-button {
+      color: black;
+      background-color: rgb(255, 184, 20);
+      border: none;
+      height: 35px;
+      width: 150px;
+      font-weight: bold;
+      font-size: medium;
+      border-radius: 16px;
+      margin-bottom: 50px;
+      cursor: pointer;
+      transition: background-color 0.15s;
+    }
+
+    .buy-button:hover {
+      background-color: rgb(214, 154, 15);
+    }
+
+    .buy-button:active {
+      opacity: 0.7;
+    }
   </style>
 
   <section>
@@ -123,5 +202,17 @@
     <button class="save-button">Save</button>
   </section>
   
+  <section>
+    <p><a class="backamazon" href="https://www.amazon.com/">Back to amazon</a></p>
+    <h1>Nike Black Running Shoes</h1>
+    <p class="description">
+      $39 - in stock.
+    </p>
+    <p>
+      Free delivery tomorrow.
+    </p>
+    <button class="add-button">Add to Cart</button>
+    <button class="buy-button">Buy now</button>
+  </section>
 </body>
 </html>
