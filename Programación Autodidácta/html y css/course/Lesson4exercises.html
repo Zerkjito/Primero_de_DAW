@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 4 HTML course</title>
+</head>
+<body>
+  <style>
+    .back-button {
+      padding: 8px 7px;
+      margin-right: 8px;
+      cursor: pointer;
+      margin-bottom: 50px;
+    }
+
+    .next-button {
+      margin-left: 8px;
+      padding: 8px 7px;
+      cursor: pointer;
+    }
+
+    .stretch-button {
+      background-color: rgb(53, 145, 53);
+      border: none;
+      color: white;
+      padding: 8px 15px;
+      margin-left: 50px;
+      cursor: pointer;
+      transition: padding 0.5s;
+      margin-bottom: 90px;
+      font-size: 18px;
+    }
+
+    .stretch-button:hover {
+      padding: 17px 35px;
+    }
+
+    .shadow-button {
+      background-color: rgb(53, 145, 53);
+      border: none;
+      padding: 8px 16px;
+      color: white;
+      margin-left: 50px;
+      box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+      font-size: 18px;
+      margin-bottom: 70px;
+
+    }
+
+    .shadow-button:active {
+      margin-top: 3px;
+      margin-right: 3px;
+      box-shadow: none;
+    }
+
+    .one-button {
+      background-color: green;
+      border: none;
+      color: white;
+      padding: 8px;
+      margin-right: 10px;
+      cursor: pointer;
+      margin-left: 10px;
+      font-size: 18px;
+      transition: padding 0.15s,
+        margin 0.15s;
+      
+    }
+
+    .one-button:hover {
+      padding-left: 25px;
+      padding-right: 25px;
+      margin-left: 0px;
+      margin-right: 0px;
+    }
+  </style>
+  <section>
+    <!-- 4h. Pagination -->
+    <button class="back-button">
+      Back
+    </button>
+    <a href="">1</a>
+    <a href="">2</a>
+    <a href="">3</a>
+    <a href="">4</a>
+    <a href="">5</a>
+    <button class="next-button">
+      Next
+    </button>
+  </section>
+
+  <section>
+    <!-- 4i. Stretch -->
+     <button class="stretch-button">
+      Stretch
+     </button>
+  </section>
+
+  <section>
+    <!-- 4j. 3D Click -->
+     <button class="shadow-button">
+      Shadow
+     </button>
+  </section>
+
+  <section>
+    <!-- 4k. Margin and padding together -->
+     <button class="one-button">
+      One
+     </button>
+     <button class="one-button">
+      Two
+     </button>
+     <button class="one-button">
+      Three
+     </button>
+  </section>
+</body>
+</html>
