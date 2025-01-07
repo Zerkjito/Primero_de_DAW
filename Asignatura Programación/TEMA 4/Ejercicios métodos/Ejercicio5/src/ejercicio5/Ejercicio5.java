@@ -21,15 +21,16 @@ public class Ejercicio5 {
             System.out.print("Introduce un numero entero >= 0: ");
             n = sc.nextInt();
         } while (n < 0);
-        long resultado = Ejercicio5.calcularFactorial(n);
+        double resultado = Ejercicio5.calcularFactorial(n);
         System.out.println("El factorial de " + n + " es -> " + resultado);
 
     }
 
-    public static long calcularFactorial(long n) {
+    public static double calcularFactorial(long n) {
         if (n == 0) {
             return 1;
         }
+        System.out.println(n);
         return n * calcularFactorial(n - 1);
     }
 

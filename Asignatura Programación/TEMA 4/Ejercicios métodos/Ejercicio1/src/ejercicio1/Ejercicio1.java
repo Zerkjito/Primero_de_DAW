@@ -16,19 +16,17 @@ public class Ejercicio1 {
      */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n;
+        int n = 1;
         
 
-        do {
-            System.out.print("Introduce un numero entero positivo para comprobar si es perfecto: ");
-            n = sc.nextInt();
-        } while (n <= 0);
-        
-        if (perfecto(n)) {
+        while (true) {
+            if (perfecto(n)) {
             System.out.println("El numero " + n + " es perfecto");
-        } else {
-            System.out.println("El numero " + n + " NO es perfecto");
+            
         }
+            n++;
+        }
+        
 
     }
     static boolean perfecto(int n) {
@@ -37,6 +35,7 @@ public class Ejercicio1 {
             if (n % i == 0) {
                 suma = suma + i;
             }
+            
         }
         return suma == n;
     }
