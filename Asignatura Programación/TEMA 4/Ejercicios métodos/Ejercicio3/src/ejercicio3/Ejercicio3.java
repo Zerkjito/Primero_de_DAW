@@ -30,9 +30,11 @@ public class Ejercicio3 {
         int cifras = 0;
         n = Math.abs(n);
         
+        
         while (n != 0) {
             cifras++;
             n/=10;
+            
         }
         return cifras;
     }
