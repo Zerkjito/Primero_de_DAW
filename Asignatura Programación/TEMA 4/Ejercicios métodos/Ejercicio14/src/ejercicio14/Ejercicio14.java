@@ -18,18 +18,19 @@ public class Ejercicio14 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n, p;
-        do {
+        while (true) {
             System.out.print("Introduce un numero entero positivo: ");
             n = sc.nextInt();
             System.out.print("Introduce la posicion (menor o igual que N cifras): ");
             p = sc.nextInt();
-            if (n <= 0 || p <= 0) {
-                System.out.println("Error. Los valores deben ser positivos");
-            } else if (p > contadorCifras(n)) {
-                System.out.println("Error. La posicion no puede tener mas cifras que N");
+
+            int resultado = posicionCifra(n, p);
+            if (resultado != -1) {
+                break;
             }
-        } while (n <= 0 || p <= 0 || p > contadorCifras(n));
-        System.out.println("La cifra que ocupa la posicion " + p + " es " + posicionCifra(n, p));
+            System.out.println("Error. Los valores deben ser positivos / la posicion no puede ser mayor que N cifras");
+        }
+        System.out.println("La cifra que ocupa la posicion " + p + " es -> " + posicionCifra(n, p));
     }
 
     public static int contadorCifras(int n) {
@@ -42,12 +43,12 @@ public class Ejercicio14 {
     }
 
     public static int posicionCifra(int n, int p) {
-        int posicionCifra;
         if (n <= 0 || p <= 0 || p > contadorCifras(n)) {
             return -1;
+
         }
-        posicionCifra = n / (int) Math.pow(p, 10);
-        return posicionCifra;
+        n /= (int) Math.pow(10, p - 1);
+        return n % 10;
     }
 
 }
