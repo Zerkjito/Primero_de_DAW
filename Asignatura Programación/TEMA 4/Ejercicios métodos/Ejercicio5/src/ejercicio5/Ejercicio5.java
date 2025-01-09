@@ -20,7 +20,7 @@ public class Ejercicio5 {
         do {
             System.out.print("Introduce un numero entero >= 0: ");
             n = sc.nextInt();
-        } while (n < 0);
+        } while (n <= 0);
         double resultado = Ejercicio5.calcularFactorial(n);
         System.out.println("El factorial de " + n + " es -> " + resultado);
 
