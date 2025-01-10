@@ -1,0 +1,30 @@
+body {
+  background-color: #C9D9E5;
+  font-family: sans-serif;
+}
+
+h1.titulo1 {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: medium;
+}
+
+h2 {
+  background-color: #0285E2;
+  color: white;
+  text-transform: capitalize;
+  font-size: large;
+}
+
+p {
+  background-color: rgb(125, 190, 255);
+}
+
+p.parr1 {
+  font-style: italic;
+  
+}
+
+p.parr2 {
+
+}
