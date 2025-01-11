@@ -3,7 +3,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-h1.titulo1 {
+.titulo1 {
   text-transform: uppercase;
   text-align: center;
   font-size: medium;
@@ -21,12 +21,12 @@ p {
   font-style: italic;
 }
 
-p.parr1 {
+.parr1 {
   font-style: italic;
   
 }
 
-span.datos {
+.datos {
   color: rgb(150, 45, 45);
   font-weight: bold;
   text-decoration: underline;
@@ -34,7 +34,7 @@ span.datos {
   
 }
 
-span.date {
+.date {
   color: rgb(225, 255, 0);
 }
 
@@ -44,7 +44,7 @@ h3 {
   font-size: large;
 }
 
-p.piePagina {
+.piePagina {
   background-color: white;
   text-align: right;
 }
