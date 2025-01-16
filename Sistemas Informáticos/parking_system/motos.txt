@@ -15,3 +15,4 @@ Esther,Fernandez,44556677M,6,Moto,Honda,CBR1234M,No,Pagada
 Ricardo,Perez,55667788N,8,Moto,Kawasaki,NIN8945N,No,Pendiente 
 Silvia,Garcia,66778899O,5,Moto,Harley-Davidson,FLH2345O,No,Pagada 
 Alma,Garcia,73849210L,7,moto,Yamaha,BEV5678V,,,pendiente 
+Rafa,Rotaru,738029C,16,Moto,Yamaha,7843KPW,,,Pendiente

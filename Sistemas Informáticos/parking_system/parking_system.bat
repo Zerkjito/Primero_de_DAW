@@ -1,4 +1,5 @@
 @echo off
+chcp 65001 > nul
 setlocal enabledelayedexpansion
 
 rem Variables de archivos
@@ -17,16 +18,22 @@ echo 2. Pagar multa
 echo 3. Mostrar multas pendientes
 echo 4. Consultar todos los registros
 echo 5. Mostrar multas pagadas
-echo 6. Salir
+echo 6. Mostrar todos los usuarios
+echo 7. Mostrar vehículos, matrícula y dueño
+echo 8. Buscar vehículo por matrícula
+echo 9. Salir
 echo =======================================
-set /p option=Elige una opción (1-6):
+set /p option=Elige una opción (1-9):
 
 if "%option%"=="1" goto add_ticket
 if "%option%"=="2" goto pay_ticket
 if "%option%"=="3" goto show_pending
 if "%option%"=="4" goto show_all
 if "%option%"=="5" goto show_paid
-if "%option%"=="6" goto exit
+if "%option%"=="6" goto show_users
+if "%option%"=="7" goto show_vehicles
+if "%option%"=="8" goto search_by_plate
+if "%option%"=="9" goto exit
 
 goto menu
 
@@ -58,9 +65,26 @@ if /i not "%tipo_vehiculo%"=="Camion" if /i not "%tipo_vehiculo%"=="Coche" if /i
 set /p marca=Marca:
 if "%marca%"=="" goto input_marca
 
+rem Validar matrícula (4 dígitos + 3 letras mayúsculas)
 :input_matricula
-set /p matricula=Matrícula:
-if "%matricula%"=="" goto input_matricula
+set /p matricula=Matrícula (4 dígitos y 3 letras):
+rem Limpiar espacios en blanco de la matrícula
+set matricula=%matricula: =%
+
+rem Verificar si la matrícula está vacía
+if "%matricula%"=="" (
+    echo No se ha ingresado ninguna matrícula. Por favor, intente de nuevo.
+    goto input_matricula
+)
+
+rem Verificar que la matrícula tenga el formato correcto (4 dígitos seguidos de 3 letras mayúsculas)
+echo %matricula% | findstr /R "^[0-9][0-9][0-9][0-9][A-Z][A-Z][A-Z]$" > nul
+if errorlevel 1 (
+    echo Matrícula no válida. Debe tener 4 dígitos seguidos de 3 letras mayúsculas.
+    rem Resetear la matrícula para el próximo intento
+    set matricula=
+    goto input_matricula
+)
 
 :input_num_puertas
 set /p num_puertas=Numero de puertas (para coches), enter para otros:
@@ -170,6 +194,46 @@ echo Multas Pagadas:
 for %%F in (%trucks_file% %cars_file% %bikes_file%) do (
     echo == %%F ==
     findstr "Pagada" %%F
+)
+pause
+goto menu
+
+rem Mostrar todos los usuarios
+:show_users
+cls
+echo Todos los usuarios:
+for %%F in (%trucks_file% %cars_file% %bikes_file%) do (
+    echo == %%F ==
+    for /f "tokens=1,2,3 delims=," %%a in (%%F) do (
+        if not "%%a"=="nombre" (
+            echo Nombre: %%a %%b, DNI: %%c
+        )
+    )
+)
+pause
+goto menu
+
+rem Mostrar vehículos, matrícula y dueño
+:show_vehicles
+cls
+echo Vehículos (Tipo, Marca, Matrícula):
+for %%F in (%trucks_file% %cars_file% %bikes_file%) do (
+    echo == %%F ==
+    for /f "tokens=5,6,7 delims=," %%a in (%%F) do (
+        echo Tipo: %%a, Marca: %%b, Matrícula: %%c
+    )
+)
+pause
+goto menu
+
+rem Buscar vehículo por matrícula
+:search_by_plate
+cls
+set /p matricula_buscar=Matrícula del vehículo:
+echo Resultados de búsqueda para matrícula %matricula_buscar%:
+for %%F in (%trucks_file% %cars_file% %bikes_file%) do (
+    echo == %%F ==
+    findstr /i "%matricula_buscar%" %%F
 )
 pause
 goto menu
