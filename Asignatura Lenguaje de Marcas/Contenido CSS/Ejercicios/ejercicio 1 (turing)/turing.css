@@ -1,0 +1,64 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/*Los colores utilizados son lightblue, #8EB1BD, #E7F4F8 y moccasin El tipo de letra utilizado es “sans-serif. 
+*/
+
+body {
+  font-family: sans-serif;
+  margin: 8px 8px 8px 8px;
+  background-color: lightblue;
+  border-style: solid;
+  border-color: #8EB1BD;
+  padding: 13px 25px 1px 25px;
+  border-width: 6px;
+  
+}
+
+h1 {
+  text-align: center;
+  background-color: #E7F4F8;
+  letter-spacing: 15px;
+  margin-right: 390px;
+  margin-left: 390px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+p.description1 {
+  margin: 15px 200px 15px 200px;
+  text-align: justify;
+}
+
+span.redtext {
+  color: red;
+  font-weight: bold;
+  font-family: cursive;
+}
+
+p.dateAndName {
+  text-align: left;
+  background-color: #E7F4F8;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  font-size: 25px;
+  font-family: cursive;
+  padding-left: 30px;
+  margin-left: 20px;
+}
+
+p.textContent {
+  margin-left: 50px;
+  margin-right: 50px;
+  border-style: solid;
+  border-color: #8EB1BD;
+  border-width: 6px;
+  border-top: none;
+  border-bottom: none;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  padding-left: 15px;
+
+}
