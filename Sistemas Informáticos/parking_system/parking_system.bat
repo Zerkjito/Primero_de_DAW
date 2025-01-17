@@ -65,25 +65,12 @@ if /i not "%tipo_vehiculo%"=="Camion" if /i not "%tipo_vehiculo%"=="Coche" if /i
 set /p marca=Marca:
 if "%marca%"=="" goto input_marca
 
-rem Validar matrícula (4 dígitos + 3 letras mayúsculas)
 :input_matricula
 set /p matricula=Matrícula (4 dígitos y 3 letras):
-rem Limpiar espacios en blanco de la matrícula
-set matricula=%matricula: =%
-
-rem Verificar si la matrícula está vacía
-if "%matricula%"=="" (
-    echo No se ha ingresado ninguna matrícula. Por favor, intente de nuevo.
-    goto input_matricula
-)
-
-rem Verificar que la matrícula tenga el formato correcto (4 dígitos seguidos de 3 letras mayúsculas)
 echo %matricula% | findstr /R "^[0-9][0-9][0-9][0-9][A-Z][A-Z][A-Z]$" > nul
 if errorlevel 1 (
-    echo Matrícula no válida. Debe tener 4 dígitos seguidos de 3 letras mayúsculas.
-    rem Resetear la matrícula para el próximo intento
-    set matricula=
-    goto input_matricula
+	echo Matrícula no válida. Debe tener 4 dígitos seguidos de 3 letras.
+	goto input_matricula
 )
 
 :input_num_puertas
