@@ -1,0 +1,23 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  padding: 20px 20px;
+  border-width: 10px;
+  border-style: solid;
+  border-image-source: url('sonrisa.png');
+  border-image-slice: 30;
+  border-image-repeat: repeat;
+  background-color: #FBC79F;
+  border-image-width: 50px;
+
+}
+
+h1 {
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 10px;
+
+}

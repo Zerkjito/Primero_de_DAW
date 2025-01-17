@@ -32,7 +32,7 @@ p.description1 {
   text-align: justify;
 }
 
-span.redtext {
+span.redText {
   color: red;
   font-weight: bold;
   font-family: cursive;
@@ -51,7 +51,7 @@ p.dateAndName {
 
 p.textContent {
   margin-left: 50px;
-  margin-right: 50px;
+  margin-right: 25px;
   border-style: solid;
   border-color: #8EB1BD;
   border-width: 6px;
@@ -61,4 +61,15 @@ p.textContent {
   margin-bottom: 25px;
   padding-left: 15px;
 
+}
+
+span.moccasinText {
+  background-color: moccasin;
+  font-weight: bold;
+}
+
+span.underline {
+  text-decoration: underline;
+  text-transform: capitalize;
+  font-style: italic;
 }
