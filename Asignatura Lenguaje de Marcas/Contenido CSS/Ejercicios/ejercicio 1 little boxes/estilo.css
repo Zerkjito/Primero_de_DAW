@@ -1,3 +1,8 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
 body {
   color: white;
   background-color: #8c8c8c;
@@ -8,30 +13,67 @@ body {
 #wrapper {
   color: black;
   background-color: white;
+  padding: 20px 20px 50px 20px;
+  width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 #encabezado {
 color: black;
 background-color: #f3c600;
+background-image: url(imagenes/encabezado_bg_rep.jpg);
+background-repeat: repeat-y;
+background-position: top left;
+padding: 10px 20px 0px 20px;
+background-attachment: fixed;
 }
+
+#areatexto {
+  margin-left: 20px;
+  line-height: 20px;
+  margin-bottom: 55px;
+}
+
+#navegacion {
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
 
 .img01 {
   background-color: white;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #d9d9d9;
+  padding: 5px;
+
 }
 
 h1 {
   font-size: 150%;
 }
+p, ul {
+  margin: 0em 0em 1em 0em;
+}
+
+li {
+  margin: 0em 0em 0em 1em;
+}
 
 h2 {
   font-size: 130%;
+  margin-bottom: 1em;
 }
 
 address {
   font-style: normal;
   font-size: 80%;
   text-align: center;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   line-height: 1,5px;
 }
 
@@ -60,4 +102,16 @@ a:active {
 .skiplink {
   display: none;
 }
+
+hr {
+margin-right: 5px;
+margin-left: 5px;
+margin-bottom: 13px;
+}
+
+.important-info {
+  margin-top: 50px;
+  line-height: 20px;
+}
+
   
