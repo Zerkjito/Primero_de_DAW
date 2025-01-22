@@ -9,7 +9,6 @@ import java.util.Scanner;
  *
  * @author Erick
  */
-import java.util.Scanner;
 
 public class Ejercicio5 {
     public static void main(String[] args) {
@@ -35,8 +34,6 @@ public class Ejercicio5 {
 
             if (esPrimo) {
                 System.out.println(i + " es primo");
-            } else {
-                System.out.println(i + " no es primo");
             }
         }
     }
