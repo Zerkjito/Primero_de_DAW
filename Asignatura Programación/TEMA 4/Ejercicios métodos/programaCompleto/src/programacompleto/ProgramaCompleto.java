@@ -53,7 +53,7 @@ public class ProgramaCompleto {
 
     public static int obtenerAleatorio() {
         Random rnd = new Random();
-        int numAleat = rnd.nextInt(11) + 10;
+        int numAleat = rnd.nextInt(91) + 10;
         return numAleat;
     }
 

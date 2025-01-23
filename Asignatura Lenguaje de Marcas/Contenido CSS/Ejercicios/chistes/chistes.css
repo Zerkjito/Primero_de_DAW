@@ -5,13 +5,13 @@
 
 body {
   padding: 20px 20px;
-  border-width: 10px;
   border-style: solid;
   border-image-source: url('sonrisa.png');
   border-image-slice: 30;
   border-image-repeat: repeat;
   background-color: #FBC79F;
-  border-image-width: 50px;
+  border-image: url(sonrisa.png) 1 178 42 181 round;
+  border-width: 75px 73px 75px 75px;
 
 }
 
