@@ -1,0 +1,32 @@
+.div-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.left-card {
+  border: 2px solid gray;
+}
+
+.middle-card {
+  border: 2px solid gray;
+}
+
+.middle-card .card-footer {
+  align-content: end;
+}
+
+.right-card {
+  border: 2px solid gray;
+}
+
+.card-title {
+  background-color: black;
+  color: white;
+  align-content: flex-start;
+}
+
+.left-card .card-footer {
+  background-color: gray;
+  color: white;
+  align-content: flex-end;
+}
