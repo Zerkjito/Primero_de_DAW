@@ -1,0 +1,49 @@
+html {
+  background-color: palegoldenrod;
+}
+
+.img01, .img02, .img03, .img04 {
+  position: absolute;
+  border-style: solid;
+  border-color: black;
+  transition: 0.05s;
+  cursor: pointer;
+}
+
+.img01 {
+  z-index: 5;
+  right: 85%;
+  bottom: 45%;
+}
+
+.img02 {
+  z-index: 7;
+  right: 82%;
+  bottom: 40%;
+}
+
+.img03 {
+  z-index: 9;
+  right: 77.5%;
+  bottom: 31.5%;
+
+}
+
+.img04 {
+  z-index: 11;
+  right: 75%;
+  bottom: 25%;
+  
+}
+
+.img01:hover {
+  z-index: 8;
+}
+
+.img02:hover {
+  z-index: 10;
+}
+
+.img03:hover {
+  z-index: 12;
+}
