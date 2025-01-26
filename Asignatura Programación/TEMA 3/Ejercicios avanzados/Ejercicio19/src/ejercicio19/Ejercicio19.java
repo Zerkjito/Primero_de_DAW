@@ -42,7 +42,7 @@ public class Ejercicio19 {
                 
                 sumaNotas = sumaNotas + nota;
             }
-            if (sumaNotas <= 14.97) {
+            if (sumaNotas < 15) {
                 contador3Susp++;
             } else if (sumaNotas >= 27) {
                 contador3Sobre++;

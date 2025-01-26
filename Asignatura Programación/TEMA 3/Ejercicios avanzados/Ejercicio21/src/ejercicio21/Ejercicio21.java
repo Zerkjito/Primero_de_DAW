@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package ejercicio21;
+
 import java.util.Scanner;
 
 /**
@@ -26,18 +27,17 @@ public class Ejercicio21 {
             while ((n / divisor) >= 10) {
                 divisor *= 10;
             }
-            int posicion = 1;
 
-            while (divisor > 0) {
+            while (divisor != 0) {
                 digito = n / divisor;
-                n = n % divisor;
-                divisor /= 10;
                 if (digito % 2 == 0) {
                     System.out.print(digito * 2);
                 } else {
                     System.out.print(digito * 3);
                 }
-                if (divisor > 0) {
+                n = n % divisor;
+                divisor /= 10;
+                if (divisor != 0) {
                     System.out.print(", ");
                 }
             }

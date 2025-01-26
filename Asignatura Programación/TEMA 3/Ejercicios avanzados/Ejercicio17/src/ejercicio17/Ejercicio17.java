@@ -21,20 +21,24 @@ public class Ejercicio17 {
         do {
             String nombre = "";
             int mayor = -1;
-            int n, digito = 0, posicionActual = 0, posicion = -1;
+            int n, digito, posicionActual = 0, posicion = 0;
             
             System.out.print("Introduce un numero entero positivo: ");
             n = sc.nextInt();
-            int numOriginal = n;
+            
+            int aux = n;
            
-            while (n > 0) {
+            mayor = -1;  // Cifra menor que cualquier posible cifra
+            posicionActual = 0; // Posición de la cifra mayor
+            posicion = 0; // Contador de la posición de la cifra en el número
+            while (aux != 0) {
                 posicionActual++;
-                digito = n % 10;
-                if (digito > mayor) {
+                digito = aux % 10;
+                if (digito >= mayor) {
                     mayor = digito;
                     posicion = posicionActual;
                 }
-                n/=10;
+                aux/=10;
             }          
             switch (mayor) {
                 case 1:

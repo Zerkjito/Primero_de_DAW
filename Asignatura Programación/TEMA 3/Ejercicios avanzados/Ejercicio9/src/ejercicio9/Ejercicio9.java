@@ -27,7 +27,7 @@ public class Ejercicio9 {
         cifra = sc.nextInt();
 
         // Calcular el número de cifras
-        int numCifras = (int) Math.log10(num) + 1;
+        int numCifras = (int) Math.log10(num) + 1; 
 
         // Iterar sobre cada cifra del número
         for (int i = numCifras - 1; i >= 0; i--) {
@@ -46,7 +46,6 @@ public class Ejercicio9 {
             num = num % divisor;  
         }
 
-        System.out.println();
     }
     
 }

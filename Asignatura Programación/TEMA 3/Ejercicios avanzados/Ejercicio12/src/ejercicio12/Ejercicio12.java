@@ -22,7 +22,7 @@ public class Ejercicio12 {
         n = sc.nextInt();
         int aux = n;
 
-        while (aux > 0) {
+        while (aux != 0) {
             int digito = aux % 10;
             invertido = invertido * 10 + digito;
             aux /= 10;

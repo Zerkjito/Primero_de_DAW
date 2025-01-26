@@ -29,12 +29,12 @@ public class Ejercicio20 {
         }
         int posicion = 1;
 
-        while (divisor > 0) {
+        while (divisor != 0) {
             digito = n / divisor;
             n = n % divisor;
             divisor /= 10;
             System.out.print(digito * posicion);
-            if (divisor > 0) {
+            if (divisor != 0) {
                 System.out.print(" - ");
             }
             posicion++;
