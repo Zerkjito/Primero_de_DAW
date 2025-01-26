@@ -23,7 +23,6 @@ public class Ejercicio24 {
 
         do {
             num = rnd.nextInt(100, 999999 + 1);
-            ultimaCifra = 0;
             ultimaCifra = num % 10;
             int aux = num;
             while (aux >= 10) {

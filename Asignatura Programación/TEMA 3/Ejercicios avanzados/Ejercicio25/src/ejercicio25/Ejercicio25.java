@@ -21,7 +21,7 @@ public class Ejercicio25 {
         int num, primerDigito, segundoDigito, ultimoDigito;
         
         do {
-            num = rnd.nextInt(100, 1000);
+            num = rnd.nextInt(100, 999 + 1);
             primerDigito = num / 100;
             segundoDigito = (num / 10) % 10;
             ultimoDigito = num % 10;

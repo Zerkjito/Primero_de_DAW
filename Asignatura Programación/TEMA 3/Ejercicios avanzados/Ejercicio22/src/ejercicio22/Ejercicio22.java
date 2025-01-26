@@ -75,9 +75,9 @@ public class Ejercicio22 {
                         break;
                 }
                 
-                if (divisor > 0) {
+                if (divisor != 0) {
                     System.out.print(" - ");
-                }
+                }   
             }
             System.out.println();
         } while (nums > 0);

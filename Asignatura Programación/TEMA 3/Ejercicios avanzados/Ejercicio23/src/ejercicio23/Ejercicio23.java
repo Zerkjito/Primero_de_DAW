@@ -21,13 +21,13 @@ public class Ejercicio23 {
         int num;
         char seguir;
         do {
-            num = rnd.nextInt(10, 1000 + 1);
-            System.out.println("Tabla de multiplicar del numero " + num + ":\n");
+            num = rnd.nextInt(991) + 10;
+            System.out.println("\nTabla de multiplicar del numero " + num + ":\n");
 
             for (int i = 1; i <= 10; i++) {
                 System.out.println(num + " * " + i + " = " + num * i);
             }
-            System.out.print("\nMostrar otra trabla?(SI/NO) ");
+            System.out.println("\nMostrar otra trabla?(SI/NO) \n");
             seguir = sc.next().toUpperCase().charAt(0);
         } while (seguir == 'S');
         System.out.println("Fin programa. Gracias!");
