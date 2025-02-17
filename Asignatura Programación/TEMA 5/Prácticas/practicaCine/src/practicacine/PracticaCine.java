@@ -64,7 +64,7 @@ public class PracticaCine {
                 case 4 ->
                     mostrarInfoPelis(duraciones, peliculas);
                 case 0 ->
-                    System.out.println("Fin programa, gracias por usarme.");
+                    System.out.println("\nFin programa, gracias por usarme.");
             }
         } while (input != 0);
     }
