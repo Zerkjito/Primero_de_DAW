@@ -292,11 +292,11 @@ public class PracticaCine {
                 generarEntrada(numSala, peli, horaSesion, fila, butaca);
             } else {
                 System.out.println("[Error. Butaca no disponible]");
+                i = i - 1;
             }
         }
         double total = calcularTotal(entradas);
         procesarPago(total);
-
     }
 
     public static int pedirNumero(String mensaje, int min, int max) {
@@ -356,11 +356,15 @@ public class PracticaCine {
 
     public static void mostrarInfoPelis(String[] duraciones, String[] peliculas) {
         int[] restricciones = {12, 16, 18};
+        System.out.println("\n----------------------------------------------");
         for (int i = 0; i < peliculas.length; i++) {
             System.out.println("Duración de " + peliculas[i] + " -> " + duraciones[i]);
             System.out.println("Restricciones de edad -> +" + restricciones[rnd.nextInt(0, 2 + 1)]);
-            System.out.println();
+            if (i < peliculas.length - 1) {
+                System.out.println();
+            }
         }
+        System.out.print("----------------------------------------------");
 
     }
 
@@ -369,6 +373,25 @@ public class PracticaCine {
         System.out.println("----------------");
         System.out.println("1. Efectivo");
         System.out.println("2. Tarjeta");
+    }
+
+    public static void procesarPagoEfectivo(double total) {
+        double cantRecibida = 0;
+        do {
+            System.out.println("Cantidad a recibir: ");
+            while (!sc.hasNextDouble()) {
+                System.out.println("Error. Entrada inválida.");
+                sc.nextLine();
+                System.out.println("Cantidad a recibir: ");
+            }
+            cantRecibida = sc.nextDouble();
+            if (cantRecibida < total) {
+                System.out.println("Error. Cantidad inválida.");
+            }
+        } while (cantRecibida < total);
+        double cantDevolver = cantRecibida - total;
+        System.out.println("\nCantidad recibida: " + cantRecibida + "€");
+        System.out.println("Cantidad a devolver: " + cantDevolver + "€");
     }
 
     public static void procesarPago(double total) {
@@ -382,6 +405,9 @@ public class PracticaCine {
         }
         System.out.println("\nMétodo de pago: " + metodoPago);
         System.out.printf("Total a pagar: %.2f€%n", total);
+        if (opcion == 1) {
+            procesarPagoEfectivo(total);
+        }
         System.out.println("Procesando pago...");
 
         long inicio = System.currentTimeMillis();
