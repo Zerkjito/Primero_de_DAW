@@ -22,20 +22,18 @@ public class PracticaCine {
 
     static Scanner sc = new Scanner(System.in);
     static Random rnd = new Random();
+    static String[] peliculas = new String[2];
 
     /*
-     Pido disculpas de antemano por tener los métodos desordenados sin un orden muy lógico. No quise desplazarlos por miedo a
-     perder el flujo original del programa y causar algún error de sintaxis o eliminar alguna variable sin querer.
+     Pido disculpas por tener los métodos algo desordenados sin seguir un orden muy lineal, para cuando me di cuenta ya era un poco tarde...
      */
     public static void main(String[] args) {
         int input;
-        double precioDia = averiguarPrecioDia();
-        String[] peliculas = new String[2];
         int[][] sesiones = new int[2][2];
         String[][][][] salas = new String[2][2][][]; // creo un array de 4 dimensiones basándome en: 2 salas, 2 sesiones, filas, butacas
         mostrarConfiguracionHora();
 
-        for (int sala = 0; sala < 2; sala++) {
+        for (int sala = 0; sala < 2; sala++) { // configuro las 4 salas directamente al principio 
             System.out.println("\nSala " + (sala + 1));
             peliculas[sala] = definirPelicula(sala + 1);
             int[] sesionesSala = new int[2];
@@ -50,7 +48,7 @@ public class PracticaCine {
                 salas[sala][sesion] = generarSala(filas, butacas);
             }
         }
-        String[] duraciones = generarHoraAleatoria(peliculas);
+        String[] duraciones = generarHoraAleatoria(peliculas); // genero duraciones ficticias de las películas para mostrarlo en mostrarInfoPelis()
 
         do {
             input = elegirOpcion();
@@ -63,8 +61,10 @@ public class PracticaCine {
                     mostrarPrecioDia();
                 case 4 ->
                     mostrarInfoPelis(duraciones, peliculas);
+                case 5 ->
+                    consultarAforo(salas);
                 case 0 ->
-                    System.out.println("\nFin programa, gracias por usarme.");
+                    System.out.println("\nFin programa, gracias por usarme!");
             }
         } while (input != 0);
     }
@@ -98,9 +98,8 @@ public class PracticaCine {
         System.out.println();
     }
 
-    public static void mostrarSesiones() {
-        /* método para mostrar las sesiones disponibles a través de un array que contiene los valores de las horas
-        aún sin 'traducir'. Luego se formeatean correctamente recorriéndolas mediante un forEach. Elijo este formato por si hubiera que hacer
+    public static void mostrarSesiones() { /* método para mostrar las sesiones disponibles a través de un array que contiene los valores de las horas
+        aún sin 'traducir'. Luego, se formeatean correctamente recorriéndolas mediante un forEach. Elijo este formato por si hubiera que hacer
         operaciones posteriores con las horas como duración de películas, tiempo entre sesiones etc...
          */
         LocalTime[] sesiones = {
@@ -116,9 +115,9 @@ public class PracticaCine {
         }
     }
 
-    public static int elegirSesion(int[] sesionesSala) {
-        /* método que se encarga de elegir una opción de las sesiones, aunque esta aún no es representativa puesto que el
-        método traducirSesion es el que realmente va a transformarlo en un valor real representativo en forma de String para saber la hora
+    public static int elegirSesion(int[] sesionesSala) { /* método que se encarga de elegir una opción de las sesiones, sin embargo 
+        ésta aún no es representativa puesto que el método traducirSesion es el que realmente va a transformarlo en un valor real formeteado
+        tipo String para saber la hora
          */
         int n;
         do {
@@ -131,15 +130,15 @@ public class PracticaCine {
             n = sc.nextInt();
             if (n < 1 || n > 2) {
                 System.out.println("[Error. Opción fuera del rango]");
-            } else if (sesionesSala[0] == n || sesionesSala[1] == n) {
+            } else if (sesionesSala[0] == n || sesionesSala[1] == n) { // verifico que la opción no haya sido seleccionada anteriormente
                 System.out.println("[Error. Esta hora ya ha sido seleccionada para otra sesión]");
-                n = -1;
+                n = -1; // reseteo su valor para volver a preguntar
             }
         } while (n < 1 || n > 2);
         return n;
     }
 
-    public static String[][] generarSala(int filas, int butacas) { // método que se encarga de generar las dimensiones de las salas en base a las preferencias elegidas mediante matrices
+    public static String[][] generarSala(int filas, int butacas) { // método que se encarga de generar las dimensiones de las salas
         String[][] sala = new String[filas][butacas];
 
         for (int i = 0; i < filas; i++) {
@@ -150,9 +149,8 @@ public class PracticaCine {
         return sala;
     }
 
-    public static void mostrarTodasLasSalas(String[][][][] s, String[] peliculas, int[][] sesiones) {
-        /* método que recibe una array de 4 dimensiones y se encarga de terminar de distribuirla
-        correctamente con los últimos retoques de enumeraciones para las filas y butacas así como del pasillo central
+    public static void mostrarTodasLasSalas(String[][][][] s, String[] peliculas, int[][] sesiones) { /* método que recibe una array de 4 dimensiones
+         y se encarga de mostrar todas las salas ya configuradas 
          */
         for (int sala = 0; sala < 2; sala++) {
             for (int sesion = 0; sesion < 2; sesion++) {
@@ -162,7 +160,7 @@ public class PracticaCine {
         }
     }
 
-    public static void mostrarSala(String[][] sala, int numSala, String peli, String horaSesion) {
+    public static void mostrarSala(String[][] sala, int numSala, String peli, String horaSesion) { //método para distribuir correctamente las salas
         int cont = 1;
         System.out.println("\n");
         System.out.println("Sala " + numSala + " - " + peli + " - " + horaSesion);
@@ -207,9 +205,8 @@ public class PracticaCine {
         System.out.println();
     }
 
-    public static String definirPelicula(int sala) {
-        /* método para elegir el nombre de la película y verificar que realmente es válido gracias
-        a la llamada al método validarNombrePelicula(), que entrará en bucle mientras esta no cumpla los filtros
+    public static String definirPelicula(int sala) { /* método para elegir el nombre de la película y veriificar que realmente es válido gracias
+        a la llamada al método validarNombrePelicula(), que entrará en bucle mientras ésta no cumpla los requisitos
          */
         String nombrePelicula;
         do {
@@ -222,13 +219,12 @@ public class PracticaCine {
         return nombrePelicula;
     }
 
-    public static boolean validarNombrePelicula(String nombre) {
-        /* método que recibe el nombre de una película para validarlo mediante una serie de filtros.
+    public static boolean validarNombrePelicula(String nombre) { /* método que recibe el nombre de una película para validarlo mediante una serie de filtros.
         Primero, creo un String regex en el que decido la serie de filtros que quiero aplicar. Esta expresión regular traducida sería: quiero que el
         nombre únicamente comience por una letra(A-Z || a-z) o números(0-9). Seguido de esto, puede contener letras (A-Z || a-z) e incluso caracteres
         especiales como -':,. y espacios (el carácter especial \\- escapado se debe a que, si se encuentra en el medio, sí se ha de expresar con \\).
         Por último, quiero que contenga entre 0-99 y carcteres, sin contar el primero que ya se está siendo evaluado aparte con [A-Za-z0-9].
-        Todo esto a través de los métodos Pattern y Matcher, permitiendo comprobar si reúnen los requisitos de regex o no devolviendo un valor boolean
+        Todo esto a través de los métodos Pattern y Matcher que comprueban el nombre y devuelven un boolean
          */
         String regex = "^[A-Za-z0-9][A-Za-z0-9 \\-':,.]{0,99}$";
         Pattern pattern = Pattern.compile(regex);
@@ -244,6 +240,7 @@ public class PracticaCine {
             System.out.println("2. Vender entradas");
             System.out.println("3. Mostrar precio por día");
             System.out.println("4. Mostrar información de cada película");
+            System.out.println("5. Mostrar el aforo actual de cada sala");
             System.out.println("0. FIN");
             System.out.print("Elige una opción: ");
             while (!sc.hasNextInt()) {
@@ -253,20 +250,19 @@ public class PracticaCine {
             }
             n = sc.nextInt();
             sc.nextLine();
-            if (n < 0 || n > 4) {
+            if (n < 0 || n > 5) {
                 System.out.println("[Error. Opción fuera de rango.]");
             }
-        } while (n < 0 || n > 4);
+        } while (n < 0 || n > 5);
         return n;
     }
 
-    public static void venderEntrada(String[][][][] s, String[] peliculas, int[][] sesiones) {
-        /* método que recibe todos los 
-        parámetros necesarios para procesar la venta de la entrada, el cual recurre a la llamada de otros métodos para ejecutarse correctamente
+    public static void venderEntrada(String[][][][] s, String[] peliculas, int[][] sesiones) { /* método que recibe todos los 
+         parámetros necesarios para procesar la venta de la entrada, el cual a su vez recurre a la llamada de otros métodos para terminar de ejecutarse
          */
         System.out.println("\nVenta de entradas");
         int sala = pedirNumero("Introduce sala (1-2): ", 1, 2);
-        int sesion = pedirNumero("Introduce sesión(1-2): ", 1, 2) - 1;
+        int sesion = pedirNumero("Introduce sesión (1 -> 20:00 //// 2 -> 22:30): ", 1, 2) - 1;
 
         if (sala == 1) {
             procesarVenta(s[0][sesion], sala, peliculas[0], traducirSesion(sesiones[0][sesion]));
@@ -275,16 +271,13 @@ public class PracticaCine {
         }
     }
 
-    public static void procesarVenta(String[][] s, int numSala, String peli, String horaSesion) {
-        /* método que me ayuda a reducir código en
-        venederEntrada(), de modo que hace las comprobaciones pertinentes con la llamada a pedirNumero() y finalmente muestra la entrada generada con
-        todos los datos
+    public static void procesarVenta(String[][] s, int numSala, String peli, String horaSesion) { /* método que ayuda a reducir código excesivo en
+        venderEntrada() y vefifica la disponibilidad de las butacas. Finalmente genera la entrada y procede con el pago en procesarPago()
          */
         int fila = 0, butaca = 0;
-        mostrarSala(s, numSala, peli, horaSesion);
-        System.out.println();
         int entradas = pedirNumero("Elegir cantidad de entradas: ", 1, 10);
         for (int i = 1; i <= entradas; i++) {
+            mostrarSala(s, numSala, peli, horaSesion);
             fila = pedirNumero("Elegir fila de la entrada " + i + " -> ", 1, s.length);
             butaca = pedirNumero("Elegir butaca de la entrada " + i + " -> ", 1, s[0].length);
             if (s[fila - 1][butaca - 1].equals("_")) {
@@ -292,17 +285,14 @@ public class PracticaCine {
                 generarEntrada(numSala, peli, horaSesion, fila, butaca);
             } else {
                 System.out.println("[Error. Butaca no disponible]");
-                i = i - 1;
+                i = i - 1; // reseteo el valor para volver a preguntar fila y butaca
             }
         }
         double total = calcularTotal(entradas);
         procesarPago(total);
     }
 
-    public static int pedirNumero(String mensaje, int min, int max) {
-        /* método que verifica el rango válido de los parámetros que recibe así como
-        su respectivo mensaje para solicitar la información requereida
-         */
+    public static int pedirNumero(String mensaje, int min, int max) { // método que recibe un mensaje, rango mín. y máx.  y verifica el rango válido 
         int num;
         do {
             System.out.print(mensaje);
@@ -321,11 +311,9 @@ public class PracticaCine {
     }
 
     public static void generarEntrada(int sala, String nombrePeli, String sesion, int fila, int butaca) {
-        /* muestro la información relevante de la compra
-        de la entrada en base a las preferencias que ha introducido el usuario
-         */
         String idEntrada = generarIdEntrada();
-        System.out.println("\nSu entrada");
+        System.out.println("\n");
+        System.out.println("Su entrada");
         System.out.println("\nSala " + sala + " - " + nombrePeli);
         System.out.println(obtenerFechaComprimida() + "  Sesión " + sesion);
         System.out.println("Fila " + fila + " Butaca " + butaca);
@@ -333,16 +321,13 @@ public class PracticaCine {
         System.out.println();
     }
 
-    public static String generarIdEntrada() {
-        /* método para generar un ID aleatorio para el ticket de la entrada entre 10.000 y 100.000, más una letra
-        aleatoria al final, la cual devuelvo concatenada con el número aleatorio y el String usando el método String.valueOf()
-         */
+    public static String generarIdEntrada() { // método que genera un ID único para cada entrada
         int n = rnd.nextInt(10000, 100000);
         char letra = (char) (rnd.nextInt('A', 'Z' + 1));
         return n + String.valueOf(letra);
     }
 
-    public static String[] generarHoraAleatoria(String[] peliculas) { //método para asginar una duración ficticia  a la película y poder plasmarlo en mostrarInfoPelis()
+    public static String[] generarHoraAleatoria(String[] peliculas) { //método que genera una duración ficticia  y lo plasma en mostrarInfoPelis()
         String[] duracion = new String[2];
         System.out.println("\n");
         for (int i = 0; i < duracion.length; i++) {
@@ -365,7 +350,6 @@ public class PracticaCine {
             }
         }
         System.out.print("----------------------------------------------");
-
     }
 
     public static void mostrarMetodosPago() {
@@ -375,14 +359,14 @@ public class PracticaCine {
         System.out.println("2. Tarjeta");
     }
 
-    public static void procesarPagoEfectivo(double total) {
+    public static void procesarPagoEfectivo(double total) { // método que procesa un pago en metálico y calcula el monto a devolver
         double cantRecibida = 0;
         do {
-            System.out.println("Cantidad a recibir: ");
+            System.out.print("Cantidad recibida: ");
             while (!sc.hasNextDouble()) {
                 System.out.println("Error. Entrada inválida.");
                 sc.nextLine();
-                System.out.println("Cantidad a recibir: ");
+                System.out.print("Cantidad recibida: ");
             }
             cantRecibida = sc.nextDouble();
             if (cantRecibida < total) {
@@ -390,11 +374,15 @@ public class PracticaCine {
             }
         } while (cantRecibida < total);
         double cantDevolver = cantRecibida - total;
-        System.out.println("\nCantidad recibida: " + cantRecibida + "€");
-        System.out.println("Cantidad a devolver: " + cantDevolver + "€");
+        System.out.printf("\nCantidad recibida: %.2f€%n", cantRecibida);
+        System.out.printf("Cantidad a devolver: %.2f€%n", cantDevolver);
     }
 
-    public static void procesarPago(double total) {
+    public static void procesarPago(double total) { /* método que se encarga de calcular el total a pagar y simula el pago mediante tarjeta o efectivo
+        gracias a currentTimeMillis(), que me permite averiguar el tiempo actual del sistema en milisegundos (dado que esta cantidad es sumamente grande
+        y se empieza a contar desde el 1 de enero de 1970, he de usar un long), lo almacena en una variable y se crea un while que no termina hasta que la
+        diferencia no sea de 5000ms (5 segundos), por lo que durante ese tiempo se detiene el programa aunque sigue usando recursos de la CPU
+         */
         String metodoPago = "";
         mostrarMetodosPago();
         int opcion = pedirNumero("Seleccione una opción: ", 1, 2);
@@ -414,7 +402,6 @@ public class PracticaCine {
         while (System.currentTimeMillis() - inicio < 5000) {
         }
         System.out.println("Pago realizado con éxito.");
-
     }
 
     public static void mostrarPrecioDia() {
@@ -435,7 +422,9 @@ public class PracticaCine {
         System.out.println("----------------------------------------------------------------------------------");
     }
 
-    public static double averiguarPrecioDia() {
+    public static double averiguarPrecioDia() { /* establezco precios fijos en base al día de la semana gracias a LocalDate.now() y getDayOfWeek()
+        y en los case del switch los pongo en inglés ya que es su valor/idioma por defecto
+         */
         LocalDate fechaActual = LocalDate.now();
         DayOfWeek diaSemana = fechaActual.getDayOfWeek();
         double precio;
@@ -507,7 +496,9 @@ public class PracticaCine {
         System.out.println("2. Procesar venta");
     }
 
-    public static double calcularExtras() {
+    public static double calcularExtras() { /* método que se encarga de agregar todos los complementos hasta que se decida lo contrario.
+        Finalmente, devuleve la cantidad de € acumulada en complementos adicionales
+         */
         boolean agregarMas = true;
         double total = 0;
 
@@ -586,7 +577,7 @@ public class PracticaCine {
         return entrada;
     }
 
-    public static double calcularTotal(int cantEntradas) {
+    public static double calcularTotal(int cantEntradas) { // método que calcula el monto total final de todo lo pedido (entradas, complementos..)
         double extras = 0;
         char respuesta = preguntarExtras();
         if (respuesta == 'S') {
@@ -597,4 +588,36 @@ public class PracticaCine {
         return precioDia * cantEntradas + extras;
     }
 
+    public static void consultarAforo(String[][][][] s) { // método que consulta el aforo en tiempo real para cada sala y sesión
+        System.out.println("\n");
+        for (int sala = 0; sala < s.length; sala++) {
+            for (int sesion = 0; sesion < s[sala].length; sesion++) {
+                String peli1 = peliculas[0];
+                String peli2 = peliculas[1];
+                int disponibles = 0;
+                int ocupadas = 0;
+                int cantButacas = s[sala][sesion].length * s[sala][sesion][0].length; // accedo a la cantidad de filas y luego a la de butacas y saco el total de butacas
+                for (int i = 0; i < s[sala][sesion].length; i++) {
+                    for (int j = 0; j < s[sala][sesion][i].length; j++) {
+                        if (s[sala][sesion][i][j].equals("_")) {
+                            disponibles++;
+                        } else if (s[sala][sesion][i][j].equals("X")) {
+                            ocupadas++;
+                        }
+                    }
+                }
+                String butacaDisponibleCorregida = disponibles == 1 ? " butaca disponible" : " butacas disponibles";
+                String butacaOcuapadaCorregida = ocupadas == 1 ? " butaca ocupada" : " butacas ocupadas";
+
+                System.out.println("Sala " + (sala + 1) + " - " + (sala == 0 ? peli1 : peli2)  + " - Sesión " + (sesion + 1));
+                System.out.println("Actualmente hay " + disponibles + butacaDisponibleCorregida);
+                System.out.println("Actualmente hay " + ocupadas + butacaOcuapadaCorregida);
+
+                double aforo = (disponibles * 100) / cantButacas;
+                System.out.printf("Capacidad de aforo actual: %.2f%%%n", aforo);
+                System.out.println("-----------------------------------------------------------------");
+                System.out.println();
+            }
+        }
+    }
 }
