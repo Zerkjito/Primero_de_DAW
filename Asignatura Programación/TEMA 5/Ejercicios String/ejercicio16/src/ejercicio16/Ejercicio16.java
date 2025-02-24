@@ -17,9 +17,12 @@ public class Ejercicio16 {
         String texto = "Ab c,de-f-g h";
         String textoFormateado = formatearTexto(texto);
         System.out.println(textoFormateado);
+        
     }
     
     public static String formatearTexto(String texto) {
         return texto.replaceAll("[^a-zA-Z]", " ").toLowerCase(); // tambien podria usar ("[-,]", " ");
     } 
+
+    
 }
