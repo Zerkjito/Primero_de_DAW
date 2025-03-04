@@ -1,0 +1,31 @@
+body {
+   margin: 0;
+   padding: 0;
+}
+
+.main-container {
+   background-color: #F8E0E0;
+   margin: 0;
+   padding: 0;
+}
+
+h1 {
+   text-transform: uppercase;
+   text-align: center;
+   letter-spacing: 10px;
+}
+
+h1, address {
+   color: white;
+   width: 100%;
+   background-color: #8A0808;
+   margin: 0;
+}
+
+address {
+   text-align: right;
+}
+
+#goat-logo {
+   height: 130px;
+}
