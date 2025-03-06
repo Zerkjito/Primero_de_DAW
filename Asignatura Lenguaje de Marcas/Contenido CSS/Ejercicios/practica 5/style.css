@@ -33,8 +33,13 @@ body {
    border-radius: 10px;
 }
 
+.img1 {
+   float: left;
+}
+
 .img2 {
    order: 1;
+   float: right;
 }
 
 .main-container {
@@ -119,7 +124,6 @@ body {
 
 
 .div-content {
-   display: flex;
    flex-direction: row;
    align-items: center;
    width: 100%;
