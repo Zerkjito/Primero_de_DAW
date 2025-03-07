@@ -4,6 +4,7 @@
  */
 package ejercicioinicial;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -18,54 +19,84 @@ public class EjercicioInicial {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Coche coche1 = new Coche();
-        coche1.setMatricula("1234JMV");
-        coche1.setMarca("Renault");
-        coche1.setAño(2022);
-        coche1.setElectrico(true);
-        Coche coche2 = new Coche("5472KMG");
-        coche2.setAño(2023);
-        coche2.setMarca("Hyundai");
-        coche2.setElectrico(true);
-        Coche coche3 = new Coche("1934JHV", "Toyota", 2020, false);
-        System.out.println(coche1.getMatricula() + " " + coche1.getMarca()
-                + " " + coche1.getAño() + " Electrico: " + (coche1.isElectrico() ? "SI" : "NO"));
-        System.out.println(coche2.getMatricula() + " " + coche2.getMarca()
-                + " " + coche2.getAño() + " Electrico: " + (coche2.isElectrico() ? "SI" : "NO"));
-        System.out.println(coche3.getMatricula() + " " + coche3.getMarca()
-                + " " + coche3.getAño() + " Electrico: " + (coche3.isElectrico() ? "SI" : "NO"));
+        ArrayList<Coche> coches = new ArrayList<Coche>();
+        int cant;
+        do {
+            System.out.print("Introduce la cantidad de coches a introducir: ");
+            while (!sc.hasNextInt()) {
+                System.out.println("Error: Entrada invalida.");
+                sc.nextLine();
+                System.out.print("Introduce la cantidad de coches a introducir: ");
+            }
+            cant = sc.nextInt();
+            if (cant <= 0) {
+                System.out.println("Error: Debe ser 1 como minimo.");
+            }
+        } while (cant <= 0);
 
-        System.out.println("\n");
-        System.out.println(coche1);
-        System.out.println(coche2);
-        System.out.println(coche3);
-
-        String matricula, marca;
-        int año, tipo;
-        boolean electrico;
-
-        System.out.print("Introduce la matricula: ");
-        matricula = sc.nextLine();
-        System.out.print("Introduce la marca: ");
-        marca = sc.nextLine();
-        System.out.print("Introduce el año: ");
-        año = sc.nextInt();
-        System.out.print("Indica si es electrico (1 -> SI, 2 -> NO): ");
-        tipo = sc.nextInt();
         sc.nextLine();
+        for (int i = 1; i <= cant; i++) {
+            String matricula = "", marca;
+            int año, tipo;
+            boolean electrico;
+            boolean matriculaValida = false;
+            while (!matriculaValida) {
+                System.out.print("\nIntroduce la matricula del vehiculo " + i + ": ");
+                matricula = sc.nextLine();
+                if (!matricula.matches("^\\d{4}[A-Z]{3}$")) {
+                    System.out.println("Error: Matricula invalida.");
+                } else {
+                    boolean repetido = false;
+                    for (Coche c : coches) {
+                        if (c.getMatricula().equals(matricula)) {
+                            repetido = true;
+                            System.out.println("Error: Matricula repetida.");
+                            break;
+                        }
+                    }
+                    if (!repetido) {
+                        matriculaValida = true;
+                    } else {
+                        System.out.println("Por favor, introduce una matricula diferente.");
+                    }
+                }
+            }
 
-        if (tipo == 1) {
-            electrico = true;
-        } else {
-            electrico = false;
+            do {
+                System.out.print("\nIntroduce la marca del vehiculo " + i + ": ");
+                marca = sc.nextLine();
+                if ((!marca.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+"))) {
+                    System.out.println("Error: Introduce una marca valida.");
+                }
+            } while (!marca.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+"));
+
+            System.out.print("\nIntroduce el año del vehiculo " + i + ": ");
+            while (!sc.hasNextInt()) {
+                System.out.println("Error: Entrada invalida.");
+                sc.nextLine();
+                System.out.print("Introduce el año del vehiculo " + i + ": ");
+            }
+            año = sc.nextInt();
+            sc.nextLine();
+            do {
+                System.out.print("Indica si es electrico (1 -> SI, 2 -> NO): ");
+                tipo = sc.nextInt();
+                if (tipo != 1 && tipo != 2) {
+                    System.out.println("Error: Opcion debe ser 1 o 2.");
+                }
+            } while (tipo != 1 && tipo != 2);
+
+            if (tipo == 1) {
+                electrico = true;
+            } else {
+                electrico = false;
+            }
+            coches.add(new Coche(matricula, marca, año, electrico));
+            sc.nextLine();
         }
-        Coche coche69 = new Coche(matricula, marca, año, electrico);
-        System.out.println(coche69);
-        
-        Coche cocheCopia = new Coche(coche1);
-        System.out.print("Introduce un valor para la matricula: ");
-        matricula = sc.nextLine();
-        cocheCopia.setMatricula(matricula);
-        System.out.println(cocheCopia);
+        System.out.println("\nCoches introducidos:");
+        for (Coche coche : coches) {
+            System.out.println("\n" + coche);
+        }
     }
 }
