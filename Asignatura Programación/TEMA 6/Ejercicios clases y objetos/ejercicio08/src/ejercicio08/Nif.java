@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
  * @author Erick
  */
 public class Nif {
+
     Scanner sc = new Scanner(System.in);
     private int numeros;
     private char letra;
@@ -20,12 +21,45 @@ public class Nif {
     public Nif(int numeros) {
         this.numeros = numeros;
     }
-    
-    private void leeer() {
+
+    public Nif() {
+        leer();
+        calcularLetra();
+    }
+
+    private void leer() {
         int dni;
-        Pattern pattern = Pattern.compile("[0-9]{6}");
-        System.out.print("Introduce el numero de DNI: ");
-        
+        do {
+            System.out.print("Introduce 8 digitos del DNI: ");
+            while (!sc.hasNextInt()) {
+                System.out.println("Error: Entrada invalida.");
+                sc.nextLine();
+                System.out.print("Introduce 8 digitos del DNI: ");
+            }
+            dni = sc.nextInt();
+            if (dni > 99999999 || dni < 10000000) {
+                System.out.println("Error: Debe estar formado por 8 digitos.");
+            }
+        } while (dni > 99999999 || dni < 10000000);
+        this.numeros = dni;
+        /*
+        Lógica empleada para poder usarlo mediante Regex:
+        String dni;
+        Pattern pattern = Pattern.compile(^\\d{8}[A-Z]$); ^ -> Inicio, \\d -> un digito, {8} -> x repeticiones exactas, [A-Z] -> letras mayusculas, $ -> fin
+        dowhile(!pattern.matcher(dni)); -> aqui se pide el dni y se compila con Matcher matcher = pattern.matcher(dni); , y se evalua el patron
+        */
     }
     
+    private void calcularLetra() {
+        String letras = "TRWAGMYFPDXBNJZSQVHLCKE";
+        this.letra = letras.charAt(numeros % 23);
+    }
+
+    @Override
+    public String toString() {
+        return "NIF COMPLETO: " + numeros + "-" + letra;
+    }
+    
+    
+
 }

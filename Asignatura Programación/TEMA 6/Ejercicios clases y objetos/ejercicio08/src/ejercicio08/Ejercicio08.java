@@ -14,8 +14,7 @@ public class Ejercicio08 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Nif nif = new Nif(3223424);
-        
+        Nif nif1 = new Nif();
+        System.out.println(nif1);
     }
-    
 }
