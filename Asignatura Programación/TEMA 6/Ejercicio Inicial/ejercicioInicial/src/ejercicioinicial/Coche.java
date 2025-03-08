@@ -8,7 +8,7 @@ package ejercicioinicial;
  *
  * @author Erick
  */
-public class Coche {
+public class Coche implements Comparable<Coche>{
 
     private String matricula;
     private String marca;
@@ -72,6 +72,8 @@ public class Coche {
     public void setElectrico(boolean electrico) {
         this.electrico = electrico;
     }
+    
+    
 
     @Override
     public String toString() {
@@ -82,6 +84,11 @@ public class Coche {
         sb.append(año);
         sb.append((electrico ? " electrico" : " no electrico"));
         return sb.toString();
+    }
+
+    @Override
+    public int compareTo(Coche o) {
+        return this.marca.compareTo(o.marca);
     }
 
 }

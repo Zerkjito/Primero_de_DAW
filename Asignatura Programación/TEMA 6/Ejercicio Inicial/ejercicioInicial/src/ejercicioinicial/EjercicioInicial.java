@@ -5,6 +5,7 @@
 package ejercicioinicial;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 /**
@@ -97,6 +98,12 @@ public class EjercicioInicial {
         System.out.println("\nCoches introducidos:");
         for (Coche coche : coches) {
             System.out.println("\n" + coche);
+        }
+
+        Collections.sort(coches);
+        System.out.println("\nCoches introducidos ordenados alfabeticamente por marca:");
+        for (Coche c : coches) {
+            System.out.println(c);
         }
     }
 }
