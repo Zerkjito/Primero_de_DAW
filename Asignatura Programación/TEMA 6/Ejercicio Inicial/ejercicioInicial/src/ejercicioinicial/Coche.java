@@ -88,7 +88,7 @@ public class Coche implements Comparable<Coche>{
 
     @Override
     public int compareTo(Coche o) {
-        return this.marca.compareTo(o.marca);
+        return this.marca.compareToIgnoreCase(o.marca);
     }
 
 }
