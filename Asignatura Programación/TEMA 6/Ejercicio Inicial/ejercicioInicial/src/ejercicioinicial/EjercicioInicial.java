@@ -20,7 +20,7 @@ public class EjercicioInicial {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        ArrayList<Coche> coches = new ArrayList<Coche>();
+        ArrayList<Coche> coches = new ArrayList<>();
         int cant;
         do {
             System.out.print("Introduce la cantidad de coches a introducir: ");
