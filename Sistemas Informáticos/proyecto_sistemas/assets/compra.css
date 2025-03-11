@@ -1,0 +1,44 @@
+/* Estilo para la compra de coches */
+.compra-container {
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   gap: 20px;
+   padding: 20px;
+}
+
+.coche-card {
+   background-color: #f5f5f5;
+   padding: 20px;
+   border-radius: 8px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+   transition: transform 0.3s ease-in-out;
+}
+
+.coche-card:hover {
+   transform: scale(1.05);
+}
+
+.coche-card img {
+   width: 100%;
+   height: auto;
+   border-radius: 8px;
+}
+
+.coche-info {
+   font-size: 1.2rem;
+   margin: 10px 0;
+}
+
+.coche-button {
+   background-color: #4CAF50;
+   color: white;
+   padding: 10px 20px;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+   transition: background-color 0.3s;
+}
+
+.coche-button:hover {
+   background-color: #45a049;
+}
