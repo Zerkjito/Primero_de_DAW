@@ -22,7 +22,7 @@ if (isset($_POST['comprar'])) {
             FROM coche c 
             JOIN distribucion d ON c.id = d.codcoche 
             JOIN concesionario co ON d.cifc = co.cifc 
-            WHERE c.id = ? AND d.cantidad > 0"; 
+            WHERE c.id = ? AND d.cantidad > 0 AND c.usuario_id IS NULL"; 
 
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $codcoche);
@@ -43,14 +43,23 @@ if (isset($_POST['comprar'])) {
         $stmtCompra->bind_param("ssi", $concesionario, $dniCliente, $codcoche);
         $stmtCompra->execute();
 
+        // Actualizar el coche con el usuario que lo compra
+        $sqlActualizarCoche = "UPDATE coche SET usuario_id = ? WHERE id = ?";
+        $stmtActualizarCoche = $conn->prepare($sqlActualizarCoche);
+        $stmtActualizarCoche->bind_param("si", $dniCliente, $codcoche);
+        $stmtActualizarCoche->execute();
+
         // Reducir la cantidad de coches disponibles
         $sqlActualizar = "UPDATE distribucion SET cantidad = cantidad - 1 WHERE codcoche = ? AND cifc = ?";
         $stmtActualizar = $conn->prepare($sqlActualizar);
         $stmtActualizar->bind_param("is", $codcoche, $concesionario);
-        $stmtActualizar->execute();
 
-        // Mensaje de éxito
-        $mensajeCompra = "Compra realizada con éxito: $nombreCoche $modeloCoche.";
+        // Verificar si la actualización de cantidad fue exitosa
+        if ($stmtActualizar->execute()) {
+            $mensajeCompra = "Compra realizada con éxito: $nombreCoche $modeloCoche.";
+        } else {
+            $mensajeCompra = "Hubo un error al actualizar la cantidad del coche.";
+        }
     } else {
         $mensajeCompra = "El coche no está disponible o no existe.";
     }
@@ -60,7 +69,7 @@ if (isset($_POST['comprar'])) {
 $sql = "SELECT c.id, c.nombre, c.modelo, d.cantidad
         FROM coche c
         JOIN distribucion d ON c.id = d.codcoche
-        WHERE d.cantidad > 0"; // Solo coches con cantidad > 0
+        WHERE d.cantidad > 0 AND c.usuario_id IS NULL"; // Solo coches con cantidad > 0 y usuario_id NULL
 
 $result = $conn->query($sql);
 ?>
