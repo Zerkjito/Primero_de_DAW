@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 $host = "localhost"; // Servidor de la base de datos
 $user = "root"; // Usuario de MySQL (por defecto en XAMPP es root)
 $pass = ""; // Contraseña (vacía por defecto en XAMPP)

@@ -4,6 +4,8 @@
  */
 package ejercicio01;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -20,8 +22,24 @@ public class Ejercicio01 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        String ciudad;
         leerPersonas();
         mostrar();
+        mostrarPersonas();
+        
+        Persona personaMayorEdad = personaDeMayorEdad();
+        System.out.println(personaMayorEdad);
+        System.out.print("\nIntroducir una ciudad para ver cuantas personas viven alli: ");
+        ciudad = sc.nextLine().trim();
+        
+        validarCiudad(ciudad);
+        int habitantesMismaCiudad = cuantasPersonasVivenEn(ciudad);
+        String singularPluralHabitantes = habitantesMismaCiudad == 1 ? " persona vive en " : " personas viven en ";
+        System.out.println(habitantesMismaCiudad + singularPluralHabitantes + ciudad);
+
+        String singularPluralMayoresEdad = personasMayoresDeEdad() == 1 ? " persona es mayor de edad." : " personas son mayores de edad.";
+        System.out.println("\n" + personasMayoresDeEdad() + singularPluralMayoresEdad);
+
     }
 
     public static void leerPersonas() {
@@ -76,6 +94,14 @@ public class Ejercicio01 {
         }
     }
 
+    public static void validarCiudad(String ciudad) {
+        while (!ciudad.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,50}$")) {
+            System.out.println("Error: Entrada invalida.");
+            System.out.print("Introduce la ciudad: ");
+            ciudad = sc.nextLine().trim();
+        }
+    }
+
     public static Fecha leerFecha() {
         int dia, mes, anyo;
         boolean fechaValida;
@@ -98,11 +124,57 @@ public class Ejercicio01 {
         } while (!fechaValida);
         return fnac;
     }
-    
+
     public static void mostrar() {
         for (Persona persona : personas) {
             System.out.println("\n" + persona);
         }
     }
+
+    public static void mostrarPersonas() {
+        System.out.println("\nNumero de personas registradas: " + personas.size());
+    }
+
+    public static Persona personaDeMayorEdad() {
+        LocalDate hoy = LocalDate.now();
+
+        System.out.println("\nPersona mayor de edad:");
+        for (Persona persona : personas) {
+            int edad = persona.getFnac().saberEdad();
+            if (edad >= 18) {
+                System.out.println("Edad: " + edad + " años");
+                LocalDate proximoCumple = LocalDate.of(hoy.getYear(), persona.getFnac().getMes(), persona.getFnac().getDia());
+
+                if (proximoCumple.isBefore(hoy) || proximoCumple.isEqual(hoy)) {
+                    proximoCumple = proximoCumple.plusYears(1);
+                }
+                long diasParaCumple = ChronoUnit.DAYS.between(hoy, proximoCumple);
+                System.out.println("Le faltan " + diasParaCumple + " dias para cumplir años!");
+                return persona;
+            }
+
+        }
+        System.out.println("No se encontro una persona mayor de edad.");
+        return null;
+    }
+
+    public static int cuantasPersonasVivenEn(String poblacion) {
+        int contador = 0;
+        for (Persona persona : personas) {
+            if (persona.getCiudad().equalsIgnoreCase(poblacion)) {
+                contador++;
+            }
+        }
+        return contador;
+    }
     
+    public static int personasMayoresDeEdad() {
+        int cont = 0;
+        for (Persona persona : personas) {
+            if (persona.getFnac().saberEdad() >= 18) {
+                cont++;
+            }
+        }
+        return cont;
+    }
 }

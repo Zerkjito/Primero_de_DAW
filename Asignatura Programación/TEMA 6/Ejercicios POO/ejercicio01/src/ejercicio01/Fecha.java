@@ -86,6 +86,18 @@ public class Fecha {
         DateTimeFormatter formatoLargo = DateTimeFormatter.ofPattern("dd 'de' MMMM 'de' yyyy");
         return fecha.format(formatoLargo);
     }
+    
+    public int saberEdad() {
+        LocalDate fechaNacimiento = LocalDate.of(this.año, this.mes, this.dia);
+        LocalDate hoy = LocalDate.now();
+        int edad = hoy.getYear() - fechaNacimiento.getYear();
+        
+        if (hoy.getMonthValue() < fechaNacimiento.getMonthValue() || 
+                (hoy.getMonthValue() == fechaNacimiento.getMonthValue() && hoy.getDayOfMonth() < fechaNacimiento.getDayOfMonth())){
+            edad--;
+        }
+        return edad;
+    }
 
     public void diaSiguiente() {
         int[] diasPorMes = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};

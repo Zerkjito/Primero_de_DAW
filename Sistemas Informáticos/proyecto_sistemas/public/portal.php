@@ -14,6 +14,14 @@ include('../config/db_config.php');
 
 // Procesar la compra
 if (isset($_POST['comprar'])) {
+    // Depuración: Mostrar los datos de $_POST para asegurarnos que los datos están siendo enviados correctamente
+    echo "<pre>";
+    var_dump($_POST);  // Esto mostrará el contenido de los datos enviados
+    echo "</pre>";
+
+    // Detener la ejecución para ver los datos antes de continuar
+    exit();
+
     $codcoche = $_POST['codcoche'];  // Obtener el código del coche
     $dniCliente = $_SESSION['dni'];  // Obtener el DNI del cliente
 
@@ -25,11 +33,21 @@ if (isset($_POST['comprar'])) {
             WHERE c.id = ? AND d.cantidad > 0 AND c.usuario_id IS NULL"; 
 
     $stmt = $conn->prepare($sql);
+    
+    // Depuración: Verificar si la consulta se preparó correctamente
+    if (!$stmt) {
+        die("<pre>❌ Error en la preparación de la consulta: " . $conn->error . "</pre>");
+    }
+
     $stmt->bind_param("i", $codcoche);
     $stmt->execute();
     $result = $stmt->get_result();
 
+    // Depuración: Verificar cuántas filas devuelve la consulta
+    echo "<pre>📊 Filas encontradas: " . $result->num_rows . "</pre>";
+
     if ($result->num_rows > 0) {
+        echo "<pre>✅ ¡Consulta SQL exitosa! Se encontró el coche.</pre>";
         $row = $result->fetch_assoc();
 
         // Datos del coche
@@ -54,7 +72,6 @@ if (isset($_POST['comprar'])) {
         $stmtActualizar = $conn->prepare($sqlActualizar);
         $stmtActualizar->bind_param("is", $codcoche, $concesionario);
 
-        // Verificar si la actualización de cantidad fue exitosa
         if ($stmtActualizar->execute()) {
             $mensajeCompra = "Compra realizada con éxito: $nombreCoche $modeloCoche.";
         } else {
@@ -69,7 +86,7 @@ if (isset($_POST['comprar'])) {
 $sql = "SELECT c.id, c.nombre, c.modelo, d.cantidad
         FROM coche c
         JOIN distribucion d ON c.id = d.codcoche
-        WHERE d.cantidad > 0 AND c.usuario_id IS NULL"; // Solo coches con cantidad > 0 y usuario_id NULL
+        WHERE d.cantidad > 0 AND c.usuario_id IS NULL"; 
 
 $result = $conn->query($sql);
 ?>
@@ -80,22 +97,19 @@ $result = $conn->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal - Automóviles</title>
-    <link rel="stylesheet" href="../assets/style.css"> <!-- Vincula tu archivo CSS -->
+    <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
     <div class="container">
         <h1>Bienvenido, <?php echo $nombreUsuario; ?>!</h1>
         <p>Has iniciado sesión correctamente.</p>
 
-        <!-- Opciones para navegar -->
         <a href="cerrar_sesion.php" class="btn">Cerrar sesión</a>
 
-        <!-- Mostrar mensaje de compra -->
         <?php if (isset($mensajeCompra)): ?>
             <p><?php echo $mensajeCompra; ?></p>
         <?php endif; ?>
 
-        <!-- Mostrar los coches disponibles -->
         <h2>Coches disponibles para comprar</h2>
         <table>
             <thead>
@@ -108,7 +122,6 @@ $result = $conn->query($sql);
             <tbody>
                 <?php
                 if ($result->num_rows > 0) {
-                    // Mostrar los coches en la tabla
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>";
                         echo "<td>" . $row['nombre'] . "</td>";
@@ -132,6 +145,5 @@ $result = $conn->query($sql);
 </html>
 
 <?php
-// Cerrar la conexión a la base de datos
 $conn->close();
 ?>

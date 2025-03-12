@@ -72,12 +72,11 @@ public class Persona {
         StringBuilder sb = new StringBuilder();
         sb.append("Nombre: ").append(this.nombre).append("\n");
         sb.append("Fecha nacimiento: ").append(this.fnac.fechaCorta()).append("\n");
+        sb.append("Edad: ").append(this.fnac.saberEdad()).append(" anyos\n");
         sb.append("Direccion: C/ ").append(this.direccion).append("\n");
         sb.append(this.codigoPostal).append(" ").append(this.ciudad);
         return sb.toString();
     }
-    
-    
     
 }
 
