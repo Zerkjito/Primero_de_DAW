@@ -7,6 +7,7 @@ package ejercicio02;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -23,14 +24,16 @@ public class Ejercicio02 {
      */
     public static void main(String[] args) {
         leerEmpleado(empleados);
-        
-        
+
         System.out.println("\nEmpleado que mas cobra:");
         System.out.println(salarioMasAlto());
-        
+
         System.out.println("\nEmpleado que menos cobra:");
         System.out.println(salarioMasBajo());
-        
+
+        System.out.println("Empleados ordendos alfabeticamente:");
+        ordenarEmpleadosABC();
+
         System.out.println("Salarios ordenados de menor a mayor:\n");
         ordenarSalarioMenorMayor();
     }
@@ -54,7 +57,7 @@ public class Ejercicio02 {
                 System.out.println("Error: Pueden leerse como maximo 20 empleados.");
             }
         } while (cantEmpleados < 1 || cantEmpleados > 20);
-        
+
         sc.nextLine();
 
         for (int i = 0; i < cantEmpleados; i++) {
@@ -153,7 +156,7 @@ public class Ejercicio02 {
             } else {
                 casado = false;
             }
-            
+
             sc.nextLine();
 
             do {
@@ -195,23 +198,36 @@ public class Ejercicio02 {
         }
         return empleadoConMenorSalario;
     }
-    
-public static void ordenarSalarioMenorMayor() {
-    ArrayList<Empleado> empleadosNoNull = new ArrayList<>();
-    
-    for (Empleado e : empleados) {
-        if (e != null) {
-            empleadosNoNull.add(e);
+
+    public static void ordenarSalarioMenorMayor() {
+        ArrayList<Empleado> empleadosNoNull = new ArrayList<>();
+
+        for (Empleado e : empleados) {
+            if (e != null) {
+                empleadosNoNull.add(e);
+            }
+        }
+
+        empleadosNoNull.sort(Comparator.naturalOrder());
+
+        for (Empleado e : empleadosNoNull) {
+            System.out.println(e);
         }
     }
 
-    empleadosNoNull.sort(Comparator.naturalOrder());
-
-    for (Empleado e : empleadosNoNull) {
-        System.out.println(e);
+    public static void ordenarEmpleadosABC() {
+        ArrayList<Empleado> empleadosOrdenados = new ArrayList<>();
+        
+        for (Empleado e : empleados) {
+            if (e != null) {
+                empleadosOrdenados.add(e);
+            }
+        }
+        
+        empleadosOrdenados.sort(Comparator.comparing(Empleado::getNombre, String.CASE_INSENSITIVE_ORDER));
+        for (Empleado e : empleadosOrdenados) {
+            System.out.println(e);
+        }
     }
-}
-
-    
 
 }

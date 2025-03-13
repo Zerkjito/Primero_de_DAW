@@ -18,7 +18,7 @@ public class Empleado implements Comparable<Empleado>{
     private double irpf;
     private boolean casado;
     private int numHijos;
-    private static double importeHoraExtra = 15;
+    private static double importeHoraExtra;
 
     public Empleado(String dni, String nombre, double sueldoBase, int horasExtras, double irpf, boolean casado, int numHijos) {
         this.dni = dni;
@@ -108,7 +108,7 @@ public class Empleado implements Comparable<Empleado>{
         sb.append("Nombre empleado: ").append(this.nombre).append("\n");
         sb.append("Sueldo base: ").append(this.sueldoBase).append(" EUR").append("\n");
         sb.append("Horas extras del mes: ").append(this.horasExtras).append("\n");
-        sb.append("Tipo IRPF: ").append(this.irpf).append("%").append("\n");
+        sb.append(String.format("Tipo IRPF: %.2f%%", this.irpf));
         String estadoCivil = this.casado ? " casado/a\n" : " soltero/a\n";
         sb.append("Estado civil: ").append(estadoCivil);
         sb.append("Numero de hijos: ").append(this.numHijos).append("\n");
