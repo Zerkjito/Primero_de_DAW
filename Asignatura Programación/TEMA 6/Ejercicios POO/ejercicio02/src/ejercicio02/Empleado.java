@@ -108,23 +108,28 @@ public class Empleado implements Comparable<Empleado>{
         sb.append("Nombre empleado: ").append(this.nombre).append("\n");
         sb.append("Sueldo base: ").append(this.sueldoBase).append(" EUR").append("\n");
         sb.append("Horas extras del mes: ").append(this.horasExtras).append("\n");
-        sb.append(String.format("Tipo IRPF: %.2f%%", this.irpf));
+        sb.append(String.format("Tipo IRPF: %.2f%%", this.irpf)).append("\n");
         String estadoCivil = this.casado ? " casado/a\n" : " soltero/a\n";
         sb.append("Estado civil: ").append(estadoCivil);
         sb.append("Numero de hijos: ").append(this.numHijos).append("\n");
         return sb.toString();
     }
     
-    public double calcularHorasExtras() {
+    public double calcularImporteHorasExtras() {
         return this.horasExtras * importeHoraExtra;
     }
     
-    public double calcularSueldoBruto() {
-        return this.sueldoBase + calcularHorasExtras();
+    public double sueldoBruto() {
+        return this.sueldoBase + calcularImporteHorasExtras();
+    }
+    
+    public double sueldoNeto() {
+        return sueldoBruto() - calcularDescuentoIRPF();
     }
     
     public double calcularDescuentoIRPF() {
         double descuento = 0;
+        double sueldoBrutoEmpleado = sueldoBruto();
         if (this.casado) {
             descuento+=2;
         }
@@ -133,10 +138,10 @@ public class Empleado implements Comparable<Empleado>{
             descuento+=this.numHijos;
         }
         
-        descuento = Math.max(this.irpf - descuento, 0); // buena práctica para garantizar que el valor irpf no se vuelva negativo
-        return this.sueldoBase * (1 - descuento / 100);
+        double irpfFinal = Math.max(this.irpf - descuento, 0); // buena práctica para garantizar que el valor irpf no se vuelva negativo
+        return sueldoBrutoEmpleado * (irpfFinal / 100);
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 7;

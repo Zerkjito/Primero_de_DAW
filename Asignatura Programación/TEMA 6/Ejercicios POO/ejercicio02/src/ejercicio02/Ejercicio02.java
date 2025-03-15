@@ -26,13 +26,21 @@ public class Ejercicio02 {
         leerEmpleado(empleados);
 
         System.out.println("\nEmpleado que mas cobra:");
-        System.out.println(salarioMasAlto());
+        System.out.println(salarioMasAlto()); // devuelvo objeto Empleado
 
         System.out.println("\nEmpleado que menos cobra:");
-        System.out.println(salarioMasBajo());
+        System.out.println(salarioMasBajo()); // devuleve objeto Empleado
 
         System.out.println("Empleados ordendos alfabeticamente:");
         ordenarEmpleadosABC();
+
+        asignarImporteHoraExtra();
+
+        System.out.println("\nEmpleado que cobra mas por horas extras:");
+        System.out.println(cobraMasPorHora());
+
+        System.out.println("\nEmpleado que cobra menos por horas extras:");
+        System.out.println(cobraMenosPorHora());
 
         System.out.println("Salarios ordenados de menor a mayor:\n");
         ordenarSalarioMenorMayor();
@@ -177,12 +185,51 @@ public class Ejercicio02 {
         }
     }
 
+    public static void asignarImporteHoraExtra() {
+        double importeHoraExtra;
+        do {
+            System.out.print("Introduce el importe por hora extra para los empelados: ");
+            while (!sc.hasNextDouble()) {
+                System.out.println("Error: Entrada invalida, introuce un numero valido.");
+                sc.nextLine();
+                System.out.print("Introduce el importe por hora extra para los empelados: ");
+            }
+            importeHoraExtra = sc.nextDouble();
+            if (importeHoraExtra <= 0) {
+                System.out.println("Error: El importe por hora extra no puede ser negativo.");
+            }
+        } while (importeHoraExtra <= 0);
+        Empleado.setImporteHoraExtra(importeHoraExtra);
+    }
+
+    public static Empleado cobraMasPorHora() {
+        Empleado empleadoCobraMasPorHorasExtras = null;
+
+        for (Empleado e : empleados) {
+            if (e != null && (empleadoCobraMasPorHorasExtras == null || e.calcularImporteHorasExtras() > empleadoCobraMasPorHorasExtras.calcularImporteHorasExtras())) {
+                empleadoCobraMasPorHorasExtras = e;
+            }
+        }
+        return empleadoCobraMasPorHorasExtras;
+    }
+
+    public static Empleado cobraMenosPorHora() {
+        Empleado empleadoCobraMasPorHorasExtras = null;
+
+        for (Empleado e : empleados) {
+            if (e != null && (empleadoCobraMasPorHorasExtras == null || e.calcularImporteHorasExtras() < empleadoCobraMasPorHorasExtras.calcularImporteHorasExtras())) {
+                empleadoCobraMasPorHorasExtras = e;
+            }
+        }
+        return empleadoCobraMasPorHorasExtras;
+    }
+
     public static Empleado salarioMasAlto() {
         Empleado empleadoConMayorSalario = null;
 
-        for (Empleado empleado : empleados) {
-            if (empleado != null && (empleadoConMayorSalario == null || empleado.getSueldoBase() > empleadoConMayorSalario.getSueldoBase())) {
-                empleadoConMayorSalario = empleado;
+        for (Empleado e : empleados) {
+            if (e != null && (empleadoConMayorSalario == null || e.getSueldoBase() > empleadoConMayorSalario.getSueldoBase())) {
+                empleadoConMayorSalario = e;
             }
         }
         return empleadoConMayorSalario;
@@ -217,13 +264,13 @@ public class Ejercicio02 {
 
     public static void ordenarEmpleadosABC() {
         ArrayList<Empleado> empleadosOrdenados = new ArrayList<>();
-        
+
         for (Empleado e : empleados) {
             if (e != null) {
                 empleadosOrdenados.add(e);
             }
         }
-        
+
         empleadosOrdenados.sort(Comparator.comparing(Empleado::getNombre, String.CASE_INSENSITIVE_ORDER));
         for (Empleado e : empleadosOrdenados) {
             System.out.println(e);
