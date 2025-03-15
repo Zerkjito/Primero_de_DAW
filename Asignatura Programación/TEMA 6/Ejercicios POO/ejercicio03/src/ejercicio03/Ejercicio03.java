@@ -5,6 +5,7 @@
 package ejercicio03;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -40,13 +41,30 @@ public class Ejercicio03 {
                     agregarAlumno();
                     break;
                 case 2:
+                    ordenarPorNombre();
+                    break;
                 case 3:
+                    buscarPorNiF();
+                    break;
                 case 4:
+                    darBaja();
+                    break;
                 case 5:
+                    modificarAlumno();
+                    break;
                 case 6:
+                    double media = mediaGlobalAlumnos();
+                    mostrarMedia(media);
+                    break;
                 case 7:
+                    reasginarLimiteFaltas();
+                    break;
                 case 8:
+                    mostrarFaltasGraves();
+                    break;
                 case 9:
+                    mostrarExpulsiones();
+                    break;
             }
         } while (opcion != 0);
 
@@ -66,42 +84,152 @@ public class Ejercicio03 {
     }
 
     public static void agregarAlumno() {
-        int nia;
-        boolean alumnoExistente;
-        do {
-            alumnoExistente = false;
-            do {
-                System.out.print("\nIntroduce el NIA (8 digitos): ");
-                while (!sc.hasNextInt()) {
-                    System.out.println("Error: Entrada invalida, introduce un numero valido.");
-                    sc.next();
-                    System.out.print("Introduce el NIA: ");
-                }
-                nia = sc.nextInt();
-                sc.nextLine();
+        Alumno a = new Alumno();
+        a.leer(alumnos);
+        alumnos.add(a);
+        System.out.println("Alumno(a) " + a.getNombre() + " agregado(a) exitosamente.");
+    }
 
-                if (nia <= 10000000 || nia > 99999999) {
-                    System.out.println("Error: El NIA debe tener 8 digitos.");
-                }
-            } while (nia <= 10000000 || nia > 99999999);
-
+    public static void ordenarPorNombre() {
+        if (alumnos == null || alumnos.isEmpty()) {
+            System.out.println("[Error: Lista de alumnos vacia]");
+        } else {
+            Collections.sort(alumnos);
             for (Alumno a : alumnos) {
-                if (a.getNia() == nia) {
-                    alumnoExistente = true;
-                    break;
-                }
+                System.out.println("\n" + a);
             }
+        }
+    }
 
-            if (alumnoExistente) {
-                System.out.println("Error: El alumno con nia " + nia + " ya esta registrado.");
-            } else {
-                Alumno a = new Alumno();
-                a.setNia(nia);
-                a.leer();
-                alumnos.add(a);
-                System.out.println("Alumno(a) " + a.getNombre() + " agregado(a) exitosamente.");
+    public static boolean buscarPorNiF() {
+        Nif nifAlu = new Nif();
+        for (Alumno a : alumnos) {
+            if (a.getNif() != null && a.getNif().equals(nifAlu)) {
+                System.out.println(a);
+                return true;
             }
-        } while (alumnoExistente);
+        }
+        System.out.println("Error: El NIF no se encuentra registrado.");
+        return false;
+    }
+
+    public static boolean darBaja() {
+        Nif nifAlu = new Nif();
+        for (Alumno a : alumnos) {
+            if (a.getNif() != null && a.getNif().equals(nifAlu)) {
+                alumnos.remove(a);
+                System.out.println("Alumno(a) con " + nifAlu + " dado de bajo exitosamente.");
+                return true;
+            }
+        }
+        System.out.println("[Error: No se encontro al alumno(a) con el NIF proporcionado]");
+        return false;
+    }
+
+    public static boolean modificarAlumno() {
+        if (alumnos == null || alumnos.isEmpty()) {
+            System.out.println("[Error: Lista vacia o no inicializada]");
+            return false;
+        }
+        Nif nifAlu = new Nif();
+        for (Alumno a : alumnos) {
+            if (a != null && a.getNif().equals(nifAlu)) {
+                a.modificarDatos();
+                System.out.println("Alumno(a) con " + nifAlu + " modificado exitosamente.");
+                return true;
+            }
+        }
+        System.out.println("[Error: No se encontro al alumno(a) con el NIF proporcionado]");
+        return false;
+    }
+
+    public static double mediaGlobalAlumnos() {
+        double suma = 0;
+        if (alumnos == null || alumnos.isEmpty()) {
+            System.out.println("[Error: Lista vacia o no inicializada]");
+            return Double.NaN;
+        }
+        for (Alumno a : alumnos) {
+            if (a != null && a.getNotaMedia() > 0) {
+                suma += a.getNotaMedia();
+            }
+        }
+        if (suma == 0) {
+            System.out.println("[Error: No se puede calcular la media si todas las notas son 0]");
+            return Double.NaN;
+        }
+        return suma / alumnos.size();
+    }
+
+    public static void mostrarMedia(double mediaGlobal) {
+        if (Double.isNaN(mediaGlobal)) {
+            System.out.println("[Error: No se pudo calcular la media]");
+        } else {
+            System.out.printf("Media global de todos los alumnos: %.2f%n", mediaGlobal);
+        }
+    }
+
+    public static void reasginarLimiteFaltas() {
+        int nuevoLimite;
+        System.out.println("\nLimite de faltas graves actual: " + Alumno.getLimiteFaltasGraves());
+        do {
+            System.out.print("Nuevo limite de faltas: ");
+            while (!sc.hasNextInt()) {
+                System.out.println("[Error: Entrada invalida, debe ser un numero valido]");
+                sc.nextLine();
+                System.out.print("Nuevo limite de faltas: ");
+            }
+            nuevoLimite = sc.nextInt();
+            sc.nextLine();
+
+            if (nuevoLimite <= 0) {
+                System.out.println("[Error: Limite de faltas no puede ser negativo]");
+            }
+        } while (nuevoLimite <= 0);
+        Alumno.setLimiteFaltasGraves(nuevoLimite);
+        System.out.println("Limite de faltas reasignado exitosamente.");
+    }
+
+    public static void mostrarFaltasGraves() {
+        if (alumnos == null || alumnos.isEmpty()) {
+            System.out.println("[Error: Lista de alumnos vacia o no inicializada]");
+            return;
+        }
+        
+        int cont = 0;
+        for (Alumno a : alumnos) {
+            if (a != null && a.getFaltasGraves() > 0) {
+                cont++;
+                System.out.println("Alumno(a) con faltas:");
+                System.out.println("\n" + a);
+            }
+        }
+        if (cont == 0) {
+            System.out.println("Actualmente ningun alumno tiene faltas graves.");
+        } else {
+            System.out.println("Total de alumnos con faltas graves: " + cont);
+        }
+    }
+
+    public static void mostrarExpulsiones() {
+        if (alumnos == null || alumnos.isEmpty()) {
+            System.out.println("[Error: Lista de alumnos vacia o no inicializada]");
+            return;
+        }
+        
+        int cont = 0;
+        for (Alumno a : alumnos) {
+            if (a != null && a.getFaltasGraves() == Alumno.getLimiteFaltasGraves()) {
+                cont++;
+                System.out.println("Alumno(a) expulsado:");
+                System.out.println("\n" + a);
+            }
+        }
+        if (cont == 0) {
+            System.out.println("Actualmente ningun alumno esta expulsado.");
+        } else {
+            System.out.println("Total de alumnos expulsados: " + cont);
+        }
     }
 
 }

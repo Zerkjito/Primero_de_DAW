@@ -4,6 +4,7 @@
  */
 package ejercicio03;
 
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -13,7 +14,7 @@ import java.util.regex.Pattern;
  *
  * @author zerkje
  */
-public class Alumno {
+public class Alumno implements Comparable<Alumno> {
 
     private static Scanner sc = new Scanner(System.in);
     private int nia;
@@ -133,7 +134,6 @@ public class Alumno {
     }
 
     private void pedirNia() {
-
         do {
             System.out.print("\nIntroduce el NIA (8 digitos): ");
             while (!sc.hasNextInt()) {
@@ -146,16 +146,16 @@ public class Alumno {
             if (this.nia <= 10000000 || this.nia > 99999999) {
                 System.out.println("Error: El NIA debe tener 8 digitos.");
             }
-        } while (this.nia <= 0 || this.nia > 99999999);
+        } while (this.nia <= 10000000 || this.nia > 99999999);
     }
 
     private void pedirCurso() {
         System.out.print("\nIntroduce el curso que estudia: ");
-        this.curso = sc.nextLine().trim();
-        while (!this.curso.matches("^[1-4][a-zA-Z ]{1,20}$")) {
+        this.curso = sc.nextLine().trim().toUpperCase();
+        while (!this.curso.matches("([1-4])\\s*ESO|([1-2])\\s*(BAT|FP)")) {
             System.out.println("Error: Nombre de curso invalido, vuelve a intentarlo.");
             System.out.print("Introduce el curso que estudia: ");
-            this.curso = sc.nextLine();
+            this.curso = sc.nextLine().trim().toUpperCase();
         }
     }
 
@@ -169,8 +169,15 @@ public class Alumno {
         }
     }
 
-    private void pedirNif() {
+    private boolean pedirNif(ArrayList<Alumno> alumnos) {
         this.nif = new Nif();
+        for (Alumno a : alumnos) {
+            if (a.getNif() != null && a.getNif().equals(this.nif)) {
+                System.out.println("Error: Este NIF ya esta registrado.");
+                return false;
+            }
+        }
+        return true;
     }
 
     private void pedirFnac() {
@@ -271,16 +278,29 @@ public class Alumno {
             if (this.faltasGraves < 0) {
                 System.out.println("Error: Faltas graves no pueden ser negativas.");
             } else if (this.faltasGraves > limiteFaltasGraves) {
-                System.out.println("Error: Se ha alcanzado el limite maximo de faltas asignadas.");
+                System.out.println("Error: El limite de faltas graves es " + limiteFaltasGraves);
             }
         } while (this.faltasGraves < 0 || this.faltasGraves > limiteFaltasGraves);
     }
 
-    public void leer() {
-        //pedirNia();
+    public void leer(ArrayList<Alumno> al) {
+        pedirNia();
         pedirCurso();
         pedirNombre();
-        pedirNif();
+        while (!pedirNif(al)) {
+        }
+        pedirFnac();
+        pedirDireccion();
+        pedirCodigoPostal();
+        pedirCiudad();
+        pedirNotaMedia();
+        pedirFaltasGraves();
+    }
+
+    public void modificarDatos() {
+        pedirNia();
+        pedirCurso();
+        pedirNombre();
         pedirFnac();
         pedirDireccion();
         pedirCodigoPostal();
@@ -292,17 +312,18 @@ public class Alumno {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Alumno{");
-        sb.append("nia=").append(nia);
-        sb.append(", curso=").append(curso);
-        sb.append(", nombre=").append(nombre);
-        sb.append(", nif=").append(nif);
-        sb.append(", fnac=").append(fnac);
-        sb.append(", direccion=").append(direccion);
-        sb.append(", codigoPostal=").append(codigoPostal);
-        sb.append(", ciudad=").append(ciudad);
-        sb.append(", notaMedia=").append(notaMedia);
-        sb.append(", faltasGraves=").append(faltasGraves);
+        sb.append("-----------------------------------------------------------\n");
+        sb.append("Nombre: ").append(this.nombre).append("\n");
+        sb.append("NIA: ").append(this.nia).append("\n");
+        sb.append(this.nif).append("\n");
+        sb.append("Curso: ").append(this.curso).append("\n");
+        sb.append("Fecha nacimiento: ").append(this.fnac.fechaCorta()).append("\n");
+        sb.append("Direccion: ").append(this.direccion).append("\n");
+        sb.append("Codigo postal: ").append(this.codigoPostal).append("\n");
+        sb.append("Ciudad: ").append(this.ciudad).append("\n");
+        sb.append(String.format("Nota media %.2f", this.notaMedia)).append("\n");
+        sb.append("Faltas graves: ").append(this.faltasGraves).append("\n");
+        sb.append("-----------------------------------------------------------");
         return sb.toString();
     }
 
@@ -322,7 +343,12 @@ public class Alumno {
             return false;
         }
         Alumno other = (Alumno) obj;
-        return nia == other.nia;
+        return this.nif.equals(other.nif);
+    }
+
+    @Override
+    public int compareTo(Alumno o) {
+        return this.nombre.compareToIgnoreCase(o.nombre);
     }
 
 }

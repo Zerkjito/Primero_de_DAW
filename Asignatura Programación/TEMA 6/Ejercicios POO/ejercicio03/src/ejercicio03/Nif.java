@@ -57,8 +57,29 @@ public class Nif {
 
     @Override
     public String toString() {
-        return "NIF COMPLETO: " + numeros + letra;
+        return "NIF: " + numeros + letra;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 53 * hash + this.numeros;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Nif other = (Nif) obj;
+        return this.numeros == other.numeros;
+    }
+    
+    
     
     
 
