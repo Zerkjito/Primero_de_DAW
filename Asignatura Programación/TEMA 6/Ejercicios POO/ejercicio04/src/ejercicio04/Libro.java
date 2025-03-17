@@ -4,11 +4,13 @@
  */
 package ejercicio04;
 
+import java.util.Objects;
+
 /**
  *
  * @author zerkje
  */
-class Libro {
+public class Libro implements Comparable<Libro>{
     
     private String referencia;
     private String titulo;
@@ -17,6 +19,7 @@ class Libro {
     private int ejemplaresPrestados;
 
     public Libro(String referencia, String titulo, String autor, int ejemplares, int ejemplaresPrestados) {
+        this.referencia = referencia;
         this.titulo = titulo;
         this.autor = autor;
         this.ejemplares = ejemplares;
@@ -106,5 +109,32 @@ class Libro {
         sb.append("Ejemplares prestados: ").append(this.ejemplaresPrestados).append("\n");
         return sb.toString();
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 67 * hash + Objects.hashCode(this.referencia);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        
+        final Libro other = (Libro) obj;
+        return Objects.equals(this.referencia, other.referencia);
+    }
+
+    @Override
+    public int compareTo(Libro o) {
+        return this.titulo.compareToIgnoreCase(o.titulo);
+    }
+    
+    
 
 }
