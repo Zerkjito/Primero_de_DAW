@@ -350,5 +350,6 @@ public class Alumno implements Comparable<Alumno> {
     public int compareTo(Alumno o) {
         return this.nombre.compareToIgnoreCase(o.nombre);
     }
+    
 
 }

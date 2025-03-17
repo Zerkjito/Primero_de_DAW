@@ -6,6 +6,7 @@ package ejercicio03;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -65,6 +66,8 @@ public class Ejercicio03 {
                 case 9:
                     mostrarExpulsiones();
                     break;
+                case 10:
+
             }
         } while (opcion != 0);
 
@@ -195,11 +198,13 @@ public class Ejercicio03 {
             System.out.println("[Error: Lista de alumnos vacia o no inicializada]");
             return;
         }
-        
+
         int cont = 0;
+        alumnos.sort(Comparator.comparingInt(Alumno::getFaltasGraves));
         for (Alumno a : alumnos) {
             if (a != null && a.getFaltasGraves() > 0) {
                 cont++;
+
                 System.out.println("Alumno(a) con faltas:");
                 System.out.println("\n" + a);
             }
@@ -216,7 +221,7 @@ public class Ejercicio03 {
             System.out.println("[Error: Lista de alumnos vacia o no inicializada]");
             return;
         }
-        
+
         int cont = 0;
         for (Alumno a : alumnos) {
             if (a != null && a.getFaltasGraves() == Alumno.getLimiteFaltasGraves()) {
