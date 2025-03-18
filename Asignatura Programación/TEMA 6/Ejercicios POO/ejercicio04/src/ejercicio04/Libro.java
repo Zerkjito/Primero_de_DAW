@@ -10,8 +10,8 @@ import java.util.Objects;
  *
  * @author zerkje
  */
-public class Libro implements Comparable<Libro>{
-    
+public class Libro implements Comparable<Libro> {
+
     private String referencia;
     private String titulo;
     private String autor;
@@ -36,8 +36,6 @@ public class Libro implements Comparable<Libro>{
     public void setReferencia(String referencia) {
         this.referencia = referencia;
     }
-    
-    
 
     public String getTitulo() {
         return titulo;
@@ -101,12 +99,9 @@ public class Libro implements Comparable<Libro>{
 
     @Override
     public String toString() {
+
         StringBuilder sb = new StringBuilder();
-        sb.append("Referencia: ").append(this.referencia).append("\n");
-        sb.append("Titulo: ").append(this.titulo).append("\n");;
-        sb.append("Autor: ").append(this.autor).append("\n");;
-        sb.append("Ejemplares: ").append(this.ejemplares).append("\n");
-        sb.append("Ejemplares prestados: ").append(this.ejemplaresPrestados).append("\n");
+        sb.append(String.format("%-30s - %30s", this.titulo, this.autor));
         return sb.toString();
     }
 
@@ -125,7 +120,7 @@ public class Libro implements Comparable<Libro>{
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        
+
         final Libro other = (Libro) obj;
         return Objects.equals(this.referencia, other.referencia);
     }
@@ -134,7 +129,5 @@ public class Libro implements Comparable<Libro>{
     public int compareTo(Libro o) {
         return this.titulo.compareToIgnoreCase(o.titulo);
     }
-    
-    
 
 }

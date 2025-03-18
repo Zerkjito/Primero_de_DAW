@@ -5,6 +5,7 @@
 package ejercicio04;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 /**
  *
@@ -23,16 +24,17 @@ public class Biblioteca {
         if (indice < libros.length) {
             libros[indice] = l;
             indice++;
+            System.out.println("Libro agregado exitosamente.");
             return true;
         }
         return false;
     }
-    
+
     public boolean verificarReferencia(String ref) {
         if (libros == null || libros.length == 0) {
             return false;
         }
-        
+
         for (int i = 0; i < libros.length; i++) {
             if (libros[i] != null && libros[i].getReferencia().equals(ref)) {
                 return true;
@@ -41,61 +43,52 @@ public class Biblioteca {
         return false;
     }
 
-    public boolean eliminar(String ref) {
-        if (libros == null || libros.length == 0) {
+    public boolean eliminarMedianteRef(String ref) {
+        if (libros == null || indice == 0) {
             System.out.println("Error: No hay libros en el sistema.");
             return false;
         }
 
         int indicePorEliminar = -1;
-        for (int i = 0; i < libros.length; i++) {
-            if (ref.equals(libros[i].getReferencia())) { // se busca el índice a partir del cual hay que desplazar el libro hasta el final
+        for (int i = 0; i < indice; i++) {
+            if (libros[i] != null && ref.equals(libros[i].getReferencia())) { // se busca el índice a partir del cual hay que desplazar el libro hasta el final
                 indicePorEliminar = i;
                 break;
             }
         }
+        if (indicePorEliminar == -1) { // he de verificar antes de desplazar para evitar conflictos
+            System.out.println("Libro con referencia " + ref + " no encontrado.");
+            return false;
+        }
+
         for (int i = indicePorEliminar; i < libros.length - 1; i++) {
             libros[i] = libros[i + 1]; // se desplaza el libro que se quiere eliminar hasta el final para que ocupe la última posición
         }
 
-        if (indice == -1) {
-            System.out.println("Libro con referencia " + ref + " no encontrado.");
-            return false;
-        }
-        this.libros = Arrays.copyOf(libros, libros.length - 1);
+        libros[indice - 1] = null;
+        indice--;
         System.out.println("Libro con referencia " + ref + " eliminado exitosamente.");
         return true;
     }
 
     public boolean eliminarMedianteIndice(int posicion) {
-        if (libros == null || libros.length == 0) {
+        if (libros == null || indice == 0) {
             System.out.println("Error: No hay libros en el sistema.");
             return false;
         }
 
-        if (posicion < 0 || posicion > libros.length) {
-            System.out.println("Error: Posicion invalida.");
+        if (posicion < 0 || posicion >= indice) {
+            System.out.println("Error: Posicion invalida o no inicializada.");
             return false;
         }
 
-        int indicePorEliminar = -1;
-        for (int i = 0; i < libros.length; i++) {
-            if (i == posicion) {
-                indicePorEliminar = i;
-                break;
-            }
-        }
-
-        for (int i = indicePorEliminar; i < libros.length - 1; i++) {
+        for (int i = posicion; i < libros.length - 1; i++) {
             libros[i] = libros[i + 1];
         }
 
-        if (indice == -1) {
-            System.out.println("Libro con posicion " + posicion + " no encontrado.");
-            return false;
-        }
-        this.libros = Arrays.copyOf(libros, libros.length - 1);
-        System.out.println("Libro con posicion " + posicion + " eliminado exitosamente.");
+        libros[indice - 1] = null;
+        indice--;
+        System.out.println("Libro en la posicion " + posicion + " eliminado exitosamente.");
         return true;
     }
 
@@ -111,18 +104,77 @@ public class Biblioteca {
         }
         return total;
     }
-    
+
     public void ordenarABC() {
         if (libros == null || indice == 0) {
             System.out.println("\nError: No hay libros que mostrar.\n");
             return;
         }
-        
-        Arrays.sort(libros, 0, indice);
+
+        Libro[] librosValidos = Arrays.copyOf(libros, indice);
+
+        Arrays.sort(librosValidos, Comparator.comparing(Libro::getTitulo, String.CASE_INSENSITIVE_ORDER));
+
         System.out.println("\nLibros en la biblioteca (ordenados alfabeticamente):");
-        for (int i = 0; i < indice; i++) {
-            System.out.println("\n" + libros[i]);
+        for (Libro l : librosValidos) {
+            System.out.println("\n" + l);
         }
+    }
+
+    public void ordenarDisponiblesABC() {
+        if (libros == null || indice == 0) {
+            System.out.println("\nError: No hay libros que mostrar.\n");
+            return;
+        }
+        
+
+        Libro[] librosValidos = Arrays.copyOf(libros, indice);
+
+        Arrays.sort(librosValidos, Comparator.comparing(Libro::getTitulo, String.CASE_INSENSITIVE_ORDER));
+
+        System.out.println("\nLibros en la biblioteca disponibles (ordenados alfabeticamente):");
+        for (Libro l : librosValidos) {
+            if (l.getEjemplares() != 0) {
+                System.out.println("\n" + l);
+            }
+
+        }
+    }
+
+    public void realizarPrestamo(String ref) {
+        if (libros == null || indice == 0) {
+            System.out.println("\nError: No hay libros en la biblioteca actualmente para realizar prestamos.\n");
+            return;
+        }
+
+        for (int i = 0; i < indice; i++) {
+            if (libros[i] != null && ref.equals(libros[i].getReferencia())) {
+                boolean exito = libros[i].prestamo();
+                if (exito) {
+                    System.out.println("Prestamo exitoso de: " + libros[i].getTitulo());
+                }
+                return;
+            }
+        }
+        System.out.println("Error: No se encontro el libro con la referencia " + ref + ".");
+    }
+
+    public void realizarDevolucion(String ref) {
+        if (libros == null || indice == 0) {
+            System.out.println("\nError: No hay libros en la biblioteca actualmente para realizar devoluciones.\n");
+            return;
+        }
+
+        for (int i = 0; i < indice; i++) {
+            if (libros[i] != null && ref.equals(libros[i].getReferencia())) {
+                boolean exito = libros[i].devolucion();
+                if (exito) {
+                    System.out.println("Devolcuion exitosa de: " + libros[i].getTitulo());
+                }
+                return;
+            }
+        }
+        System.out.println("Error: No se encontro el libro con la referencia " + ref + ".");
     }
 
     public boolean contiene(String ref) {
@@ -152,19 +204,24 @@ public class Biblioteca {
         return null;
     }
 
-    @Override
-    public String toString() {
-        
-        if (libros == null || libros.length == 0) {
-            return "No hay libros en la biblioteca.";
+    public void mosrarBiblioteca() {
+        if (libros == null || indice == 0) {
+            System.out.println("Error: No hay libros en el sistema.");
+            return;
         }
 
         StringBuilder sb = new StringBuilder();
-        sb.append("Libros de la biblioteca:\n");
-        for (Libro l : libros) {
-            sb.append(l.getTitulo()).append(" - ").append(l.getAutor()).append(System.lineSeparator()); // compatbilidad de OS con el salto de linea
+        Libro[] librosValidos = Arrays.copyOf(libros, indice);
+
+        System.out.println("Datos biblioteca ordenada alfabeticamente:");
+        Arrays.sort(librosValidos, Comparator.comparing(Libro::getTitulo, String.CASE_INSENSITIVE_ORDER));
+        for (Libro l : librosValidos) {
+            sb.append("\nTitulo: ").append(l.getTitulo()).append("\n");
+            sb.append("Autor: ").append(l.getAutor()).append("\n");
+            sb.append("Ejemplares disponibles: ").append(l.getEjemplares()).append("\n");
+            sb.append("Ejemplares prestados: ").append(l.getEjemplaresPrestados()).append("\n");
         }
-        return sb.toString();
+        System.out.println(sb.toString());
     }
 
 }
