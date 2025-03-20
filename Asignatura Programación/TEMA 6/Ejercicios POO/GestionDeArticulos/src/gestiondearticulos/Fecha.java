@@ -99,7 +99,14 @@ public class Fecha {
     public boolean caducado() {
         LocalDate hoy = LocalDate.now();
         LocalDate fechaProducto = LocalDate.of(año, mes, dia);
-        
+
         return fechaProducto.isBefore(hoy);
+    }
+
+    public boolean caducaEsteMes() {
+        LocalDate hoy = LocalDate.now();
+        LocalDate fechaProducto = LocalDate.of(año, mes, dia);
+        return hoy.getMonthValue() == fechaProducto.getMonthValue()
+                && hoy.getYear() == fechaProducto.getYear();
     }
 }

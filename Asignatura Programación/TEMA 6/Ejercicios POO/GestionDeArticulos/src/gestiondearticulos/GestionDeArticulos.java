@@ -37,6 +37,8 @@ public class GestionDeArticulos {
                     mostrarArticulos();
                     break;
                 case 3:
+                    ponerEnOferta();
+                    break;
                 case 4:
                 case 5:
                 case 6:
@@ -141,7 +143,7 @@ public class GestionDeArticulos {
 
         Arrays.sort(articulosValidos, Comparator.comparing(Articulo::getDescripcion));
 
-        System.out.println("Articulos ordenados alfabeticamente:");
+        System.out.println("\nArticulos ordenados alfabeticamente:");
         for (Articulo art : articulosValidos) {
             if (art.isProductoEstrella()) {
                 System.out.println("PRODUCTO ESTRELLA:");
@@ -156,7 +158,7 @@ public class GestionDeArticulos {
 
         Arrays.sort(articulosValidos, Comparator.comparing(Articulo::getPrecio)
                 .thenComparing(Articulo::getDescripcion));
-        
+
         System.out.println("Articulos en OFERTA ordenados por precio:");
         for (Articulo art : articulosValidos) {
             System.out.println("\n" + art);
@@ -170,6 +172,30 @@ public class GestionDeArticulos {
             }
         }
         return false;
+    }
+
+    public static void ponerEnOferta() {
+
+        if (tienda == null || indice == 0) {
+            System.out.println("Error: Tienda vacia.");
+            return;
+        }
+
+        for (int i = 0; i < indice; i++) {
+            if (tienda[i].getFechaCaducidad().caducaEsteMes()) {
+                if (tienda[i].isProductoEstrella()) {
+                    tienda[i].restaurarPrecio();
+                    tienda[i].setProductoEstrella(false);
+                }
+
+                if (!ofertas.contains(tienda[i])) {
+                    tienda[i].setPrecio(tienda[i].aplicarDescuento());
+                    ofertas.add(tienda[i]);
+                }
+            }
+            System.out.println("Productos puestos en oferta correctamente.");
+        }
+
     }
 
     public static String descripcionBonita(String descripcion) {

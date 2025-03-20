@@ -10,7 +10,8 @@ import java.util.Objects;
  *
  * @author zerkje
  */
-public class Articulo implements Comparable<Articulo>{
+public class Articulo implements Comparable<Articulo> {
+
     private String codigo;
     private String descripcion;
     private double precio;
@@ -26,7 +27,9 @@ public class Articulo implements Comparable<Articulo>{
         this.descripcion = descripcion;
         this.precio = precio;
         this.fechaCaducidad = fechaCaducidad;
-    };
+    }
+
+    ;
 
     public String getCodigo() {
         return codigo;
@@ -91,15 +94,20 @@ public class Articulo implements Comparable<Articulo>{
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        
+
         Articulo other = (Articulo) obj;
         return this.codigo.equals(other.codigo);
     }
-    
-    
-    
-    
-    
+
+    public double aplicarDescuento() {
+        return this.precio - (this.precio * porcentajeDescuento / 100);
+    }
+
+    public void restaurarPrecio() {
+        if (this.isProductoEstrella()) {
+            this.precio /= porcentajeDescuento;
+        }
+    }
 
     @Override
     public String toString() {
@@ -108,8 +116,6 @@ public class Articulo implements Comparable<Articulo>{
         sb.append("Codigo -> ").append(this.codigo).append("\n");
         sb.append(String.format("Precio %.2f EUR", this.precio)).append("\n");
         sb.append("Fecha caducidad -> ").append(this.fechaCaducidad.fechaCorta()).append("\n");
-        String valor = this.productoEstrella ? "SI" : "NO";
-        sb.append("Es producto estrella -> ").append(valor);
         return sb.toString();
     }
 
@@ -117,7 +123,5 @@ public class Articulo implements Comparable<Articulo>{
     public int compareTo(Articulo o) {
         return this.descripcion.compareTo(o.descripcion);
     }
-    
-    
-    
+
 }
