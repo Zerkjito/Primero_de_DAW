@@ -3,9 +3,9 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 $host = "localhost"; // Servidor de la base de datos
-$user = "root"; // Usuario de MySQL (por defecto en XAMPP es root)
-$pass = ""; // Contraseña (vacía por defecto en XAMPP)
-$dbname = "automoviles"; // Nombre de la base de datos
+$user = "unive_blogs"; // Usuario de MySQL (por defecto en XAMPP es root)
+$pass = "aldous"; // Contraseña (vacía por defecto en XAMPP)
+$dbname = "vehiculoserik"; // Nombre de la base de datos
 
 // Crear conexión
 $conn = new mysqli($host, $user, $pass, $dbname);

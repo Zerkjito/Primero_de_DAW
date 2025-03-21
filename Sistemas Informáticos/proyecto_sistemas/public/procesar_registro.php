@@ -6,9 +6,9 @@ include('../config/db_config.php');
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Conexión a la base de datos (ajusta los valores según tu configuración)
     $servername = "localhost";
-    $username = "root";  // Usuario por defecto de XAMPP
-    $password = "";      // Contraseña por defecto de XAMPP
-    $dbname = "automoviles";
+    $username = "unive_blogs";  // Usuario por defecto de XAMPP
+    $password = "aldous";      // Contraseña por defecto de XAMPP
+    $dbname = "vehiculoserik";
 
     // Crear conexión
     $conn = new mysqli($servername, $username, $password, $dbname);

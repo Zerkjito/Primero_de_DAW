@@ -36,7 +36,7 @@ if (isset($_POST['comprar'])) {
     
     // Depuración: Verificar si la consulta se preparó correctamente
     if (!$stmt) {
-        die("<pre>❌ Error en la preparación de la consulta: " . $conn->error . "</pre>");
+        die("<pre> Error en la preparación de la consulta: " . $conn->error . "</pre>");
     }
 
     $stmt->bind_param("i", $codcoche);
@@ -44,10 +44,10 @@ if (isset($_POST['comprar'])) {
     $result = $stmt->get_result();
 
     // Depuración: Verificar cuántas filas devuelve la consulta
-    echo "<pre>📊 Filas encontradas: " . $result->num_rows . "</pre>";
+    echo "<pre> Filas encontradas: " . $result->num_rows . "</pre>";
 
     if ($result->num_rows > 0) {
-        echo "<pre>✅ ¡Consulta SQL exitosa! Se encontró el coche.</pre>";
+        echo "<pre> ¡Consulta SQL exitosa! Se encontró el coche.</pre>";
         $row = $result->fetch_assoc();
 
         // Datos del coche
