@@ -4,12 +4,14 @@
  */
 package ejercicio04;
 
+import java.util.Objects;
+
 /**
  *
  * @author zerkje
  */
-class Libro {
-    
+public class Libro implements Comparable<Libro> {
+
     private String referencia;
     private String titulo;
     private String autor;
@@ -17,6 +19,7 @@ class Libro {
     private int ejemplaresPrestados;
 
     public Libro(String referencia, String titulo, String autor, int ejemplares, int ejemplaresPrestados) {
+        this.referencia = referencia;
         this.titulo = titulo;
         this.autor = autor;
         this.ejemplares = ejemplares;
@@ -33,8 +36,6 @@ class Libro {
     public void setReferencia(String referencia) {
         this.referencia = referencia;
     }
-    
-    
 
     public String getTitulo() {
         return titulo;
@@ -98,13 +99,35 @@ class Libro {
 
     @Override
     public String toString() {
+
         StringBuilder sb = new StringBuilder();
-        sb.append("Referencia: ").append(this.referencia).append("\n");
-        sb.append("Titulo: ").append(this.titulo).append("\n");;
-        sb.append("Autor: ").append(this.autor).append("\n");;
-        sb.append("Ejemplares: ").append(this.ejemplares).append("\n");
-        sb.append("Ejemplares prestados: ").append(this.ejemplaresPrestados).append("\n");
+        sb.append(String.format("%-30s - %30s", this.titulo, this.autor));
         return sb.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 67 * hash + Objects.hashCode(this.referencia);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        final Libro other = (Libro) obj;
+        return Objects.equals(this.referencia, other.referencia);
+    }
+
+    @Override
+    public int compareTo(Libro o) {
+        return this.titulo.compareToIgnoreCase(o.titulo);
     }
 
 }
