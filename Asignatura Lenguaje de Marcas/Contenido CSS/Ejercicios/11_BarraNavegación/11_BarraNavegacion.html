@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <title>Barra de navegaci�n web</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <h1>�C�mo creamos una barra de navegaci�n?</h1>
+
+  <h3>Lista inicial</h3>
+  <ul class="">
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#noticias">Noticias</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="#acerca">Acerca de</a></li>
+  </ul>
+  <p>Nota: utilizaremos href="#" para probar los enlaces. En una p�gina web real trabajar�amos con enlaces.</p>
+
+  <h3>Paso 1: Eliminamos los puntos, y los m�rgenes internos y externos</h3>
+  <ul class="paso1">
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#noticias">Noticias</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="#acerca">Acerca de</a></li>
+  </ul>
+
+  <h3>Barra de navegaci�n vertical</h3>
+  <p>
+    Para construir una barra de navegaci�n vertical se modificar� el estilo de los elementos &lt;a>.<br />
+    Debemos crear un �rea "clicable" (no solo el texto) mostrando los elementos &lt;a> como bloque y asign�ndoles una anchura de 150px. 
+    Podemos adem�s mejorar el aspecto de la barra eliminando el subrayado de los enlaces, dando un color de fondo ##98bf21 y un relleno de 2px.
+  </p>
+  <ul class="vertical">
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#noticias">Noticias</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="#acerca">Acerca de</a></li>
+  </ul>
+
+
+  <h3>Barra de navegaci�n horizontal usando <em>inline</em></h3>
+  <p>
+    Una forma de obtener una barra de navegaci�n horizontal es especificar el elemento li como <em>inline</em>. Aqu� el relleno seria de 6px.
+  </p>
+  <ul class="linea">
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#noticias">Noticias</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="#acerca">Acerca de</a></li>
+  </ul>
+
+  <h3>Barra de navegaci�n horizontal usando <em>float</em></h3>
+  <p>
+    Si queremos que los enlaces tengan todos el mismo tama�o deberemos utilizar este m�todo.<br />
+    Haremos que el elemento li <em>flote</em> a la izquierda y modificaremos el elemento a para que se muestre como bloque con una anchura determinada. Aqu� tanto el relleno como el margen tienen 4px.
+  </p>
+  <ul class="flotante">
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#noticias">Noticias</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="#acerca">Acerca de</a></li>
+  </ul>
+  
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+body {
+   margin: 0;
+   padding: 5px 15px 15px 30px;
+}
+
+.paso1 li {
+   list-style: none;
+}
+
+.paso1 {
+   margin: 0;
+   padding: 0;
+}
+
+
+.vertical li {
+   list-style: none;
+   margin: 0;
+   padding: 0;
+}
+
+.vertical li a {
+   text-decoration-line: none;
+   display: block;
+   box-sizing: border-box;
+   color: white;
+   text-transform: uppercase;
+   text-align: center;
+   padding: 2px;
+   transition: background-color 0.25s ease, color 0.25s;
+}
+
+.vertical {
+   margin: 0;
+   padding: 0;
+   width: 150px;
+   background-color: #98bf21;
+}
+
+.vertical li a:hover, .linea li a:hover, .flotante li a:hover {
+   background-color: rgb(198, 134, 134);
+}
+
+.linea {
+   margin: 0;
+   padding: 0;
+   width: 30%;
+   display: flex;
+   justify-content: space-evenly;
+}
+
+.linea li {
+   list-style: none;
+   margin: 0;
+   padding: 0;
+   background-color: #98bf21;
+}
+
+.linea li a {
+   text-decoration-line: none;
+   display: block;
+   padding: 6px;
+   box-sizing: border-box;
+   color: white;
+   text-transform: uppercase;
+   text-align: center;
+   transition: background-color 0.25s ease, color 0.25s;
+}
+
+.flotante {
+   margin: 0;
+   padding: 0;
+   width: 60%;
+   display: flex;
+   justify-content: space-evenly;
+}
+
+.flotante li {
+   list-style: none;
+   margin: 4px;
+   padding: 0;
+   width: 15vw;
+   background-color: #98bf21;
+   text-align: center;
+}
+
+.flotante li a {
+   text-decoration-line: none;
+   display: block;
+   box-sizing: border-box;
+   color: white;
+   text-transform: uppercase;
+   text-align: center;
+   padding: 4px;
+   transition: background-color 0.25s ease, color 0.25s;
+}

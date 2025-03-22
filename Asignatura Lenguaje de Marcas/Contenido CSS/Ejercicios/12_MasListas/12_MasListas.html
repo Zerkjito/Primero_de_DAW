@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <title>M�s listas</title>
+  <link href="style.css" rel="stylesheet" type="text/css" title="Color" />
+</head>
+
+<body>
+  <h1>Dise�o de listas</h1>
+
+  <p>
+    En esta p�gina, cada lista tiene un estilo distinto, as� que cada una requiere su propia clase (o id). <br />
+    Como casi todas las listas llevan la propiedad float, hay que poner la propiedad clear en alg�n elemento, por ejemplo, en &lt;h2>.
+  </p>
+
+  <h2>Lista sin estilo</h2>
+    <ul class="L0">
+      <li>Patatas</li>
+      <li>CocaCola</li>
+      <li>Pan Bimbo</li>
+      <li>Servilletas, vasos, ...</li>
+    </ul>
+
+  <h2>Lista 1</h2>
+  <p>Los elementos de la lista usan inline. color de fondo #E667AF</p>
+  <ul class="L1">
+    <li>Patatas</li>
+    <li>CocaCola</li>
+    <li>Pan Bimbo</li>
+    <li>Servilletas, vasos, ...</li>
+  </ul>
+
+  <h2>Lista 2</h2>
+  <p>Los elementos de la lista tienen todos el mismo ancho, as� que usan la propiedad width de 10em. Color del borde y de la letra #954A95</p>
+  <ul class="L2">
+    <li>Patatas</li>
+    <li>CocaCola</li>
+    <li>Pan Bimbo</li>
+    <li>Servilletas, vasos, ...</li>
+  </ul>
+
+  <h2>Lista 3</h2>
+  <p>
+    Los elementos de la lista tienen todos el mismo ancho, as� que tienen la propiedad width.<br />
+    En los elementos de la lista hay dos fondos de color diferente, por lo que se deber�n utilizar dos clases de &lt;li>. Color de fondo,borde y letra es #3366CC
+  </p>
+  <ul class="L3">
+    <li>Patatas</li>
+    <li class="par">CocaCola</li>
+    <li>Pan Bimbo</li>
+    <li class="par">Servilletas, vasos, ..</li>
+  </ul>
+
+  <h2>Lista 4</h2>
+  <p>
+    Los elementos de la lista tienen todos el mismo ancho, as� que tienen la propiedad width.<br />
+    En los elementos de la lista hay dos fondos de color diferente, por lo que se deber�n utilizar dos clases de &lt;li>. Los colores de fondo son lightyellow y lightblue<br />
+    El borde alrededor de la lista s�lo se puede dibujar si se asigna a los elementos &lt;li>, por lo que se necesitar�n otras tres clases:<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;una para el primer elemento, con bordes arriba, abajo y a la izquierda,<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;una para los elementos centrales, con bordes arriba y abajo,<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;una para el �ltimo elemento, con bordes arriba, abajo y a la derecha.
+  </p>
+  <ul class="L4">
+    <li class="impar primero">Patatas</li>
+    <li class="par central">CocaCola</li>
+    <li class="impar central">Pan Bimbo</li>
+    <li class="par ultimo">Servilletas, vasos, ...</li>
+  </ul>
+
+  <h2>Lista 5</h2>
+  <p>Todos los elementos tienen borde a la derecha, menos el �tlimo que no tiene borde. basta con hacer una clase para este �ltimo elemento.</p>
+  <ul class="L5">
+    <li>Patatas</li>
+    <li>CocaCola</li>
+    <li>Pan Bimbo</li>
+    <li class="ultimo">Servilletas, vasos, ...</li>
+  </ul>
+
+  <address>Ejercicio realizado por ...</address>
+
+</body>
+</html>

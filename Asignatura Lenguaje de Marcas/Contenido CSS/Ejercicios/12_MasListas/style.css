@@ -1,0 +1,22 @@
+body {
+   margin: 0;
+   padding: 5px;
+}
+
+h1 {
+   margin: 0;
+}
+
+.L1 {
+   display: flex;
+   width: 30%;
+   justify-content: space-around;
+}
+
+.L1 li {
+   list-style: none;
+   background-color: #E667AF;
+   display: block;
+   box-sizing: border-box;
+
+}
