@@ -76,6 +76,10 @@ public class Articulo implements Comparable<Articulo> {
     }
 
     public static void setPorcentajeDescuento(double porcentajeDescuento) {
+        if (porcentajeDescuento > 100 || porcentajeDescuento < 0) {
+            System.out.println("Error: Porcentaje del descuento debe estar entre 0 y 100.");
+            return;
+        }
         Articulo.porcentajeDescuento = porcentajeDescuento;
     }
 
@@ -98,14 +102,29 @@ public class Articulo implements Comparable<Articulo> {
         Articulo other = (Articulo) obj;
         return this.codigo.equals(other.codigo);
     }
+    
+    public double descuento() {
+        return this.precio * porcentajeDescuento / 100;
+    }
 
     public double aplicarDescuento() {
-        return this.precio - (this.precio * porcentajeDescuento / 100);
+        return this.precio - descuento();
+    }
+    
+    public void reducirMitad() {
+        double descuento = this.precio * 50 / 100;
+        this.precio -= descuento;
     }
 
     public void restaurarPrecio() {
         if (this.isProductoEstrella()) {
-            this.precio /= porcentajeDescuento;
+            this.precio += descuento();
+        }
+    }
+    
+    public void restaurarPrecioEstrella() {
+        if (this.isProductoEstrella()) {
+            this.precio*=2;
         }
     }
 

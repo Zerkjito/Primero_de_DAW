@@ -97,13 +97,32 @@ public class Fecha {
     }
 
     public boolean caducado() {
+        if (!fechaCorrecta()) {
+            return false;
+        }
+
         LocalDate hoy = LocalDate.now();
         LocalDate fechaProducto = LocalDate.of(año, mes, dia);
+        Fecha f = new Fecha();
 
         return fechaProducto.isBefore(hoy);
     }
 
+    public boolean caducaHoy() {
+        if (!fechaCorrecta()) {
+            return false;
+        }
+        
+        LocalDate hoy = LocalDate.now();
+        LocalDate fechaProducto = LocalDate.of(año, mes, dia);
+        return fechaProducto.isEqual(hoy);
+    }
+
     public boolean caducaEsteMes() {
+        if (!fechaCorrecta()) {
+            return false;
+        }
+        
         LocalDate hoy = LocalDate.now();
         LocalDate fechaProducto = LocalDate.of(año, mes, dia);
         return hoy.getMonthValue() == fechaProducto.getMonthValue()
