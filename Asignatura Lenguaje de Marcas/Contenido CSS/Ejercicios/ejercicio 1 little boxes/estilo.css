@@ -38,9 +38,9 @@ background-attachment: fixed;
 }
 
 #navegacion {
-  margin-left: 20px;
-  margin-top: 20px;
-  margin-bottom: 50px;
+  text-align: right;
+  color: black;
+  background-color: #f3c600;
 }
 
 

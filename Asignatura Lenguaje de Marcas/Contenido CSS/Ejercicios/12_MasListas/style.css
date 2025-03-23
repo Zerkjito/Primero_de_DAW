@@ -20,3 +20,95 @@ h1 {
    box-sizing: border-box;
 
 }
+
+.L2 {
+   display: flex;
+   width: 53%;
+   justify-content: space-around;
+}
+
+.L2 li {
+   list-style: none;
+   width: 10em;
+   color: #954a95;
+   border: 2px solid #954a95;
+   display: block;
+   box-sizing: border-box;
+   text-align: center;
+   padding: 2px;
+}
+
+.L3 {
+   display: flex;
+   width: 53%;
+   justify-content: space-around;
+}
+
+.L3 li {
+   list-style: none;
+   width: 10em;
+   text-align: center;
+   padding: 2px;
+   color: #3366CC;
+   border: 2px solid #3366CC;
+   box-sizing: border-box;
+   display: block;
+}
+
+.L3 .par {
+   background-color: #3366CC;
+   color: white;
+}
+
+.L4 {
+   display: flex;
+   width: 53%;
+}
+
+.L4 li {
+   list-style: none;
+   width: 10em;
+   text-align: center;
+   box-sizing: border-box;
+   display: block;
+   padding: 2px;
+}
+
+.li1, .li3 {
+   background-color: lightyellow;
+}
+
+.li2, .li4 {
+   background-color: lightblue;
+}
+
+.li1 {
+   border-left: 3px solid black;
+}
+
+.li4 {
+   border-right: 3px solid black;
+}
+
+.li1, .li2, .li3, .li4 {
+   border-top: 3px solid black;
+   border-bottom: 3px solid black;
+}
+
+.L5 {
+   display: flex;
+   width: 40%;
+}
+
+.L5 li {
+   list-style: none;
+   text-align: center;
+   box-sizing: border-box;
+   display: block;
+   padding: 0 8px;
+}
+
+.L5 li:not(:last-child) {
+   border-right: 2px solid black;
+}
+

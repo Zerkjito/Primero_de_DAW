@@ -1,0 +1,173 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+
+html {
+	height: 101%;
+}
+
+body {
+	color: white;
+	background-color: #8c8c8c;
+	font-family: Verdana, Arial;
+	font-size: small;
+}
+
+#wrapper {
+	color: black;
+	background-color: white;
+	width: 720px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+#encabezado {
+	color: black;
+	background-color: #f3c600;
+	background-image: url(encabezado_bg_rep.jpg);
+	background-repeat: repeat-y;
+	background-position: top left;
+	padding-top: 10px;
+	padding-right: 20px;
+	padding-bottom: 0px;
+	padding-left: 20px;
+}
+
+#encabezado img {
+	background-color: white;
+	padding: 5px;
+	border: 5px solid #d9d9d9;
+}
+
+#navegacion {
+	text-align: right;
+	color: black;
+	background-color: #f3c600;
+	background-image: url(./encabezado_bg_rep.jpg);
+	background-repeat: repeat-x repeat-y;
+	background-position: top left;
+	padding-top: 5px;
+	padding-right: 10px;
+	padding-bottom: 4px;
+	padding-left: 10px;
+	border-bottom: 1px solid #8c8c8c;
+}
+
+#areatexto {
+	padding-top: 20px;
+	padding-right: 10px;
+	padding-bottom: 20px;
+	padding-left: 20px;
+}
+
+#pie {
+	padding: 20px;
+	padding-top: 10px;
+	/*relleno superior del pie, debajo de la linea*/
+	border-top: 1px solid #8c8c8c;
+	margin-top: 20px;
+	/*margen superior del pie arriba de la línea*/
+}
+
+h1 {
+	font-size: 150%;
+}
+
+h2 {
+	font-size: 130%;
+	margin-bottom: 1em;
+}
+
+p,
+ul {
+	margin: 0;
+	margin-bottom: 1em;
+}
+
+ul ul {
+	margin: 0;
+}
+
+li {
+	margin: 0;
+	margin-left: 1em;
+}
+
+address {
+	font-style: normal;
+	font-size: 80%;
+	text-align: center;
+	letter-spacing: 2px;
+	line-height: 1.5em;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:link {
+	color: #d90000;
+}
+
+a:visited {
+	color: #cc6666;
+}
+
+a:hover,
+a:focus {
+	text-decoration: underline;
+	outline: none;
+}
+
+a:active {
+	color: white;
+	background-color: #d90000;
+}
+
+.skiplink {
+	display: none;
+}
+
+#navegacion li {
+	display: inline;
+	list-style-type: none;
+}
+
+
+#encabezado p {
+	margin: 0;
+	padding: 5px 0 5px 0;
+}
+
+#navegacion ul {
+	margin-bottom: 0;
+}
+
+#navegacion a {
+	color: black;
+	background-color: #ffeda0;
+	padding: 4px 8px 4px 8px;
+	border: 1px solid #8c8c8c;
+}
+
+#navegacion a:hover {
+	text-decoration: none;
+	color: black;
+	background-color: white;
+	padding-bottom: 5px;
+	border-bottom: none;
+}
+
+#navegacion a:hover,
+#inicio #navi01 a,
+#pagcontacto #navi02 a {
+	text-decoration: none;
+	color: black;
+	background-color: white;
+	padding-bottom: 5px;
+	border-bottom: none;
+}
+
