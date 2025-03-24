@@ -30,8 +30,11 @@ public class Menu {
             System.out.print("Introduzca opción: ");
             while (!sc.hasNextInt()) {
                 System.out.println("Error: Entrada invalida");
+                sc.nextLine();
+                System.out.print("Introduzca opcion: ");
             }
             opcion = sc.nextInt();
+            sc.nextLine();
 
         } while (opcion < 0 || opcion > 6);
         return opcion;

@@ -39,10 +39,8 @@ public class Direccion {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Direccion{");
-        sb.append("poblacion=").append(poblacion);
-        sb.append(", provincia=").append(provincia);
-        sb.append('}');
+        sb.append("Poblacion -> ").append(this.poblacion).append("\n");
+        sb.append("Provincia -> ").append(this.provincia);
         return sb.toString();
     }
     

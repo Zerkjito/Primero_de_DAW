@@ -4,6 +4,8 @@
  */
 package marketing;
 
+import java.util.Objects;
+
 /**
  *
  * @author Erick
@@ -15,14 +17,19 @@ public class Contacto implements Comparable<Contacto>{
     private int numeroDeLlamadas = 0;
     private static int limiteLlamadas = 10;
 
-    public Contacto(String nombre, String telefono, Direccion direccion, int numeroDeLlamadas) {
+    public Contacto(String nombre, String telefono, Direccion direccion) {
         this.nombre = nombre;
         this.telefono = telefono;
         this.direccion = direccion;
-        this.numeroDeLlamadas = numeroDeLlamadas;
     }
 
     public Contacto() {
+    }
+    
+      public Contacto(Contacto c) {
+        this.nombre = c.nombre;
+        this.telefono = c.telefono;
+        this.direccion = c.direccion;
     }
     
     
@@ -66,16 +73,22 @@ public class Contacto implements Comparable<Contacto>{
     public static void setLimiteLlamadas(int limiteLlamadas) {
         Contacto.limiteLlamadas = limiteLlamadas;
     }
+    
+    public void incrementarNumeroDeLlamdas() {
+        this.numeroDeLlamadas++;
+    }
+    
+    public boolean alcanzadoLimiteLlamadas() {
+        return this.numeroDeLlamadas == limiteLlamadas;
+    }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Contacto{");
-        sb.append("nombre=").append(nombre);
-        sb.append(", telefono=").append(telefono);
-        sb.append(", direccion=").append(direccion);
-        sb.append(", numeroDeLlamadas=").append(numeroDeLlamadas);
-        sb.append('}');
+        sb.append("Nombre contacto -> ").append(this.nombre).append("\n");
+        sb.append("Telefono -> ").append(this.telefono).append("\n");
+        sb.append(this.direccion).append("\n");
+        sb.append("Numero de llamadas -> ").append(this.numeroDeLlamadas);
         return sb.toString();
     }
 
@@ -83,6 +96,28 @@ public class Contacto implements Comparable<Contacto>{
     public int compareTo(Contacto o) {
         return this.nombre.compareToIgnoreCase(o.nombre);
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 19 * hash + Objects.hashCode(this.nombre);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        
+        Contacto other = (Contacto) obj;
+        return this.nombre.equalsIgnoreCase(other.nombre);
+    }
+    
+    
     
     
     
