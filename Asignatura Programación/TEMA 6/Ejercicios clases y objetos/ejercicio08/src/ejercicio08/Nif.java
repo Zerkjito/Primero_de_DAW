@@ -18,9 +18,7 @@ public class Nif {
     private int numeros;
     private char letra;
 
-    public Nif(int numeros) {
-        this.numeros = numeros;
-    }
+
 
     public Nif() {
         leer();
