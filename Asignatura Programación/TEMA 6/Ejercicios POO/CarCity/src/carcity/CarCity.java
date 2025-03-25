@@ -121,7 +121,7 @@ public class CarCity {
             return;
         }
 
-        Collections.sort(coches);
+        Collections.sort(coches, Comparator.comparing(Coche::getAñoMatriculacion));
         for (Coche c : coches) {
             System.out.println("\n" + c);
         }
