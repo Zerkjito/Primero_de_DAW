@@ -163,16 +163,8 @@ public class CarCity {
             }
         }
 
-        Collections.sort(puedenCircularHoy, new Comparator<Coche>() {
-            @Override
-            public int compare(Coche c1, Coche c2) {
-                int marcaCompare = c1.getMarca().compareToIgnoreCase(c2.getMarca());
-                if (marcaCompare != 0) { // si las marcas no son iguales que se devuelva ya un valor ordenado alfabeticamente 
-                    return marcaCompare;
-                }
-                return Integer.compare(c1.getAñoMatriculacion(), c2.getAñoMatriculacion()); // sino que se ordenen por año de matriculacion
-            }
-        });
+        puedenCircularHoy.sort(Comparator.comparing(Coche::getMarca)
+        .thenComparing(Coche::getAñoMatriculacion));
         return puedenCircularHoy;
     }
 

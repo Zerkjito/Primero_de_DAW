@@ -112,7 +112,7 @@ public class Fecha {
         if (!fechaCorrecta()) {
             return false;
         }
-        
+
         LocalDate hoy = LocalDate.now();
         LocalDate fechaProducto = LocalDate.of(año, mes, dia);
         return fechaProducto.isEqual(hoy);
@@ -122,7 +122,7 @@ public class Fecha {
         if (!fechaCorrecta()) {
             return false;
         }
-        
+
         LocalDate hoy = LocalDate.now();
         LocalDate fechaProducto = LocalDate.of(año, mes, dia);
         return hoy.getMonthValue() == fechaProducto.getMonthValue()
