@@ -1,0 +1,27 @@
+.lightgray-bg {
+   background-color: rgba(211, 211, 211, 0.539);
+}
+
+table tr:not(.lightgray-bg) th:first-of-type {
+   background-color: lightcyan;
+}
+
+table {
+   border-collapse: collapse;
+   border: 1px solid black;
+}
+
+table tr th {
+   padding: 4px;
+}
+
+th img {
+float: left;
+}
+
+table tr {
+   text-align: center;
+}
+.euro-dolar, .libra-dolar {
+   background-color: rgb(255, 248, 196);
+}
