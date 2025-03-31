@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2025-03-31T18:34:55.925020300Z</date>
+  <millis>1743446095925</millis>
+  <nanos>20300</nanos>
+  <sequence>0</sequence>
+  <logger>EjerciciosDebug.NuevoLogger</logger>
+  <level>WARNING</level>
+  <class>EjerciciosDebug.NuevoLogger</class>
+  <method>escribirEnLog</method>
+  <thread>1</thread>
+  <message>Se ha lanzado una excepción</message>
+</record>
+<record>
+  <date>2025-03-31T18:34:55.956049200Z</date>
+  <millis>1743446095956</millis>
+  <nanos>49200</nanos>
+  <sequence>1</sequence>
+  <logger>EjerciciosDebug.NuevoLogger</logger>
+  <level>SEVERE</level>
+  <class>EjerciciosDebug.NuevoLogger</class>
+  <method>escribirEnLog</method>
+  <thread>1</thread>
+  <message>No se ha podido conectar con la Base de Datos</message>
+</record>
+<record>
+  <date>2025-03-31T18:34:55.957049500Z</date>
+  <millis>1743446095957</millis>
+  <nanos>49500</nanos>
+  <sequence>2</sequence>
+  <logger>EjerciciosDebug.NuevoLogger</logger>
+  <level>INFO</level>
+  <class>EjerciciosDebug.NuevoLogger</class>
+  <method>escribirEnLog</method>
+  <thread>1</thread>
+  <message>El log se ha probado correctamente</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2025-03-31T18:40:08.615030800Z</date>
+  <millis>1743446408615</millis>
+  <nanos>30800</nanos>
+  <sequence>0</sequence>
+  <logger>EjerciciosDebug.NuevoLogger</logger>
+  <level>WARNING</level>
+  <class>EjerciciosDebug.NuevoLogger</class>
+  <method>escribirEnLog</method>
+  <thread>1</thread>
+  <message>Se ha lanzado una excepción</message>
+</record>
+<record>
+  <date>2025-03-31T18:40:08.645058700Z</date>
+  <millis>1743446408645</millis>
+  <nanos>58700</nanos>
+  <sequence>1</sequence>
+  <logger>EjerciciosDebug.NuevoLogger</logger>
+  <level>SEVERE</level>
+  <class>EjerciciosDebug.NuevoLogger</class>
+  <method>escribirEnLog</method>
+  <thread>1</thread>
+  <message>No se ha podido conectar con la Base de Datos</message>
+</record>
+<record>
+  <date>2025-03-31T18:40:08.646059400Z</date>
+  <millis>1743446408646</millis>
+  <nanos>59400</nanos>
+  <sequence>2</sequence>
+  <logger>EjerciciosDebug.NuevoLogger</logger>
+  <level>INFO</level>
+  <class>EjerciciosDebug.NuevoLogger</class>
+  <method>escribirEnLog</method>
+  <thread>1</thread>
+  <message>El log se ha probado correctamente</message>
+</record>
+</log>
+mar 31, 2025 8:43:34 P. M. EjerciciosDebug.NuevoLogger escribirEnLog
+WARNING: Se ha lanzado una excepción
+mar 31, 2025 8:43:34 P. M. EjerciciosDebug.NuevoLogger escribirEnLog
+SEVERE: No se ha podido conectar con la Base de Datos
+mar 31, 2025 8:43:34 P. M. EjerciciosDebug.NuevoLogger escribirEnLog
+INFO: El log se ha probado correctamente
+mar 31, 2025 8:43:52 P. M. EjerciciosDebug.NuevoLogger escribirEnLog
+WARNING: Se ha lanzado una excepción
+mar 31, 2025 8:43:52 P. M. EjerciciosDebug.NuevoLogger escribirEnLog
+SEVERE: No se ha podido conectar con la Base de Datos
+mar 31, 2025 8:43:52 P. M. EjerciciosDebug.NuevoLogger escribirEnLog
+INFO: El log se ha probado correctamente
