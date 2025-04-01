@@ -17,10 +17,14 @@ public class Empleado extends Persona {
     private LocalTime horaEntrada;
     private LocalTime horaSalida;
 
-    public Empleado(LocalTime horaEntrada, LocalTime horaSalida, String nif, String nombre, Direccion direccion, LocalDate fechaNacimiento) {
+    public Empleado(String nif, String nombre, Direccion direccion, LocalDate fechaNacimiento, LocalTime horaEntrada, LocalTime horaSalida) {
         super(nif, nombre, direccion, fechaNacimiento);
         this.horaEntrada = horaEntrada;
         this.horaSalida = horaSalida;
+    }
+
+    public Empleado(String nif) {
+        super(nif);
     }
 
     public LocalTime getHoraEntrada() {
@@ -39,12 +43,21 @@ public class Empleado extends Persona {
         this.horaSalida = horaSalida;
     }
 
+    public int getHoraSalidaEnMinutos() {
+        int horas = horaSalida.getHour();
+        int minutos = horaSalida.getMinute();
+        return horas * 60 + minutos;
+    }
+
+    public int getHoraEntradaEnMinutos() {
+        int horas = horaEntrada.getHour();
+        int minutos = horaEntrada.getMinute();
+        return horas * 60 + minutos;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 37 * hash + Objects.hashCode(this.horaEntrada);
-        hash = 37 * hash + Objects.hashCode(this.horaSalida);
-        return hash;
+        return Objects.hashCode(this.getNif());
     }
 
     @Override
@@ -55,11 +68,18 @@ public class Empleado extends Persona {
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        if (!super.equals(obj)) {
-            return false;
-        }
+
         Empleado other = (Empleado) obj;
-        return Objects.equals(this.horaEntrada, other.horaEntrada);
+        return Objects.equals(this.getNif(), other.getNif());
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(super.toString()).append("\n");
+        sb.append("Hora entrada: ").append(horaEntrada).append("\n");
+        sb.append("Hora salida: ").append(horaSalida).append("\n");
+        return sb.toString();
     }
 
 }

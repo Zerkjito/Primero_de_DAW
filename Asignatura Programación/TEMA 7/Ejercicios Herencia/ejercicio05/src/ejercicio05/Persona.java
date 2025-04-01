@@ -62,15 +62,24 @@ public class Persona {
     public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
+    
+    public int edad() {
+        LocalDate fechaActual = LocalDate.now();
+        int edad = fechaActual.getYear() - this.getFechaNacimiento().getYear();
+        
+        if (fechaActual.getDayOfYear() < this.getFechaNacimiento().getDayOfYear()) { // IMPORTANTE ASEGURARSE DE QUE AUN NO HA LLEGADO A CUMPLIR AÑOS
+            edad--;
+        }
+        return edad;
+    }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Persona{");
-        sb.append("nif=").append(nif);
-        sb.append(", nombre=").append(nombre);
-        sb.append(", direccion=").append(direccion);
-        sb.append(", fechaNacimiento=").append(fechaNacimiento);
+        sb.append("NIF: ").append(nif).append("\n");
+        sb.append("Nombre: ").append(nombre).append("\n");
+        sb.append(direccion).append("\n");
+        sb.append("Fecha nacimiento: ").append(fechaNacimiento);
         return sb.toString();
     }
 

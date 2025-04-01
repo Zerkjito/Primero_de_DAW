@@ -11,12 +11,14 @@ package ejercicio05;
 public class Direccion {
     private String calle;
     private int numero;
+    private String puerta;
     private String poblacion;
     private String provincia;
 
-    public Direccion(String calle, int numero, String poblacion, String provincia) {
+    public Direccion(String calle, int numero, String puerta, String poblacion, String provincia) {
         this.calle = calle;
         this.numero = numero;
+        this.puerta = puerta;
         this.poblacion = poblacion;
         this.provincia = provincia;
     }
@@ -56,11 +58,11 @@ public class Direccion {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Direccion{");
-        sb.append("calle=").append(calle);
-        sb.append(", numero=").append(numero);
-        sb.append(", poblacion=").append(poblacion);
-        sb.append(", provincia=").append(provincia);
+        sb.append("Calle: ").append(calle).append("\n");
+        sb.append("Numero: ").append(numero).append("\n");
+        sb.append("Puerta: ").append(puerta).append("\n");
+        sb.append("Poblacion: ").append(poblacion).append("\n");
+        sb.append("Provincia: ").append(provincia);
         return sb.toString();
     }
     
