@@ -12,6 +12,7 @@ import java.util.Objects;
  * @author Erick
  */
 public class Persona {
+
     private String nif;
     private String nombre;
     private Direccion direccion;
@@ -62,11 +63,11 @@ public class Persona {
     public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
-    
+
     public int edad() {
         LocalDate fechaActual = LocalDate.now();
         int edad = fechaActual.getYear() - this.getFechaNacimiento().getYear();
-        
+
         if (fechaActual.getDayOfYear() < this.getFechaNacimiento().getDayOfYear()) { // IMPORTANTE ASEGURARSE DE QUE AUN NO HA LLEGADO A CUMPLIR AÑOS
             edad--;
         }
@@ -76,10 +77,10 @@ public class Persona {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("NIF: ").append(nif).append("\n");
-        sb.append("Nombre: ").append(nombre).append("\n");
-        sb.append(direccion).append("\n");
-        sb.append("Fecha nacimiento: ").append(fechaNacimiento);
+        sb.append("NIF: ").append(nif);
+        sb.append(" Nombre: ").append(nombre).append("\n");
+        sb.append("Direccion: ").append(direccion).append("\n");
+        sb.append("Fecha de Nacimiento: ").append(fechaNacimiento).append(" Edad: ").append(this.edad());
         return sb.toString();
     }
 
@@ -95,13 +96,12 @@ public class Persona {
         if (this == obj) {
             return true;
         }
-        if (obj == null ||getClass() != obj.getClass()) {
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        
+
         Persona other = (Persona) obj;
         return this.nif.equals(other.nif);
     }
-    
-    
+
 }

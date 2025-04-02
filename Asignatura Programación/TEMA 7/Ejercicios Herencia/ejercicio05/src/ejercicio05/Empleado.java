@@ -6,6 +6,7 @@ package ejercicio05;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 /**
@@ -32,7 +33,14 @@ public class Empleado extends Persona {
     }
 
     public void setHoraEntrada(LocalTime horaEntrada) {
-        this.horaEntrada = horaEntrada;
+        try {
+            if (horaEntrada == null) {
+                throw new IllegalArgumentException("La hora de entrada no puede ser nula.");
+            }
+            this.horaEntrada = horaEntrada;
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 
     public LocalTime getHoraSalida() {
@@ -40,7 +48,17 @@ public class Empleado extends Persona {
     }
 
     public void setHoraSalida(LocalTime horaSalida) {
-        this.horaSalida = horaSalida;
+        try {
+            if (horaSalida == null) {
+                throw new IllegalArgumentException("La hora de salida no puede ser nula.");
+            }
+            if (horaEntrada != null && horaSalida.isBefore(horaEntrada)) {
+                throw new IllegalArgumentException("La hora de salida no puede ser anterior a la hora de entrada.");
+            }
+            this.horaSalida = horaSalida;
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 
     public int getHoraSalidaEnMinutos() {
@@ -75,11 +93,12 @@ public class Empleado extends Persona {
 
     @Override
     public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        
         StringBuilder sb = new StringBuilder();
         sb.append(super.toString()).append("\n");
-        sb.append("Hora entrada: ").append(horaEntrada).append("\n");
-        sb.append("Hora salida: ").append(horaSalida).append("\n");
+        sb.append("Hora de Entrada: ").append(horaEntrada.format(formatter));
+        sb.append(" Hora de Salida: ").append(horaSalida.format(formatter));
         return sb.toString();
     }
-
 }

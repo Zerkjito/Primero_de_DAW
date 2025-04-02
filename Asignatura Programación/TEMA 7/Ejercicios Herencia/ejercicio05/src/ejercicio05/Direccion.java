@@ -58,11 +58,11 @@ public class Direccion {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Calle: ").append(calle).append("\n");
-        sb.append("Numero: ").append(numero).append("\n");
-        sb.append("Puerta: ").append(puerta).append("\n");
-        sb.append("Poblacion: ").append(poblacion).append("\n");
-        sb.append("Provincia: ").append(provincia);
+        sb.append("C/ ").append(calle);
+        sb.append(" N ").append(numero);
+        sb.append(" - ").append(puerta).append(" ");
+        sb.append(poblacion).append(" - ");
+        sb.append(provincia);
         return sb.toString();
     }
     

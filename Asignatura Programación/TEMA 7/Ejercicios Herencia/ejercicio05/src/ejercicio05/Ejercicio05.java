@@ -172,14 +172,14 @@ public class Ejercicio05 {
     public static LocalDate pedirFnac() {
         String fnacString;
         LocalDate fnac;
-        System.out.print("Fecha nacimiento (dia-mes-año): ");
+        System.out.print("Fecha nacimiento (dia/mes/año): ");
         fnacString = sc.nextLine().trim();
         while (!esFechaValida(fnacString)) {
             System.out.println("Error: formato fecha invalido.");
-            System.out.print("Fecha nacimiento (dia-mes-año): ");
+            System.out.print("Fecha nacimiento (dia/mes/año): ");
             fnacString = sc.nextLine().trim();
         }
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         fnac = LocalDate.parse(fnacString, formatter);
         return fnac;
     }
@@ -187,14 +187,14 @@ public class Ejercicio05 {
     public static LocalTime pedirHoraEntrada() {
         String horaEntradaString;
         LocalTime horaEntrada;
-        System.out.print("Hora de entrada (horas:minutos): ");
+        System.out.print("Hora de entrada (horas:minutos:segundos): ");
         horaEntradaString = sc.nextLine().trim();
         while (!esHoraEntradaSalidaValida(horaEntradaString)) {
             System.out.println("Error: hora de entrada invalida.");
-            System.out.print("Hora de entrada (horas:minutos): ");
+            System.out.print("Hora de entrada (horas:minutos:segundos): ");
             horaEntradaString = sc.nextLine().trim();
         }
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         horaEntrada = LocalTime.parse(horaEntradaString, formatter);
         return horaEntrada;
     }
@@ -202,34 +202,34 @@ public class Ejercicio05 {
     public static LocalTime pedirHoraSalida() {
         String horaSalidaString;
         LocalTime horaSalida;
-        System.out.print("Hora de salida (horas:minutos): ");
+        System.out.print("Hora de salida (horas:minutos:segundos): ");
         horaSalidaString = sc.nextLine().trim();
         while (!esHoraEntradaSalidaValida(horaSalidaString)) {
             System.out.println("Error: hora de salida invalida.");
-            System.out.print("Hora de salida (horas:minutos): ");
+            System.out.print("Hora de salida (horas:minutos:segundos): ");
             horaSalidaString = sc.nextLine().trim();
         }
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         horaSalida = LocalTime.parse(horaSalidaString, formatter);
         return horaSalida;
     }
 
     public static boolean esFechaValida(String fecha) {
-        if (!fecha.matches("\\d{2}-\\d{2}-\\d{4}")) {
+        if (!fecha.matches("\\d{2}/\\d{2}/\\d{4}")) {
             return false;
         }
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate fechaParseada = LocalDate.parse(fecha, formatter);
         return fechaParseada != null;
     }
 
     public static boolean esHoraEntradaSalidaValida(String hora) {
-        if (!hora.matches("\\d{2}:\\d{2}")) {
+        if (!hora.matches("\\d{2}:\\d{2}:\\d{2}")) {
             return false;
         }
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         try {
             LocalTime horaEntradaSalida = LocalTime.parse(hora, formatter);
             return true;
@@ -282,7 +282,7 @@ public class Ejercicio05 {
 
         ArrayList<Empleado> empleadosFiltrados = new ArrayList<>();
 
-        LocalTime horaSalida = LocalTime.of(20, 0);
+        LocalTime horaSalida = LocalTime.of(20, 0, 0);
         for (Empleado e : empleados) {
             if (e.edad() > 40 && e.getHoraSalida().isAfter(horaSalida)) {
                 empleadosFiltrados.add(e);
