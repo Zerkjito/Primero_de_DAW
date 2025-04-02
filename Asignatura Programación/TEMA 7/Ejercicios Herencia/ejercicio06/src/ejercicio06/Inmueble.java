@@ -26,6 +26,10 @@ public class Inmueble {
 
     public Inmueble() {
     }
+
+    public Inmueble(String referencia) {
+        this.referencia = referencia;
+    }
     
     
 
@@ -66,7 +70,7 @@ public class Inmueble {
     }
 
     public static void setDescuento(double descuento) {
-        Inmueble.descuento = descuento;
+        Inmueble.descuento = Math.min(Math.max(descuento, 0), 100);
     }
 
     @Override
@@ -93,11 +97,9 @@ public class Inmueble {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Inmueble{");
-        sb.append("referencia=").append(referencia);
-        sb.append(", poblacion=").append(poblacion);
-        sb.append(", precioBase=").append(precioBase);
-        sb.append(", alquilado=").append(alquilado);
+        sb.append(referencia).append(" ");
+        sb.append(poblacion);
+        sb.append(" PRECIO BASE: ").append(String.format("%.2f€", precioBase));
         return sb.toString();
     }
 
