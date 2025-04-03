@@ -5,6 +5,7 @@
 package ejercicio06;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -365,6 +366,22 @@ public class Ejercicio06 {
 
         } while (opcion != 1 && opcion != 2);
         return opcion;
+    }
+
+    public static void mostrarInmuebles() {
+        /*
+        1º Se muestran todas las viviendas ordenadas por precio final de menor a mayor.
+        2º Se muestran todos los locales ordenados por precio final de mayor a menor.
+        3º Se muestran todas las viviendas disponibles sin alquilar ordenadas alfabéticamente por población.
+        3º Se muestran todos los locales disponibles sin alquilar ordenados alfabéticamente por población.
+         */
+        
+        viviendas.sort(Comparator.comparing(Vivienda::calcularPrecio));
+        System.out.println("VIVIENDAS ORDENDAS POR PRECIO ASCENDENTEMENTE:");
+        for (Vivienda v : viviendas) {
+            System.out.println("\n" + v);
+        }
+        
     }
 
 }
