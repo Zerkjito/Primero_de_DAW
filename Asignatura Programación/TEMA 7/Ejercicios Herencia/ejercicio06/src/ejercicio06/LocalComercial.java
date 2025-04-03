@@ -71,7 +71,7 @@ public class LocalComercial extends Inmueble {
     @Override
     public String toString() {
         String reforma = this.isReformado() ? " REFORMADO" : " NO REFORMADO";
-        String disponibilidad = this.isAlquilado() ? " DISPONIBLE" : " ALQUILADO";
+        String disponibilidad = this.isAlquilado() ? " ALQUILADO" : " DISPONIBLE";
         
         StringBuilder sb = new StringBuilder();
         

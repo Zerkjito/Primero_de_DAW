@@ -30,19 +30,11 @@ public class Ejercicio06 {
             m.mostrar();
             opcion = m.opcionMenu();
             switch (opcion) {
-                case 1:
-                    nuevoInmueble();
-                    break;
-                case 2:
-                    modificarDescuento();
-                    break;
-                case 3:
-                    alquilarInmueble();
-                    break;
-                case 4:
-                    devolverInmueble();
-                    break;
-                case 5:
+                case 1 -> nuevoInmueble();
+                case 2 -> modificarDescuento();
+                case 3 -> alquilarInmueble();
+                case 4 -> devolverInmueble();
+                case 5 -> mostrarInmuebles();
             }
         } while (opcion != 0);
         System.out.println("[FIN PROGRAMA]");
@@ -369,19 +361,73 @@ public class Ejercicio06 {
     }
 
     public static void mostrarInmuebles() {
+        if (viviendas.isEmpty() && locales.isEmpty()) {
+            System.out.println("Error: Actualmente no hay viviendas ni locales registrados.");
+            return;
+        }
         /*
         1º Se muestran todas las viviendas ordenadas por precio final de menor a mayor.
         2º Se muestran todos los locales ordenados por precio final de mayor a menor.
         3º Se muestran todas las viviendas disponibles sin alquilar ordenadas alfabéticamente por población.
         3º Se muestran todos los locales disponibles sin alquilar ordenados alfabéticamente por población.
          */
-        
-        viviendas.sort(Comparator.comparing(Vivienda::calcularPrecio));
-        System.out.println("VIVIENDAS ORDENDAS POR PRECIO ASCENDENTEMENTE:");
-        for (Vivienda v : viviendas) {
-            System.out.println("\n" + v);
+        if (!viviendas.isEmpty()) {
+            viviendas.sort(Comparator.comparing(Vivienda::calcularPrecio));
+            System.out.println("VIVIENDAS ORDENDAS POR PRECIO ASCENDENTEMENTE:");
+            for (Vivienda v : viviendas) {
+                System.out.println(v);
+            }
+        } else {
+            System.out.println("No hay viviendas registradas actualmente.");
         }
-        
+
+        if (!locales.isEmpty()) {
+            locales.sort(Comparator.comparing(LocalComercial::calcularPrecio).reversed());
+            System.out.println("LOCALES ORDENADOS POR PRECIO DESCENDENTEMENTE:");
+            for (LocalComercial l : locales) {
+                System.out.println(l);
+            }
+        } else {
+            System.out.println("No hay locales registrados actualmente.");
+        }
+
+        if (!viviendas.isEmpty()) {
+            ArrayList<Vivienda> viviendasDisponibles = new ArrayList<>();
+            for (Vivienda v : viviendas) {
+                if (!v.isAlquilado()) {
+                    viviendasDisponibles.add(v);
+                }
+            }
+
+            if (!viviendasDisponibles.isEmpty()) {
+                viviendasDisponibles.sort(Comparator.comparing(Vivienda::getPoblacion, String.CASE_INSENSITIVE_ORDER));
+                System.out.println("VIVIENDAS DISPONIBLES ORDENADAS ALFABETICAMENTE POR POBLACION:");
+                for (Vivienda vDisp : viviendasDisponibles) {
+                    System.out.println(vDisp);
+                }
+            } else {
+                System.out.println("No hay viviendas disponibles para alquilar actualmente.");
+            }
+        }
+
+        if (!locales.isEmpty()) {
+            ArrayList<LocalComercial> localesDisponibles = new ArrayList<>();
+            for (LocalComercial l : locales) {
+                if (!l.isAlquilado()) {
+                    localesDisponibles.add(l);
+                }
+            }
+
+            if (!localesDisponibles.isEmpty()) {
+                localesDisponibles.sort(Comparator.comparing(LocalComercial::getPoblacion, String.CASE_INSENSITIVE_ORDER));
+                System.out.println("LOCALES DISPONIBLES ORDENADOS ALFABETICAMENTE POR POBLACION:");
+                for (LocalComercial lDisp : localesDisponibles) {
+                    System.out.println(lDisp);
+                }
+            } else {
+                System.out.println("No hay locales disponibles para alquilar actualmente.");
+            }
+        }
     }
 
 }

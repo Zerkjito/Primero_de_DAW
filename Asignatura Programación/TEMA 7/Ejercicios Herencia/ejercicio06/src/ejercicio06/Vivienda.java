@@ -74,7 +74,7 @@ public class Vivienda extends Inmueble {
 
     @Override
     public String toString() {
-        String disponibilidad = this.isAlquilado() ? " DISPONIBLE" : " AQLUILADO";
+        String disponibilidad = this.isAlquilado() ? " ALQUILADO" : " DISPONIBLE";
 
         StringBuilder sb = new StringBuilder();
         sb.append("\nVIVIENDA ");
