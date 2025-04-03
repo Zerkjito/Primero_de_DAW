@@ -62,12 +62,20 @@ public class LocalComercial extends Inmueble {
         }
     }
 
+    public void devolver() {
+        if (this.isAlquilado()) {
+            this.setAlquilado(false);
+        }
+    }
+
     @Override
     public String toString() {
         String reforma = this.isReformado() ? " REFORMADO" : " NO REFORMADO";
         String disponibilidad = this.isAlquilado() ? " DISPONIBLE" : " ALQUILADO";
+        
         StringBuilder sb = new StringBuilder();
-        sb.append("LOCAL ").append(super.toString()).append(" SUPERFICIE: ").append(this.tamaño).append("m2");
+        
+        sb.append("\nLOCAL ").append(super.toString()).append(" SUPERFICIE: ").append(this.tamaño).append("m2");
         sb.append(reforma).append(disponibilidad).append(String.format(" PRECIO ALQUILER: %.2f€%n", this.calcularPrecio()));
         return sb.toString();
     }

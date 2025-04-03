@@ -39,6 +39,8 @@ public class Ejercicio06 {
                     alquilarInmueble();
                     break;
                 case 4:
+                    devolverInmueble();
+                    break;
                 case 5:
             }
         } while (opcion != 0);
@@ -74,6 +76,7 @@ public class Ejercicio06 {
         double precioBase = pedirPrecioBase();
         int numHabitaciones = pedirNumHabitaciones();
         viviendas.add(new Vivienda(ref, poblacion, precioBase, numHabitaciones));
+        System.out.println("Vivienda con REF. " + ref + " registrada correctamente.");
     }
 
     public static void nuevoLocal() {
@@ -90,6 +93,7 @@ public class Ejercicio06 {
         int tamaño = pedirMetros();
         boolean reformado = estaReformado();
         locales.add(new LocalComercial(ref, poblacion, precioBase, tamaño, reformado));
+        System.out.println("Local con REF. " + ref + " registrado correctamente.");
     }
 
     public static String pedirReferencia() {
@@ -243,27 +247,10 @@ public class Ejercicio06 {
         System.out.println("Viviendas disponibles: " + viviendasDisponibles);
         System.out.println("Locales disponibles: " + localesDisponibles);
 
-        int opcion;
-        do {
-            System.out.print("Que desea alquilar? (1 -> Vivienda, 2 -> Local): ");
-            while (!sc.hasNextInt()) {
-                System.out.println("Error: Entrada invalida.");
-                sc.nextLine();
-                System.out.print("Que desea alquilar? (1 -> Vivienda, 2 -> Local): ");
-            }
-            opcion = sc.nextInt();
-            sc.nextLine();
-
-            if (opcion != 1 && opcion != 2) {
-                System.out.println("Error: Rango invalido.");
-            }
-
-        } while (opcion != 1 && opcion != 2);
-
+        int opcion = queDeseaAlquilar();
         String ref = pedirReferencia();
         boolean encontrado = false;
         boolean yaAlquilado = false;
-
         List<? extends Inmueble> lista = (opcion == 1) ? viviendas : locales;
         for (Inmueble i : lista) {
             if (i.getReferencia().equals(ref)) {
@@ -281,6 +268,7 @@ public class Ejercicio06 {
                     return;
                 } else {
                     yaAlquilado = true;
+                    break;
                 }
             }
         }
@@ -290,6 +278,93 @@ public class Ejercicio06 {
         } else {
             System.out.println("No se encontró el inmueble con REF. " + ref);
         }
+    }
+
+    public static void devolverInmueble() {
+        if (viviendas.isEmpty() && locales.isEmpty()) {
+            System.out.println("Error: Actualmente no hay viviendas ni locales registrados.");
+            return;
+        }
+
+        /*En el ejercicio se obliga a recorrer el foreach dos veces manualmente, de modo que aqui
+        no se puede usar el switch pattern para recorrer el ArayList indicado */
+        boolean hayAlquilados = false;
+        for (Vivienda v : viviendas) {
+            if (v.isAlquilado()) {
+                hayAlquilados = true;
+                break;
+            }
+        }
+        if (!hayAlquilados) {
+            for (LocalComercial l : locales) {
+                if (l.isAlquilado()) {
+                    hayAlquilados = true;
+                    break;
+                }
+            }
+        }
+
+        if (!hayAlquilados) {
+            System.out.println("No hay inmuebles alquilados actualmente.");
+            return;
+        }
+
+        String ref = pedirReferencia();
+        boolean encontrado = false;
+
+        for (Vivienda v : viviendas) {
+            if (v.getReferencia().equals(ref)) {
+                encontrado = true;
+                if (v.isAlquilado()) {
+                    v.devolver();
+                    System.out.println("VIVIENDA DEVUELTA:");
+                    System.out.println("\n" + v);
+                    System.out.println("Vivienda con REF. " + ref + " devuelta correctamente.");
+                    return;
+                } else {
+                    System.out.println("Error: La vivienda con REF. " + ref + " no esta alquilada.");
+                }
+                return;
+            }
+        }
+
+        for (LocalComercial l : locales) {
+            if (l.getReferencia().equals(ref)) {
+                encontrado = true;
+                if (l.isAlquilado()) {
+                    l.devolver();
+                    System.out.println("LOCAL DEVUELTO:");
+                    System.out.println("\n" + l);
+                    System.out.println("Local con REF. " + ref + " devuelto correctamente.");
+                } else {
+                    System.out.println("Error: El local con REF. " + ref + " no esta alquilado.");
+                }
+                return;
+            }
+        }
+        if (!encontrado) {
+            System.out.println("No se encontro el inmueble con REF. " + ref);
+        }
+    }
+
+    public static int queDeseaAlquilar() {
+        int opcion;
+        do {
+            System.out.print("Que desea alquilar? (1 -> Vivienda, 2 -> Local): ");
+            while (!sc.hasNextInt()) {
+                System.out.println("Error: Entrada invalida.");
+                sc.nextLine();
+                System.out.print("Que desea alquilar? (1 -> Vivienda, 2 -> Local): ");
+            }
+            opcion = sc.nextInt();
+            sc.nextLine();
+
+            if (opcion != 1 && opcion != 2) {
+                System.out.println("Error: Rango invalido.");
+            }
+
+        } while (opcion != 1 && opcion != 2);
+        return opcion;
     }
 
 }

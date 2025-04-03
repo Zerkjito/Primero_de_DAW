@@ -10,7 +10,8 @@ import java.util.Objects;
  *
  * @author Erick
  */
-public class Vivienda extends Inmueble{
+public class Vivienda extends Inmueble {
+
     private int numeroDeHabitaciones;
 
     public Vivienda(String referencia, String poblacion, double precioBase, int numeroDeHabitaciones) {
@@ -24,8 +25,6 @@ public class Vivienda extends Inmueble{
     public Vivienda(String referencia) {
         super(referencia);
     }
-    
-    
 
     public int getNumeroDeHabitaciones() {
         return numeroDeHabitaciones;
@@ -34,7 +33,7 @@ public class Vivienda extends Inmueble{
     public void setNumeroDeHabitaciones(int numeroDeHabitaciones) {
         this.numeroDeHabitaciones = numeroDeHabitaciones;
     }
-    
+
     public double calcularPrecio() {
         double precioFinalAlquiler = this.getPrecioBase();
         if (this.numeroDeHabitaciones > 3) {
@@ -43,10 +42,16 @@ public class Vivienda extends Inmueble{
         double descuento = precioFinalAlquiler * (Inmueble.getDescuento() / 100);
         return precioFinalAlquiler - descuento;
     }
-    
+
     public void alquilar() {
         if (!this.isAlquilado()) {
             this.setAlquilado(true);
+        }
+    }
+
+    public void devolver() {
+        if (this.isAlquilado()) {
+            this.setAlquilado(false);
         }
     }
 
@@ -70,14 +75,13 @@ public class Vivienda extends Inmueble{
     @Override
     public String toString() {
         String disponibilidad = this.isAlquilado() ? " DISPONIBLE" : " AQLUILADO";
-        
+
         StringBuilder sb = new StringBuilder();
-        sb.append("VIVIENDA ");
+        sb.append("\nVIVIENDA ");
         sb.append(super.toString());
         sb.append(" HABITACIONES: ").append(numeroDeHabitaciones).append(disponibilidad);
-        sb.append(" PRECIO ALQUILER:  ").append(String.format("%.2f€%n", this.calcularPrecio()));
+        sb.append(" PRECIO ALQUILER: ").append(String.format("%.2f€%n", this.calcularPrecio()));
         return sb.toString();
     }
-    
-    
+
 }
