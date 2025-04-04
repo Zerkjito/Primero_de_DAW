@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+  <title>Hoja de inscripci�n Ciclos Formativos de Grado Superior.</title>
+  <link href="style.css" rel="stylesheet" type="text/css" title="Color" />
+</head>
+
+<body>
+  <h1 class="titulo">Hoja de inscripci�n<br />en los ciclos formativos de grado superior</h1>
+  <div class="main-container">
+
+    <form action="">
+      <fieldset id="datosP">
+        <legend class="datosP-legend">Datos personales<a href="#nota">(*)</a></legend>
+        <table border="0">
+         <tr>
+           <td>Apellidos:<br /><input type="text" name="surname" size="40" /></td>
+           <td>Nombre:<br /><input type="text" name="name" size="20" /></td>
+           <td>DNI:<br /><input type="text" name="dni" maxlength="11" size="12" /></td>
+         </tr>
+         <tr>
+           <td>Nacido/a en:<br /><input type="text" name="nacCiu" size="30" /></td>
+           <td>Provincia:<br />
+             <select name="nacProv">
+               <option value="alc" selected="selected">Alicante</option>
+               <option value="cast">Castell�n</option>
+               <option value="val">Valencia</option>
+               <option value="otros">Otros</option>
+             </select>
+           </td>
+           <td>Fecha nacimiento (dd/mm/aaaa):<br /><input type="text" name="fecNac" maxlength="10" size="12" /></td>
+         </tr>
+         <tr>
+           <td colspan="2">Domicilio (Calle, plaza y n�mero):<br /><input type="text" name="dirCalle" size="60" /></td>
+           <td>C�digo Postal:<br /><input type="text" name="dirCodPos" maxlength="5" size="6" /></td>
+         </tr>
+         <tr>
+           <td>Localidad:<br /><input type="text" name="dirCiu" size="30" /></td>
+           <td>Provincia:<br />
+             <select name="dirProv">
+               <option value="alc" selected="selected">Alicante</option>
+               <option value="cast">Castell�n</option>
+               <option value="val">Valencia</option>
+               <option value="otros">Otros</option>
+             </select>
+           </td>
+           <td>Tel�fono:<br /><input type="text" name="dirTelf" maxlength="9" size="10" /></td>
+         </tr>
+        </table>
+      </fieldset>
+    
+      <fieldset id="requisitos">
+        <legend>Requisitos de acceso</legend>
+        <table>
+          <tr>
+            <td colspan="2"><input type="radio" name="acceso" value="directo" />Directo</td>
+          </tr>
+          <tr>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td><input type="radio" name="acDirecto" value="bat" />Bachillerato LOGSE. Modalidad: <input type="text" name="batMod" /></td>
+          </tr>
+          <tr>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td><input type="radio" name="acDirecto" value="cou" />COU. Opci�n: <input type="text" name="couOpc" /></td>
+          </tr>
+          <tr>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td><input type="radio" name="acDirecto" value="cfgs" />Grado superior</td>
+          </tr>
+          <tr>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td><input type="radio" name="acDirecto" value="otros" /> Otros (especifique): <input type="text" name="otrosDet" /></td>
+          </tr>
+          <tr>
+            <td colspan="2"><input type="radio" name="acceso" value="prueba" />Prueba Acceso</td>
+          </tr>
+        </table>
+      </fieldset>
+  
+      <fieldset id="solicitud">
+        <legend>Solicitud</legend>
+        <p>El/la que suscribe desea ser admitido en este centro para cursar el  ciclo formativo de grado superior:</p>
+        <p>Ciclo formativo: 
+          <select name="ciclo">
+            <option value="vacio" selected="selected"></option>
+            <option value="asir">Administraci�n de Sistemas Inform�ticos y Redes</option>
+            <option value="dam">Desarrollo de Aplicaciones M�viles</option>
+            <option value="daw">Desarrollo de Aplicaciones Web</option>
+          </select>
+        </p>
+        <p>En caso de no ser admitido/a, solicita la admisi�n por orden de preferencia en los siguientes:</p>
+        <table border="0">
+          <tbody>
+            <tr>
+              <th>Ciclos formativos</th>
+              <th>Centros</th>
+              <th>Localidad</th>
+            </tr>
+            <tr>
+              <td><input type="text" name="ciclo1" size="40" /></td>
+              <td><input type="text" name="centro1" size="30" /></td>
+              <td><input type="text" name="loc1" size="20" /></td>
+            </tr>
+            <tr>
+              <td><input type="text" name="ciclo2" size="40" /></td>
+              <td><input type="text" name="centro2" size="30" /></td>
+              <td><input type="text" name="loc2" size="20" /></td>
+            </tr>
+          </tbody>
+        </table>
+        <p><label>Modalidad de horario especial (marque): <input type="checkbox"  name="nocturno" /></label></p>
+      </fieldset>
+  
+      <fieldset id="docs">
+        <legend>Documentaci�n presentada</legend>
+        <table border="0">
+          <tbody>
+            <tr>
+              <td><label><input type="checkbox" name="fotDni" /> Fotocopia DNI</label></td>
+              <td><label><input type="checkbox" name="cerAca" />Certificado acad�mico</label></td>
+            </tr>
+            <tr>
+              <td colspan="2"><label><input type="checkbox" name="otrosDocs" />Otros  documentos</label> (especifique):&nbsp; <input type="text" name="espDocs" size="40" /></td>
+            </tr>
+          </tbody>
+        </table>
+      </fieldset>
+  
+      <fieldset id="firma">
+        <legend>Comunicaci�n</legend>
+        <p>De acuerdo con el art�culo 42.2 de la Ley 30/1992, de 26 de noviembre, de R�gimen Jur�dico de las Administraciones P�blicas y del Procedimiento Administrativo Com�n, seg�n la nueva redacci�n de la Ley 4/1999, de 13 de enero, se informa que:</p>
+        <ul>
+          <li>El plazo m�ximo para resolver la presente solicitud es de 3 meses desde la fecha en que haya tenido entrada en el registro del �rgano    competente para la tramitaci�n, sin perjuicio de lo previsto en el art�culo 42.5 de la misma ley.</li>
+          <li>El efecto que producir� el silencio administrativo si transcurre el plazo sin que se haya dictado y notificado la resoluci�n       correspondiente, es desestimatorio de la solicitud.</li>
+        </ul>
+        <p><input type="text" name="en" />, <input type="text" name="a" size="3" maxlength="2" /> de <input type="text" name="mes" size="15" maxlength="12" />de 
+        <select name="anno">
+          <option value="trece" selected="selected">2013</option>
+          <option value="catorce">201</option>
+        </select>
+        </p>
+        <div id="registro"><p>Registro de entrada</p></div>
+        <p></p>
+        <div id="alumno"><p>La persona solicitante,</p></div>
+        <p>Firma</p>
+        <p></p>
+      </fieldset>
+    </form>
+    <p class="pie" id="nota">(*) Los datos personales contenidos en este impreso podr�n ser incluidos en un fichero para su tratamiento por la Conselleria de Cultura y Educaci�n, en el uso de las funciones propias que tiene atribuidas en el �mbito de sus competencias, pudiendo dirigirse a cualquier �rgano de la misma para ejercitarlos derechos de acceso, rectificaci�n, cancelaci�n y oposici�n, seg�n lo dispuesto en la Ley Org�nica 15/1999, de 13 de diciembre, de Protecci�n de Datos de Car�cter Personal (BOE n�m 298, de 14 de diciembre de 1999).</p>
+    <p class="grande">Director/a o titular del centro</p>
+  </div> 
+</body>
+</html>
+

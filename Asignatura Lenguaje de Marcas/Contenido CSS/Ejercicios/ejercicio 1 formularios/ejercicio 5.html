@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>Tele PIZZA</title>
+	<meta http-equiv ="Content-Type" content ="text/html; charset=UTF-8" />
+	<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<form name="FormEjer3" action="gestionar_pedido.php" method="POST">
+		<table class="" border="0">
+			<tr class="pedido">
+				<th colspan="3"><i><b>- Pedido de pizza -</b></i></th>
+	
+			</tr>
+	
+			<tr class="nombre">
+				<td><b>Nombre</b></td>
+				<td colspan="2"><input class="nombre-input" type="text" name="Nombre" value="" size="45" /></td>
+			</tr>
+
+			<tr class="direccion">
+				<td><b>Dirección</b></td>
+				<td colspan="2" ><input class="direccion-input" type="text" name="Direccion" value="" size="45" /></td>
+			</tr>
+			<tr class="opciones-extra">
+				<td><b>Ingredientes</b></td>
+				<td><b>Tamaño<b></td>
+				<td><b>Forma de pago</b></td>
+			</tr>
+			<tr>
+				<td>
+					<input type="checkbox" name="Ingrediente1" value="Queso" />Queso<br />
+					<input type="checkbox" name="Ingrediente2" value="Pimiento" />Pimiento<br />
+					<input type="checkbox" name="Ingrediente3" value="Cebolla" />Cebolla<br />
+				</td>
+				<td>
+					<input type="radio" name="Tamanyo" value="Pequeña"/>Pequeña <br/>
+					<input type="radio" name="Tamanyo" value="Mediana" />Mediana<br />
+					<input type="radio" name="Tamanyo" value="Grande" />Grande<br />
+				</td>
+				<td>
+					<select name="FormaPago">
+						<option value="VISA">VISA</option>
+						<option value="CHE">Cheque</option>
+						<option value="CONT">Contado</option>
+						<option value="MET" selected="SELECTED">Metálico</option>
+					</select>
+				</td>
+			</tr>
+			<tr class="instrucciones">
+				<td colspan="3"><b>Instrucciones especiales</b></td> 
+			</tr>
+			<tr>
+				<td colspan="3"><textarea name="InstrucEspec" rows="5" cols="60"></textarea></td> 
+			</tr>
+			<tr class="botones">
+				<td colspan="3"><input type="submit" value="Enviar Pedido" />
+				<input type="reset" value="Borrar Formulario" /></td> 
+			</tr>
+	
+	</table>
+</form>
+
+</body>
+</html>
+		

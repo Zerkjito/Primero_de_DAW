@@ -1,0 +1,26 @@
+table {
+   border: 25px solid rgb(158, 38, 38);
+   background-color: rgba(255, 150, 101, 0.868);
+   padding: 10px;
+}
+
+.pedido {
+   background-color: rgba(252, 121, 60, 0.868);
+}
+
+.pedido, .nombre, .direccion, .opciones-extra, .instrucciones,
+.botones {
+   text-align: center;
+}
+
+.nombre td:first-child,
+.direccion td:first-child,
+.opciones-extra, .instrucciones {
+   background-color: rgb(218, 109, 19);
+   color: white;
+}
+
+.nombre-input, .direccion-input {
+   display: block;
+   width: 96%;
+}
