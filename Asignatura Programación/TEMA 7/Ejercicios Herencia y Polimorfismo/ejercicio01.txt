@@ -1,0 +1,20 @@
+a) NO se podría hacer, daría un error de compilación debido a que no se puede crear directamente un objeto de una clase abstracta.
+
+b) Es una instrucción válida ya que se esta creando un objeto de una clase concreta que hereda de Mamifero y puede usar todos los métodos de dentro de Mamifero.
+
+c) Es válido ya que el método que se esta usando esta definido en la clase Mamifero y por tanto es heredado en sus clases hijas.
+
+d) NO es válido ya que la referencia mamifero2 es de tipo Mamifero y esta clase no tiene definida tal método de modo que habría que hacer casting manual o definir un nuevo objeto de la misma clase.
+
+e) Es válido ya que el método abstracto puede detectar a que método se esta referenciando debido al tipo de clase de mamifero2 (vaca).
+
+f) No daría error de compilación ya que por defecto Java crea un constructor vacío, y este llama al constructor de Mamifero mediante super().
+
+g) Si es válido ya que hereda este método de su clase padre Mamifero.
+
+h) Es válido ya que esta usando un método que es de su propia clase.
+
+i) Es una asignación inválida dado que son tipos distintos,  
+
+
+
