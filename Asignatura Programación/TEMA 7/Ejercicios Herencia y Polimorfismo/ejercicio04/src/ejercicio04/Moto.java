@@ -18,4 +18,14 @@ public class Moto extends Vehiculo{
     }
     
     
+    @Override
+    public void mostrarInfo() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\nMoto:\n");
+        sb.append("Matricula: ").append(getMatricula()).append("\n");
+        sb.append("Potencia: ").append(getPotencia()).append("CV");
+        System.out.println(sb.toString());
+        
+    }
+     
 }
