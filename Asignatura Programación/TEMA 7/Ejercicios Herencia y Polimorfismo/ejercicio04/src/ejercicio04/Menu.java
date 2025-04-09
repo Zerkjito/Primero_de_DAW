@@ -13,16 +13,16 @@ import java.util.Scanner;
  */
 public class Menu {
 
-    public void mostrar() {
+    public void mostrarMenu() {
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format("%23s", "1-> Alquilar plaza de garaje"));
-        sb.append(String.format("%23s", "2-> Mostrar vehiculos"));
-        sb.append(String.format("%23s", "3-> Calcular cuota"));
-        sb.append(String.format("%23s", "0-> FIN"));
+        sb.append("\n1-> Alquilar plaza de garaje   ");
+        sb.append("2-> Mostrar vehiculos   ");
+        sb.append("3-> Calcular cuota   ");
+        sb.append("0-> FIN");
         System.out.println(sb.toString());
     }
 
-    public int opcion() {
+    public int opcionMenu() {
         Scanner sc = new Scanner(System.in);
         int opcion = -1;
         do {
@@ -30,18 +30,43 @@ public class Menu {
 
             try {
                 opcion = sc.nextInt();
-                if (opcion < 1 || opcion > 3) {
+                sc.nextLine();
+                if (opcion < 0 || opcion > 3) {
                     System.out.println("Error: Rango invalido.");
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Error: debes introducir un numero");
+                System.out.println("Error: Debes introducir un numero.");
                 sc.nextLine();
             }
         } while (opcion < 0 || opcion > 3);
         return opcion;
     }
-    
-    public void tipoVehiculo() {
-        
+
+    public void mostrarVehiculos() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n1-> Plaza coche   ");
+        sb.append("2-> Plaza moto   ");
+        sb.append("0-> VOLVER");
+        System.out.println(sb.toString());
+    }
+
+    public int opcionVehiculo() {
+        Scanner sc = new Scanner(System.in);
+        int opcion = -1;
+        do {
+            System.out.print("Introduce opcion: ");
+
+            try {
+                opcion = sc.nextInt();
+                sc.nextLine();
+                if (opcion < 0 || opcion > 2) {
+                    System.out.println("Error: Rango invalido.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Error: Debes introducir un numero.");
+                sc.nextLine();
+            }
+        } while (opcion < 0 || opcion > 2);
+        return opcion;
     }
 }

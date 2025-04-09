@@ -66,5 +66,6 @@ public abstract class Vehiculo {
         return this.matricula.equals(other.matricula);
     }
 
+    public abstract void mostrarInfo();
     
 }
