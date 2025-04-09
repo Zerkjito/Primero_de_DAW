@@ -27,5 +27,10 @@ public class Moto extends Vehiculo{
         System.out.println(sb.toString());
         
     }
+
+    @Override
+    public double calcularCuota() {
+        return getPotencia() * 2;
+    }
      
 }

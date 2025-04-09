@@ -21,7 +21,6 @@ public class Ejercicio04 {
     static Vehiculo[] garaje = new Vehiculo[100];
     static int indice = 0;
     static Menu m = new Menu();
-
     /**
      * @param args the command line arguments
      */
@@ -31,13 +30,12 @@ public class Ejercicio04 {
             m.mostrarMenu();
             opcion = m.opcionMenu();
             switch (opcion) {
-                case 1:
+                case 1 ->
                     alquilarPlaza();
-                    break;
-                case 2:
+                case 2 ->
                     mostrarVehiculos();
-                    break;
-                case 3:
+                case 3 ->
+                    calcularCuota();
             }
         } while (opcion != 0);
     }
@@ -60,7 +58,7 @@ public class Ejercicio04 {
     }
 
     public static void alquilarPlazaCoche() {
-        if (indice == 100) {
+        if (garajeLleno()) {
             System.out.println("Error: Todas las plazas estan ocupadas actualmente.");
             return;
         }
@@ -70,6 +68,7 @@ public class Ejercicio04 {
             System.out.println("Error: Matricula " + matricula + " ya registrada.");
             return;
         }
+        
         int potencia = pedirPotencia();
         int plazas = pedirPlazasCoche();
         for (int i = 0; i < garaje.length; i++) {
@@ -83,11 +82,11 @@ public class Ejercicio04 {
     }
 
     public static void alquilarPlazaMoto() {
-        if (indice == 100) {
+        if (garajeLleno()) {
             System.out.println("Error: Todas las plazas estan ocupadas actualmente.");
             return;
         }
-        
+
         String matricula = pedirMatricula();
         if (esMatriculaRepetida(matricula)) {
             System.out.println("Error: Matricula " + matricula + " ya registrada.");
@@ -105,10 +104,9 @@ public class Ejercicio04 {
     }
 
     public static String pedirMatricula() {
-        String matricula;
         System.out.print("Matricula (4 digitos y 2 letras): ");
-        matricula = sc.nextLine().trim();
-        while (!matricula.matches("^[0-9]{4}[A-Z]{2}$")) {
+        String matricula = sc.nextLine().trim();
+        while (!matricula.matches("^[0-9]{4}[A-Z]{3}$")) {
             System.out.println("Error: Matricula invalida.");
             System.out.print("Matricula (4 digitos y 2 letras): ");
             matricula = sc.nextLine().trim();
@@ -166,7 +164,7 @@ public class Ejercicio04 {
             System.out.println("Error: Garaje vacio actualmente.");
             return;
         }
-        
+
         ArrayList<Vehiculo> vehiculosOrdenados = new ArrayList<>();
         for (int i = 0; i < indice; i++) {
             if (garaje[i] != null) {
@@ -178,7 +176,7 @@ public class Ejercicio04 {
         for (Vehiculo v : vehiculosOrdenados) {
             v.mostrarInfo();
         }
-        
+
         System.out.println("\nVehiculos ordenados por matricula ascendentemente: ");
         vehiculosOrdenados.sort(Comparator.comparing(Vehiculo::getMatricula));
         for (Vehiculo v : vehiculosOrdenados) {
@@ -186,4 +184,39 @@ public class Ejercicio04 {
         }
     }
 
+    public static void calcularCuota() {
+        if (indice == 0) {
+            System.out.println("Error. Garaje vacio actualmente.");
+            return;
+        }
+        int plaza = -1;
+        do {
+            System.out.print("Plaza a buscar: ");
+            try {
+                plaza = sc.nextInt();
+                sc.nextLine();
+
+                if (plaza < 1 || plaza > 100) {
+                    System.out.println("Error: Plaza invalida.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Error: Introduce un numero valido.");
+                sc.nextLine();
+            }
+        } while (plaza < 1 || plaza > 100);
+        plaza--;
+
+        if (garaje[plaza] != null) {
+            System.out.printf("Cuota: %.2f EUR%n", garaje[plaza].calcularCuota());
+        } else  {
+            System.out.println("Error: Plaza " + (plaza + 1) + " vacia.");
+        }
+    }
+
+    public static boolean garajeLleno() {
+        for (Vehiculo v : garaje) {
+            if (v == null) return false;
+        }
+        return true;
+    }
 }

@@ -67,5 +67,6 @@ public abstract class Vehiculo {
     }
 
     public abstract void mostrarInfo();
+    public abstract double calcularCuota();
     
 }

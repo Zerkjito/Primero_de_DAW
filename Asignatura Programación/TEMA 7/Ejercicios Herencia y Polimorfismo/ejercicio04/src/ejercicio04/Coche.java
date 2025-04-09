@@ -38,4 +38,9 @@ public class Coche extends Vehiculo {
         sb.append("Potencia: ").append(getPotencia()).append("CV");
         System.out.println(sb.toString());
     }
+
+    @Override
+    public double calcularCuota() {
+        return getPotencia() * numPlazas;
+    }
 }
