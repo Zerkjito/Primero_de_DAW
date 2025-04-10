@@ -10,4 +10,6 @@ package gestiondeactoresv1;
  */
 public interface Contratable {
     double calcularSueldo();
+    String getNif();
+    void mostrarInfo();
 }

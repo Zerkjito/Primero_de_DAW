@@ -4,6 +4,10 @@
  */
 package gestiondeactoresv1;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
+
 /**
  *
  * @author Erick
@@ -19,6 +23,10 @@ public class Amateur extends Actor{
     public Amateur() {
     }
 
+    public Amateur(String nif) {
+        super(nif);
+    }
+    
     public int getNumeroDeHoras() {
         return numeroDeHoras;
     }
@@ -30,7 +38,23 @@ public class Amateur extends Actor{
 
     @Override
     public double calcularSueldo() {
+        return getNumeroDeHoras() * getImporteHoras();
     }
-    
+
+    @Override
+    public void mostrarInfo() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\nActor Amateur: ");
+        sb.append(super.toString()).append(" Horas: ").append(numeroDeHoras);
+        
+        NumberFormat nf = NumberFormat.getInstance(new Locale("es", "ES"));
+        nf.setMaximumFractionDigits(2);
+        nf.setMinimumFractionDigits(2);
+        
+        String sueldoFormteado = nf.format(calcularSueldo());
+        sb.append("Sueldo: ").append(sueldoFormteado).append(" EUR");
+        System.out.println(sb.toString());
+        
+    }
     
 }

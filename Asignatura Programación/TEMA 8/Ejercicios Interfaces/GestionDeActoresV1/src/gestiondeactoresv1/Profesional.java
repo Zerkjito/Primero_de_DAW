@@ -8,7 +8,8 @@ package gestiondeactoresv1;
  *
  * @author Erick
  */
-public class Profesional extends Actor{
+public class Profesional extends Actor {
+
     private int numeroDeRepresentaciones;
 
     public Profesional(String nif, String nombre, int edad, Genero genero, int numeroDeRepresentaciones) {
@@ -17,6 +18,10 @@ public class Profesional extends Actor{
     }
 
     public Profesional() {
+    }
+
+    public Profesional(String nif) {
+        super(nif);
     }
 
     public int getNumeroDeRepresentaciones() {
@@ -29,7 +34,16 @@ public class Profesional extends Actor{
 
     @Override
     public double calcularSueldo() {
+        return getNumeroDeRepresentaciones() * getImporteFijo();
     }
-    
-    
+
+    @Override
+    public void mostrarInfo() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\nActor Profesional: ");
+        sb.append(super.toString()).append(" Representaciones: ").append(numeroDeRepresentaciones);
+        sb.append(String.format(" Sueldo: %.2f EUR", calcularSueldo()));
+        System.out.println(sb.toString());
+    }
+
 }

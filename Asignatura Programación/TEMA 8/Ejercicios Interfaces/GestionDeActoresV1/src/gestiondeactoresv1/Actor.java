@@ -10,7 +10,8 @@ import java.util.Objects;
  *
  * @author Erick
  */
-public abstract class Actor implements Contratable{
+public abstract class Actor implements Contratable {
+
     private String nif;
     private String nombre;
     private int edad;
@@ -28,6 +29,11 @@ public abstract class Actor implements Contratable{
         this.genero = genero;
     }
 
+    public Actor(String nif) {
+        this.nif = nif;
+    }
+
+    @Override
     public String getNif() {
         return nif;
     }
@@ -94,4 +100,15 @@ public abstract class Actor implements Contratable{
         Actor other = (Actor) obj;
         return this.nif.equals(other.nif);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(nif).append(" ").append(nombre).append(" Edad: ").append(edad);
+        sb.append(" ").append(genero);
+        return sb.toString();
+    }
+
+    @Override
+    public abstract void mostrarInfo();
 }
