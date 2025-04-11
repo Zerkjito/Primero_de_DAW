@@ -26,6 +26,7 @@ public class GestionDeActoresV1 {
         leerImportes();
         leerActores();
         mostrarTodos();
+        mostrarPerros();
     }
 
     public static void leerImportes() {
@@ -43,6 +44,7 @@ public class GestionDeActoresV1 {
     public static void leerActores() {
         leerProfesional();
         leerAmateur();
+        leerPerrosActores();
     }
 
     public static void leerProfesional() {
@@ -72,8 +74,8 @@ public class GestionDeActoresV1 {
         int edad, numHoras;
         Genero genero;
 
-        int cantidad = UtilidadesInput.leerEnteroEnRangoMin("Numero de amateurs a leer: ", 1, "Error: Minimo de profesionales a leer es 1.");
-        for (int i = 0; i < cantidad; i++) {
+        int cantidadLeida = UtilidadesInput.leerEnteroEnRangoMin("Numero de amateurs a leer: ", 1, "Error: Minimo de amateurs a leer es 1.");
+        for (int i = 0; i < cantidadLeida; i++) {
             do {
                 nif = pedirNif();
                 if (esNifRepetido(nif)) {
@@ -86,6 +88,29 @@ public class GestionDeActoresV1 {
             numHoras = pedirRepresentaciones();
             actores.add(new Amateur(nif, nombre, edad, genero, numHoras));
             System.out.println("Actor/actriz amateur " + nombre + " añadido correctamente.");
+        }
+    }
+
+    public static void leerPerrosActores() {
+        String id, nombre;
+        RazaPerro raza;
+        int edad;
+        double sueldo;
+
+        int cantidadLeida = UtilidadesInput.leerEnteroEnRangoMin("Numero de perros actores a leer: ", 1, "Error: Minimo de perros actores a leer es 1.");
+        for (int i = 0; i < cantidadLeida; i++) {
+            do {
+                id = pedirNif();
+                if (esNifRepetido(id)) {
+                    System.out.println("Error: ID " + id + " ya registrado.");
+                }
+            } while (esNifRepetido(id));
+            nombre = pedirNombre();
+            raza = pedirRaza();
+            edad = pedirEdad();
+            sueldo = UtilidadesInput.leerDoubleEnRangoMin("Sueldo: ", 1., "Error: Sueldo de perros no puede ser negativo.");
+            actores.add(new PerroActor(id, nombre, raza, edad, sueldo));
+            System.out.println("Perro actor leido añadido correctamente.");
         }
     }
 
@@ -112,12 +137,18 @@ public class GestionDeActoresV1 {
     public static Genero pedirGenero() {
         Genero g;
         int n = UtilidadesInput.leerEnteroEnRango("\nGenero (1. -> Hombre, 2 -> Mujer): ", 1, 2, "Error: Rango invalido, debe ser entre ");
-        g = Genero.values()[n - 1];
-        return g;
+        return g = Genero.values()[n - 1];
+    }
+
+    public static RazaPerro pedirRaza() {
+        RazaPerro r;
+        String errorMssg = "Error: Rango invalido, debe ser entre ";
+        int n = UtilidadesInput.leerEnteroEnRango("Raza (1. -> Chihuahua, 2 -> Boxer, 3 -> Pastor Aleman, 4 -> Labrado): ", 1, 4, errorMssg);
+        return r = RazaPerro.values()[n - 1];
     }
 
     public static int pedirEdad() {
-        return UtilidadesInput.leerEnteroEnRangoMin("\nEdad: ", 18, "Error: Rango invalido");
+        return UtilidadesInput.leerEnteroEnRangoMin("\nEdad: ", 1, "Error: Rango invalido");
     }
 
     public static int pedirRepresentaciones() {
@@ -138,11 +169,31 @@ public class GestionDeActoresV1 {
             System.out.println("Error: No hay actores/actrices registrados.");
             return;
         }
-        
+
         actores.sort(Comparator.comparing(Contratable::calcularSueldo));
         System.out.println("Actores ordenados ascendentemente por sueldo:");
         for (Contratable a : actores) {
             a.mostrarInfo();
+        }
+    }
+
+    public static void mostrarPerros() {
+        if (actores.isEmpty()) {
+            System.out.println("Error: No hay actores/actrices registrados.");
+            return;
+        }
+        
+        ArrayList<PerroActor> perros = new ArrayList<>();
+        for (Contratable a : actores) {
+            if (a instanceof PerroActor p) {
+                perros.add(p);
+            }
+        }
+        
+        perros.sort(Comparator.comparing(PerroActor::getNombre, String.CASE_INSENSITIVE_ORDER));
+        System.out.println("Perros ordendados ascendentemente por nombre:");
+        for (PerroActor p : perros) {
+            p.mostrarInfo();
         }
     }
 

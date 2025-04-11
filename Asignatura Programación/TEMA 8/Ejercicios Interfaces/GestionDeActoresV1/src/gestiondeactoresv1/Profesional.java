@@ -4,6 +4,9 @@
  */
 package gestiondeactoresv1;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 /**
  *
  * @author Erick
@@ -42,7 +45,13 @@ public class Profesional extends Actor {
         StringBuilder sb = new StringBuilder();
         sb.append("\nActor Profesional: ");
         sb.append(super.toString()).append(" Representaciones: ").append(numeroDeRepresentaciones);
-        sb.append(String.format(" Sueldo: %.2f EUR", calcularSueldo()));
+        
+        NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale ("es", "ES"));
+        nf.setMaximumFractionDigits(2);
+        nf.setMinimumFractionDigits(2);
+        String sueldoFormateado = nf.format(calcularSueldo());
+        
+        sb.append(" Sueldo: ").append(sueldoFormateado).append(" EUR");
         System.out.println(sb.toString());
     }
 

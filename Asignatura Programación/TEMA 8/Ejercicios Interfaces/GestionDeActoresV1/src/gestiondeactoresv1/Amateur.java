@@ -47,14 +47,13 @@ public class Amateur extends Actor{
         sb.append("\nActor Amateur: ");
         sb.append(super.toString()).append(" Horas: ").append(numeroDeHoras);
         
-        NumberFormat nf = NumberFormat.getInstance(new Locale("es", "ES"));
+        NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("es", "ES"));
         nf.setMaximumFractionDigits(2);
         nf.setMinimumFractionDigits(2);
         
         String sueldoFormteado = nf.format(calcularSueldo());
-        sb.append("Sueldo: ").append(sueldoFormteado).append(" EUR");
+        sb.append(" Sueldo: ").append(sueldoFormteado).append(" EUR");
         System.out.println(sb.toString());
-        
     }
     
 }

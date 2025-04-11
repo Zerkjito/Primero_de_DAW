@@ -84,9 +84,7 @@ public abstract class Actor implements Contratable {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 37 * hash + Objects.hashCode(this.nif);
-        return hash;
+        return nif != null ? nif.hashCode() : 0;
     }
 
     @Override
@@ -94,11 +92,19 @@ public abstract class Actor implements Contratable {
         if (this == obj) {
             return true;
         }
-        if (obj == null || getClass() != obj.getClass()) {
+        if (obj == null) {
             return false;
         }
-        Actor other = (Actor) obj;
-        return this.nif.equals(other.nif);
+        
+        if (obj instanceof Animal other) {
+            return this.nif != null && this.nif.equals(other.getId());
+        }
+        
+        if (obj instanceof Actor other) {
+            return this.nif != null && this.nif.equals(other.nif);
+        }
+        
+        return false;
     }
 
     @Override
