@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Formulario de alta</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+   <form action="" class="container-alta-formulario">
+      <fieldset id="datosP">
+         <legend>Datos personales <span class="asterisco">*</span></legend>
+         <table border="0">
+            <tr>
+               <th><label for="nombre">Nombre</label></th>
+               <td><input type="text" id="nombre" name="name"></td>
+            </tr>
+
+            <tr>
+               <th><label for="primerApellido">Primer apellido</label></th>
+               <td><input type="text" id="primerApellido"></td>
+            </tr>
+
+            <tr>
+               <th><label for="segundoApellido">Segundo apellido</label></th>
+               <td>
+                  <input type="text" id="segundoApellido"><br>
+                  <span class="mensaje-ayuda-2apellido">No te olvides de escribir tu segundo apellido</span>
+               </td>
+            </tr>
+
+            <tr>
+               <th><label for="calle">Calle, número, piso, puerta</label></th>
+               <td><input type="text" id="calle"></td>
+            </tr>
+
+            <tr>
+               <th><label for="municipio">Municipio</label></th>
+               <td><input type="text" id="municipio"></td>
+            </tr>
+
+            <tr>
+               <th><label for="codigoPostal">Código postal</label></th>
+               <td><input type="text" id="codigoPostal" maxlength="5" size="10"></td>
+            </tr>
+
+            <tr>
+               <th><label for="provincia">Provincia</label></th>
+               <td><select id="provincia" class="select-prov"></select></td>
+            </tr>
+
+            <tr>
+               <th><label for="pais">País</label></th>
+               <td><select id="pais" class="select-pais"></select></td>
+            </tr>
+         </table>
+         <span class="mensaje-ayuda-cp">El código postal es imprescindible para recibir los pedidos</span>
+      </fieldset>
+
+      <fieldset id="datosCont">
+         <legend>Datos contacto <span class="asterisco">*</span></legend>
+         <table border="0">
+            <tr>
+               <th><label for="email">Email</label></th>
+               <td><input type="text" id="email" name="email"></td>
+            </tr>
+
+            <tr>
+               <th><label for="telefonoFijo">Teléfono Fijo</label></th>
+               <td><input type="text" id="telefonoFijo"></td>
+            </tr>
+
+            <tr>
+               <th><label for="telefonoMovil">Teléfono Móvil</label></th>
+               <td><input type="text" id="telefonoMovil"></td>
+            </tr>
+         </table>
+      </fieldset>
+   </form>
+   <div class="div-boton-alta">
+      <input type="submit" id="submit" value="Enviar">
+   </div>
+</body>
+
+</html>

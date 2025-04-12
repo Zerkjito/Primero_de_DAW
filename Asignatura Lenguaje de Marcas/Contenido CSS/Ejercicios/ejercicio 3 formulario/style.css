@@ -1,0 +1,90 @@
+#datosP, #datosCont {
+   width: 40%;
+   border: 2px solid gray;
+   box-sizing: border-box;
+   transition: background-color 0.2s ease;
+}
+
+#datosP legend, #datosCont legend {
+   font-weight: bold;
+   font-size: 1.2rem;
+}
+
+#datosP:hover, #datosCont:hover {
+   background-color: rgb(253, 253, 206);
+}
+
+#datosP input:focus, #datosCont input:focus,
+#datosP select:focus, #datosCont select:focus {
+   outline: 0px;
+   border: 4px solid #e6b700;
+}
+
+.asterisco {
+   color: red;
+}
+
+.select-prov {
+   width: 100px;
+}
+
+.select-pais {
+   width: 70px;
+}
+
+.container-alta-formulario {
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+}
+
+.container-alta-formulario tr th {
+   font-size: 0.85rem;
+}
+
+.container-alta-formulario table {
+   width: 100%;
+   border-collapse: collapse;
+}
+
+table th, table td {
+   padding: 8px;
+   text-align: left;
+}
+
+table th {
+   width: 25%;  
+}
+
+table td {
+   width: 75%; 
+}
+
+.div-boton-alta {
+   margin-top: 20px;
+}
+
+table input, table select {
+   width: 60%;
+   padding: 3px;
+   font-size: 1rem;
+}
+
+.mensaje-ayuda-2apellido, .mensaje-ayuda-cp {
+   opacity: 0;
+   transition: opacity 0.2s ease;
+   display: block;
+}
+
+.mensaje-ayuda-2apellido {
+   margin-top: 15px;
+}
+
+.mensaje-ayuda-cp {
+   margin-top: 10px;
+   margin-bottom: 20px;
+}
+
+#datosP:hover .mensaje-ayuda-2apellido, #datosP:hover .mensaje-ayuda-cp{
+   opacity: 1;
+}
