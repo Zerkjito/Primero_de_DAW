@@ -33,6 +33,10 @@ public class Patinete extends Vehiculo implements Carrera {
     public void setNumeroDeRuedas(int numeroDeRuedas) {
         this.numeroDeRuedas = numeroDeRuedas;
     }
+    
+    public Persona getPersona() {
+        return getConductor();
+    }
 
     @Override
     public int avanzar() {

@@ -280,9 +280,28 @@ public class CarreraPopular {
 
     public static void mostrarPosicionMasJoven() {
         if (terminado) {
-            Carrera participanteMasJoven = null;
-
+            Persona participanteMasJoven = null;
+            Carrera participanteMasJovenCarrera = null;
             for (Carrera p : participantes) {
+                Persona actual = null;
+                switch (p) {
+                    case Corredor c -> actual = c;
+                    case Bicicleta b -> actual = b.getConductor();
+                    case Patinete pa -> actual = pa.getConductor();
+                    default -> {}
+                }
+                
+                if (actual == null) continue;
+                
+                if (participanteMasJoven == null || actual.getEdad() > participanteMasJoven.getEdad()) {
+                    participanteMasJoven = actual;
+                    participanteMasJovenCarrera = p;
+                }
+                
+                if () {
+                    
+                }
+                
             }
 
         } else {
