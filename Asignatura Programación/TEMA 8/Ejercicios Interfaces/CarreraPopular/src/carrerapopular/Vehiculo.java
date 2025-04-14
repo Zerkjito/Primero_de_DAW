@@ -84,8 +84,9 @@ public abstract class Vehiculo {
         sb.append(String.format("\nPeso: %.2f", peso));
         sb.append("\nConductor: ").append(conductor);
         sb.append("\nAmonestaciones: ").append(contadorAmonestaciones);
+        if (contadorAmonestaciones == 2) {
+            sb.append(" (ELIMINADO)");
+        }
         return sb.toString();
     }
-    
-    
 }

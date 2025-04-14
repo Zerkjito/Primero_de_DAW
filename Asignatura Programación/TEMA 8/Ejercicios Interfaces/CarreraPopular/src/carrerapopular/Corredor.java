@@ -60,6 +60,9 @@ public class Corredor extends Persona implements Carrera {
         StringBuilder sb = new StringBuilder();
         sb.append("Corredor").append("\nDorsal: ").append(dorsal).append("\nNombre: ").append(super.toString());
         sb.append("\nAmonestaciones: ").append(contadorAmonestaciones).append("\nDistancia recorrida: ").append(distanciaRecorrida);
+        if (contadorAmonestaciones == 2) {
+            sb.append(" (ELIMINADO)");
+        }
         sb.append("\n--------------------------------------------------");
         return sb.toString();
     }
@@ -79,8 +82,11 @@ public class Corredor extends Persona implements Carrera {
 
     @Override
     public boolean amonestar() {
-        if (isEnCarrera()) {
+        if (enCarrera()) {
             contadorAmonestaciones += 1;
+            if (contadorAmonestaciones == 2) {
+                setEnCarrera(false);
+            }
             return true;
         }
         return false;

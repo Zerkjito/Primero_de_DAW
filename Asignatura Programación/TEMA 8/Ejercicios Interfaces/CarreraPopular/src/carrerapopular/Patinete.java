@@ -53,8 +53,11 @@ public class Patinete extends Vehiculo implements Carrera {
 
     @Override
     public boolean amonestar() {
-        if (isEnCarrera()) {
+        if (enCarrera()) {
             setContadorAmonestaciones(getContadorAmonestaciones() + 1);
+            if (getContadorAmonestaciones() == 2) {
+                setEnCarrera(false);
+            }
             return true;
         }
         return false;

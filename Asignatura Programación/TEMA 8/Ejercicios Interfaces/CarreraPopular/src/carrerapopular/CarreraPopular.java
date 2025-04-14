@@ -38,10 +38,19 @@ public class CarreraPopular {
                     break;
                 case 2:
                     avanzarParticipantes();
+                    break;
                 case 3:
                     amonestarParticipantes();
+                    break;
                 case 4:
+                    mostrarGanadores();
+                    break;
                 case 5:
+                    mostrarGanadoresPorCategorias();
+                    break;
+                case 6:
+                    mostrarPosicionMasJoven();
+                    break;
             }
         } while (opcion != 0);
     }
@@ -162,7 +171,6 @@ public class CarreraPopular {
         if (!terminado) {
             int dorsal = UtilidadesInput.leerEnteroEnRango("Dorsal del amonestado: ", 1, participantes.size(), "Error: Dorsal fuera del rango. Debe ser entre 1 y " + participantes.size());
             dorsal--;
-
             Carrera participante = participantes.get(dorsal);
             boolean amonestado = participante.amonestar();
 
@@ -285,23 +293,36 @@ public class CarreraPopular {
             for (Carrera p : participantes) {
                 Persona actual = null;
                 switch (p) {
-                    case Corredor c -> actual = c;
-                    case Bicicleta b -> actual = b.getConductor();
-                    case Patinete pa -> actual = pa.getConductor();
-                    default -> {}
+                    case Corredor c ->
+                        actual = c;
+                    case Bicicleta b ->
+                        actual = b.getConductor();
+                    case Patinete pa ->
+                        actual = pa.getConductor();
+                    default -> {
+                    }
                 }
-                
-                if (actual == null) continue;
-                
-                if (participanteMasJoven == null || actual.getEdad() > participanteMasJoven.getEdad()) {
+
+                if (actual == null) {
+                    continue;
+                }
+
+                if (participanteMasJoven == null || actual.getEdad() < participanteMasJoven.getEdad()) {
                     participanteMasJoven = actual;
                     participanteMasJovenCarrera = p;
+                } else if (participanteMasJoven.getEdad() == actual.getEdad()) {
+                    if (p.obtenerDistanciaRecorrida() > participanteMasJovenCarrera.obtenerDistanciaRecorrida()) {
+                        participanteMasJoven = actual;
+                        participanteMasJovenCarrera = p;
+                    }
                 }
-                
-                if () {
-                    
-                }
-                
+            }
+            if (participanteMasJovenCarrera != null) {
+                int pos = participantes.indexOf(participanteMasJovenCarrera) + 1;
+                System.out.println("Posicion en la carrera del mas joven: " + pos);
+                System.out.println(participanteMasJovenCarrera);
+            } else {
+                System.out.println("No se encontro ningun participante valido.");
             }
 
         } else {

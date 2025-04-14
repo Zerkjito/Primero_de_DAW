@@ -1,4 +1,4 @@
-    /*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -17,7 +17,6 @@ public class Bicicleta extends Vehiculo implements Carrera {
         this.tipo = tipo;
     }
 
-
     public TipoBicicleta getTipo() {
         return tipo;
     }
@@ -25,7 +24,7 @@ public class Bicicleta extends Vehiculo implements Carrera {
     public void setTipo(TipoBicicleta tipo) {
         this.tipo = tipo;
     }
-    
+
     public Persona getPersona() {
         return getConductor();
     }
@@ -54,7 +53,7 @@ public class Bicicleta extends Vehiculo implements Carrera {
 
     @Override
     public boolean amonestar() {
-        if (isEnCarrera()) {
+        if (enCarrera()) {
             setContadorAmonestaciones(getContadorAmonestaciones() + 1);
             if (getContadorAmonestaciones() == 2) {
                 this.setEnCarrera(false);
