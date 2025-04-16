@@ -11,4 +11,5 @@ package tiendamascotas;
 public interface Tienda {
     public double obtenerPrecio();
     public boolean enOferta();
+    public boolean aplicarOferta();
 }

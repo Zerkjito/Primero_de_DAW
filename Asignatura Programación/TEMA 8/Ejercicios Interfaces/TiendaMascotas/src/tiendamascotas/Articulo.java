@@ -108,4 +108,16 @@ public class Articulo implements Tienda {
         return isOferta();
     }
 
+    @Override
+    public boolean aplicarOferta() {
+        if (enOferta()) {
+            setOferta(false);
+            return true;
+        } else if (!enOferta() && precio > 5) {
+            setOferta(true);
+            return true;
+        }
+        return false;
+    }
+
 }

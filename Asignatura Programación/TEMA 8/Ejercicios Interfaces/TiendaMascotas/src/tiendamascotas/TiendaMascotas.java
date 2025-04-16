@@ -4,8 +4,11 @@
  */
 package tiendamascotas;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
+import java.util.Random;
 
 /**
  *
@@ -13,6 +16,7 @@ import java.util.Comparator;
  */
 public class TiendaMascotas {
 
+    static Random rnd = new Random();
     static int indice = 0;
     static Tienda[] tiendaMascotas;
     static Menu m = new Menu();
@@ -27,13 +31,11 @@ public class TiendaMascotas {
             m.mostrar();
             opcion = m.leerOpcion();
             switch (opcion) {
-                case 1:
-                    mostrar();
-                    break;
-                case 2:
-                case 3:
+                case 1 -> mostrar();
+                case 2 -> gestionarOfertas();
             }
         } while (opcion != 0);
+
     }
 
     public static void leerDatos() {
@@ -83,6 +85,31 @@ public class TiendaMascotas {
         }
     }
 
+    public static int generarIndiceValido() {
+        return rnd.nextInt(indice);
+    }
+
+    public static void gestionarOfertas() {
+        if (todosValenMenosDe5()) {
+            System.out.println("Error: Todos los articulos valen menos de 5. No se puede aplicar ningun descuento.");
+            return;
+        }
+        
+        boolean aplicada = false;
+        String mensaje;
+        do {
+            int indiceAzar = generarIndiceValido(); // 0 incluido, indice exlcuido, o sea, el tamaño correcto para evitar IndexOutOfBounds
+            Tienda t = obtenerElementoSeguro(indiceAzar);
+
+            mensaje = t.enOferta() ? "Deja de estar en oferta:" : "Nuevo producto en oferta";
+            if (t.aplicarOferta()) {
+                System.out.println(mensaje);
+                System.out.println(t);
+                aplicada = true;
+            }
+        } while (!aplicada);
+    }
+
     public static boolean hayAlgunaOferta() {
         for (int i = 0; i < indice; i++) {
             if (tiendaMascotas[i].enOferta()) {
@@ -90,6 +117,15 @@ public class TiendaMascotas {
             }
         }
         return false;
+    }
+
+    public static boolean todosValenMenosDe5() {
+        for (int i = 0; i < indice; i++) {
+            if (!tiendaMascotas[i].enOferta() && tiendaMascotas[i].obtenerPrecio() > 5) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public static Gato leerGato() {
@@ -145,6 +181,15 @@ public class TiendaMascotas {
             des = UtilidadesInput.leerString("Descripcion: ");
         }
         return des;
+    }
+
+    public static Tienda obtenerElementoSeguro(int i) {
+        if (i >= 0 && i < indice) {
+            return tiendaMascotas[i];
+        } else {
+            System.out.println("Indice fuera de rango.");
+            return null;
+        }
     }
 
     public static boolean existeCodigo(int cod) {

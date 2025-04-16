@@ -8,7 +8,8 @@ package tiendamascotas;
  *
  * @author zerkje
  */
-public class Gato extends Animal{
+public class Gato extends Animal {
+
     private RazaGato raza;
 
     public Gato(int codigo, double precio, RazaGato raza) {
@@ -16,9 +17,6 @@ public class Gato extends Animal{
         this.raza = raza;
     }
 
-    
-    
-    
     public RazaGato getRaza() {
         return raza;
     }
@@ -29,13 +27,27 @@ public class Gato extends Animal{
 
     @Override
     public double obtenerPrecio() {
-        if(!enOferta()) return getPrecio();
-        return getPrecio() *  1.25;
+        if (!enOferta()) {
+            return getPrecio();
+        }
+        return getPrecio() * 1.25;
     }
 
     @Override
     public boolean enOferta() {
         return isOferta();
+    }
+
+    @Override
+    public boolean aplicarOferta() {
+        if (enOferta()) {
+            setOferta(false);
+            return true;
+        } else if (!enOferta() && getPrecio() > 5) {
+            setOferta(true);
+            return true;
+        }
+        return false;
     }
 
     @Override

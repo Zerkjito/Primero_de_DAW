@@ -46,4 +46,16 @@ public class Perro extends Animal {
         sb.append("Perro ").append(super.toString());
         return sb.toString();
     }
+
+    @Override
+    public boolean aplicarOferta() {
+        if (enOferta()) {
+            setOferta(false);
+            return true;
+        } else if (!enOferta() && getPrecio() > 5) {
+            setOferta(true);
+            return true;
+        }
+        return false;
+    }
 }
