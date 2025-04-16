@@ -58,7 +58,6 @@ public class UtilidadesInput {
                 valido = true;
             } else {
                 System.out.println(errMssg);
-                sc.nextLine();
             }
         }
         return n;

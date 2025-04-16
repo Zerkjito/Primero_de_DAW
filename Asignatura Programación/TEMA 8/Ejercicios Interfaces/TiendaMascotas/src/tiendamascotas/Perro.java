@@ -8,7 +8,8 @@ package tiendamascotas;
  *
  * @author zerkje
  */
-public class Perro extends Animal{
+public class Perro extends Animal {
+
     private RazaPerro raza;
 
     public Perro(int codigo, double precio, RazaPerro raza) {
@@ -16,8 +17,6 @@ public class Perro extends Animal{
         this.raza = raza;
     }
 
-    
-    
     public RazaPerro getRaza() {
         return raza;
     }
@@ -28,8 +27,10 @@ public class Perro extends Animal{
 
     @Override
     public double obtenerPrecio() {
-        if(!enOferta()) return getPrecio();
-        
+        if (!enOferta()) {
+            return getPrecio();
+        }
+
         double factor = raza == RazaPerro.LABRADOR ? 1.25 : 1.20;
         return getPrecio() * factor;
     }
@@ -38,5 +39,11 @@ public class Perro extends Animal{
     public boolean enOferta() {
         return isOferta();
     }
-    
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Perro ").append(super.toString());
+        return sb.toString();
+    }
 }

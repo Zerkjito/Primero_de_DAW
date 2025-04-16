@@ -8,7 +8,8 @@ package tiendamascotas;
  *
  * @author zerkje
  */
-public abstract class Animal implements Tienda{
+public abstract class Animal implements Tienda {
+
     private int codigo;
     private double precio;
     private boolean oferta;
@@ -72,11 +73,15 @@ public abstract class Animal implements Tienda{
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Animal{");
-        sb.append("codigo=").append(codigo);
-        sb.append(", precio=").append(precio);
-        sb.append(", oferta=").append(oferta);
+        sb.append(codigo);
+        sb.append("\nPrecio ");
+        if (oferta) {
+            sb.append(" EN OFERTA: ");
+        } else {
+            sb.append(": ");
+        }
+        sb.append(String.format("%.2f EUR", obtenerPrecio()));
         return sb.toString();
     }
-    
+
 }

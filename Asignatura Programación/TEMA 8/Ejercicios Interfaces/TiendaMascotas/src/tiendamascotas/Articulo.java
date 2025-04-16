@@ -8,7 +8,8 @@ package tiendamascotas;
  *
  * @author zerkje
  */
-public class Articulo implements Tienda{
+public class Articulo implements Tienda {
+
     private int codigo;
     private String descripcion;
     private double precio;
@@ -59,8 +60,6 @@ public class Articulo implements Tienda{
     public void setOferta(boolean oferta) {
         this.oferta = oferta;
     }
-    
-    
 
     @Override
     public int hashCode() {
@@ -84,18 +83,23 @@ public class Articulo implements Tienda{
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Articulo{");
-        sb.append("codigo=").append(codigo);
-        sb.append(", descripcion=").append(descripcion);
-        sb.append(", precio=").append(precio);
-        sb.append(", oferta=").append(oferta);
+        sb.append("\nArticulo ").append(codigo);
+        sb.append("\nDescripcion: ").append(descripcion);
+        sb.append("\nPrecio ");
+        if (oferta) {
+            sb.append(" EN OFERTA: ");
+        } else {
+            sb.append(": ");
+        }
+        sb.append(String.format("%.2f EUR", obtenerPrecio()));
         return sb.toString();
     }
 
     @Override
     public double obtenerPrecio() {
-        if(!enOferta()) return getPrecio();
-        
+        if (!enOferta()) {
+            return getPrecio();
+        }
         return getPrecio() * 1.10;
     }
 
@@ -104,5 +108,4 @@ public class Articulo implements Tienda{
         return isOferta();
     }
 
-    
 }

@@ -37,5 +37,11 @@ public class Gato extends Animal{
     public boolean enOferta() {
         return isOferta();
     }
-    
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Gato ").append(super.toString());
+        return sb.toString();
+    }
 }
